@@ -1,0 +1,35 @@
+.logos-module {
+  background: linear-gradient(96.63deg, #FFE6B1 0.57%, #F9F9F9 63.86%, #D3FBEA 100%);
+  @include mq(tablet) {
+    padding: vw(50px) 0 vw(200px);
+  }
+  &.logos-module--media {
+    background: linear-gradient(96.1deg, #DFF5ED 7.09%, #F9F9F9 54.21%, #D8CBF2 99.41%);
+  }
+
+  .section-title {
+    @include mq(tablet) {
+      margin-bottom: vw(110px);
+    }
+  }
+  &__slider {
+
+  }
+  .slick-track {
+    display: flex;
+    align-items: center;
+  }
+  &__link {
+    @include mq(tablet) {
+      margin-right: vw(140px);
+      width: vw(220px) !important;
+      text-align: center;
+    }
+    img {
+      margin: 0 auto;
+      max-width: 100%;
+      max-height: vw(80px);
+      width: auto;
+    }
+  }
+}

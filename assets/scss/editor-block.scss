@@ -1,0 +1,107 @@
+@import "utils/variables";
+@import "utils/mixins";
+
+.block-editor-block-list__block {
+  overflow: hidden;
+}
+
+// Home Hero
+.home-hero {
+  position: relative;
+  &__bg {
+    width: 100%;
+  }
+  &__logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 60% !important;
+    transform: translate(-50%, -50%);
+  }
+  .scroll-link {
+    position: absolute;
+    display: block;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+  }
+}
+
+// Responsive Spacer
+.responsive-spacer {
+  content: "Spacer";
+  width: 100%;
+  height: 50px;
+  background-color: lightgrey;
+}
+
+// Title Text Block
+.title-text {
+  &__title {
+    font-style: italic;
+  }
+}
+
+// Media content Block
+.media-content {
+  .container {
+    display: flex;
+    align-items: center;
+  }
+  &__media {
+    flex: 0 0 49%;
+    padding-right: 2%;
+    @include when-inside(".media-content--left") {
+      order: 1;
+    }
+  }
+  &__content {
+    flex: 0 0 49%;
+    padding: 0 10px;
+    text-align: center;
+  }
+  &__title {
+    font-style: italic;
+    color: $heading_color;
+  }
+  &__cta {
+    color: $accent;
+  }
+  .img-hover {
+    display: none;
+  }
+}
+
+// Custom Media
+.custom-media {
+  video {
+    width: 100%;
+  }
+}
+
+// Two columns
+.two-columns {
+  .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+}
+
+// Dine + Drink
+.three-images {
+  &__medias {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
+}
+
+// Menus hours
+.menus-hours {
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+}

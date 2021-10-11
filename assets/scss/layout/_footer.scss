@@ -1,0 +1,122 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+
+// Footer styles
+.footer {
+  &-top {
+    padding: 14px 0;
+    background-color: #A072DF;
+    @include mq(tablet) {
+      padding: vw(26px) 0;
+    }
+    .container {
+      display: flex;
+      align-items: center;
+      @include mq(tablet) {
+        padding: 0 vw(19px);
+        justify-content: flex-end;
+      }
+    }
+    &__title {
+      @include typography(14px, 26px, 16.8px, 31.2px, 700, $f-text, $secondary);
+      letter-spacing: 0.1em;
+      font-style: italic;
+      @include mq(tablet, max) {
+        margin-right: auto;
+      }
+      @include mq(tablet) {
+        margin-right: vw(60px);
+      }
+    }
+  }
+  &-social {
+    display: flex;
+    margin-right: 25px;
+    align-items: center;
+    font: 400 21.89px/1.3 $f-secondary;
+    color: $secondary;
+    @include mq(tablet) {
+      margin-right: vw(65px);      
+    }
+    @include mq(desktop-wide) {
+      font-size: 30px;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    span {
+      display: none;
+      position: relative;
+      @include mq(tablet) {
+        display: block;
+        margin-left: vw(19px);
+      }
+      &::after {
+        position: absolute;
+        content: '';
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $c-white;
+        transition: transform .3s ease-in-out;
+        will-change: transform;
+      }
+      &:hover {
+        &::after {
+          transform: scaleX(0);
+        }
+      }
+    }
+  }
+  &-main {
+    padding: 37px 15px;
+    background: linear-gradient(325.2deg, #B997E7 1%, #FFCDD3 42.14%, #FED78B 79.84%);
+    @include mq(tablet) {
+      padding: vw(90px) vw(60px) vw(30px);
+    }
+  }
+  &-shape {
+    margin-bottom: 16px;
+    @include mq(tablet) {
+      margin-bottom: vw(44px);
+    }
+  }
+  &-logo {
+    margin-bottom: 20px;
+    @include mq(tablet) {
+      margin-bottom: vw(26px);
+    }
+  }
+  &-text {
+    @include typography(14px, 26px, 16.8px, 31.2px, 700, $f-text);
+    letter-spacing: 0.1em;
+    font-style: italic;
+  }
+  &-bottom {
+    display: flex;
+    padding: 24px 15px;
+    align-items: center;
+    justify-content: space-between;
+    @include mq(tablet) {
+      justify-content: flex-end;
+      padding: vw(35px) vw(60px) vw(40px);
+    }
+  }
+  &-link,
+  &-copy {
+    @include typography(10px, 16px, 15px, 14px, 400, $f-secondary);
+    text-transform: uppercase;
+
+    @include mq(tablet, max) {
+      color: #858480;
+    }
+    @include mq(tablet) {
+      margin-right: vw(34px);
+    }
+  }
+  &-copy {
+    margin-right: 0;
+  }
+}

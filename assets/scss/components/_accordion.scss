@@ -1,0 +1,84 @@
+.accordions {
+  text-align: center;
+  &-heading {
+    margin-bottom: 45px;
+    color: $heading_color;
+    @include mq(tablet) {
+      margin-bottom: vw(57px);
+    }
+  }
+}
+.accordion {
+  margin-bottom: 14px;
+  @include mq(tablet) {
+    margin-bottom: 20px;
+  }
+  border: 1px solid #4a4a4a;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &-title {
+    position: relative;
+    padding: 15px;
+    font: 400 14px/2 $f-text;
+    letter-spacing: 0.3em;
+    color: $c-black;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    @include mq(tablet) {
+      padding: 11px 15px;
+      &:hover {
+        background-color: $primary;
+      }
+    }
+    &::before,
+    &::after {
+      position: absolute;
+      top: 50%;
+      content: "";
+      background-color: $c-black;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease-in-out;
+      will-change: transform;
+    }
+    &::before {
+      width: 10px;
+      height: 2px;
+      right: 20px;
+    }
+    &::after {
+      width: 2px;
+      height: 10px;
+      right: 24px;
+    }
+    &.active {
+      &::after {
+        transform: translateY(-50%) rotate(90deg);
+      }
+    }
+  }
+  &-content {
+    display: none;
+    padding: 35px 15px;
+    &__inner {
+      @include mq(tablet) {
+        margin: auto;
+        max-width: vw(607px);
+      }
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin-bottom: 40px;
+    }
+    @include listStyle();
+    ul {
+      margin: 48px auto 0;
+      max-width: 350px;
+      text-align: left;
+    }
+  }
+}

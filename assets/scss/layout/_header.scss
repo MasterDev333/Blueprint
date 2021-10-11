@@ -1,0 +1,67 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+// Header styles
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 10;
+  @include adminbar-offset();
+  &.sticky {
+    background: $background_color;
+    border-bottom: 1px solid $border_color;
+    @include when-inside(".admin-bar") {
+      @media screen and (max-width: 600px) {
+        top: 0;
+      }
+    }
+  }
+  &-nav {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    @include mq(tablet) {
+      padding: 0 vw(60px);
+    }
+  }
+  &-logo {
+    display: none;
+    @include mq(tablet) {
+      display: block;
+      max-width: vw(290px);
+    }
+    &--mobile {
+      @include mq(tablet) {
+        display: none;
+      }
+    }
+  }
+  .menu-items {
+    @include mq(tablet) {
+      display: flex;
+    }
+  }
+  .menu-item {
+    @include mq(tablet) {
+      margin-right: vw(38px);
+    }
+    .nav-link {
+      @include mq(tablet) {
+        font: 400 16px/19.5px $f-secondary;
+        color: $primary;
+      }
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+.hamburger {
+  @include mq(tablet) {
+    display: none;
+  }
+}

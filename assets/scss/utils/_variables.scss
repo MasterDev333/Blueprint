@@ -1,0 +1,40 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+//Colors
+$primary: #141820;
+$secondary: #fff;
+$accent: #46372a;
+$background_color: #fff;
+$border_color: #313131;
+$heading_color: #141820;
+$text_color: #141820;
+$c-black: #000;
+$c-white: #fff;
+//Media query breakpoints
+$viewport-sm: 375px;
+$viewport-md: 768px;
+$breakpoints: (
+  "phone-xsmall": 320px,
+  "phone-small": 375px,
+  "phone": 425px,
+  "phone-wide": 480px,
+  "phablet": 560px,
+  "tablet-small": 640px,
+  "tablet": 768px,
+  "tablet-wide": 992px,
+  "desktop-small": 1024px,
+  "desktop": 1200px,
+  "desktop-wide": 1439px,
+  "desktop-ultra": 1599px,
+);
+
+// Font name
+$f-heading: "meno-banner", sans-serif;
+$f-secondary: 'Montserrat', sans-serif;
+$f-text: "meno-text", sans-serif;
+
+// inline SVGs
+$menu-arrow-down: url("data:image/svg+xml;utf8,<svg width='9' height='7' viewBox='0 0 9 7' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4.5 7L0.602886 0.250001L8.39711 0.25L4.5 7Z' fill='black'/></svg>");
+$menu-arrow-up: url("data:image/svg+xml;utf8,<svg width='9' height='7' viewBox='0 0 9 7' style='transform: rotate(180deg)' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4.5 7L0.602886 0.250001L8.39711 0.25L4.5 7Z' fill='black'/></svg>");
