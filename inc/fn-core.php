@@ -216,7 +216,8 @@ function am_add_javascript( ) {
         //external Javascript
         $am_links = array( 
             'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js' ); 
+            'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.6.0/jquery.marquee.min.js' ); 
         foreach($am_links as $am_link){
             wp_enqueue_script('am_'.sanitize_title($am_link), $am_link,array('jquery'), '', true);
         }  

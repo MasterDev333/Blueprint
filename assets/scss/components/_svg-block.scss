@@ -1,0 +1,105 @@
+.svg-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.svg-block {
+  &--top {
+    @include mq(tablet) {
+      padding-bottom: vw(120px);
+    }
+    .section-title {
+      @include mq(tablet) {
+        margin-bottom: vw(45px);
+      }
+    }
+  }
+
+  &--bottom {
+    @include mq(tablet) {
+      padding-bottom: vw(150px);
+    }
+    .section-title {
+      color: $c-white;
+      @include mq(tablet) {
+        margin-bottom: vw(180px);
+      }
+    }
+    background-color: $primary;
+  }
+
+  &__inner {
+    display: flex;
+    @include mq(tablet, max) {
+      flex-direction: column;
+    }
+    @include when-inside('.svg-block--bottom') {
+      align-items: flex-end;
+    }
+  }
+  &__image {
+    @include mq(tablet, max) {
+      margin: 88px 0 47px;
+      @include when-inside('.svg-block--bottom') {
+        margin: 88px 0 20px;
+      }
+    }
+  }
+
+  &__content {
+    @include when-inside('.svg-block--top') {
+      order: 1;
+    }
+    @include mq(tablet) {
+      max-width: vw(405px);
+      @include when-inside('.svg-block--top') {
+        margin-right: vw(45px);
+      }
+      @include when-inside('.svg-block--bottom') {
+        margin-left: vw(60px);
+      }
+    }
+    p {
+      font: 400 28px/40px $f-text;
+      @include mq(tablet) {
+        font-size: 16.78px;
+        line-height: 27px;
+      }
+      @include mq(desktop-wide) {
+        font-size: 23px;
+        line-height: 37px;
+      }
+      @include when-inside('.svg-block--bottom') {
+        color: $secondary;
+      }
+    }
+  }
+}
+.marquee {
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 0;
+  transform: rotate(90deg);
+  @include mq(tablet) {
+    display: block;
+    left: vw(130px);
+  }
+}
+.marquee-text {
+  background: -webkit-linear-gradient(#FFA012, #AD73FD, #59E8AC, #1CB2F2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  z-index: 2;
+  white-space: nowrap;
+  transform: rotate(-90deg);
+  @include mq(tablet) {
+    font: 700 14.66px/17.59px $f-text;
+  }
+  @include mq(desktop-wide) {
+    font-size: 20.09px;
+    line-height: 24.11px;
+  }
+}

@@ -90,6 +90,65 @@ if( have_rows('modules') ):
             </section>
 
         <?php
+        // Case : SVG Block
+        elseif( get_row_layout() == 'svg_block' ): 
+            $top = get_sub_field( 'top' );
+            $bottom = get_sub_field( 'bottom' );
+            $marquee_text = get_sub_field( 'gradient_marquee' ); ?>
+            <section class="svg-section">
+                <div class="section svg-block svg-block--top" id="<?php echo $top['id']; ?>">
+                    <div class="container">
+                        <?php if( $top['title'] ): ?>
+                            <h2 class="section-title a-up"><?php echo $top['title']; ?></h2>
+                        <?php endif; ?>
+                        <div class="svg-block__inner">
+                            <div class="svg-block__content a-up a-delay-1">
+                                <?php if( $top['content'] ): ?>
+                                    <div class="svg-block__text">
+                                        <?php echo $top['content']; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="svg-block__image a-up a-delay-2">
+                                <?php if( $top['image'] ): ?>
+                                    <img src="<?php echo $top['image']; ?>" alt="">
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section svg-block svg-block--bottom" id="<?php echo $bottom['id']; ?>">
+                    <div class="container">
+                        <?php if( $bottom['title'] ): ?>
+                            <h2 class="section-title a-up"><?php echo $bottom['title']; ?></h2>
+                        <?php endif; ?>
+                        <div class="svg-block__inner">
+                            <div class="svg-block__image a-up a-delay-1">
+                                <?php if( $bottom['image'] ): ?>
+                                    <img src="<?php echo $bottom['image']; ?>" alt="">
+                                <?php endif; ?>
+                            </div>
+                            <div class="svg-block__content a-up a-delay-2">
+                                <?php if( $bottom['content'] ): ?>
+                                    <div class="svg-block__text">
+                                        <?php echo $bottom['content']; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php if( $marquee_text ): ?>
+                    <div class="marquee">
+                        <ul id="marquee">
+                            <li>
+                                <p class="marquee-text"><?php echo $marquee_text; ?></p>
+                            </li>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+            </section>
+        <?php
         // Case: Media
         elseif( get_row_layout() == 'media_content' ): ?>
             <section class="media-content media-content--<?php echo get_sub_field('direction') ?: 'left'; ?>"  style="background-color: <?php the_sub_field( 'media_background' ); ?>">

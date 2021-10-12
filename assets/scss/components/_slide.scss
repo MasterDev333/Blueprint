@@ -9,7 +9,9 @@
     display: flex;
   }
   .container {
-    margin-right: -20px;
+    @include mq(tablet, max) {
+      margin-right: -20px;
+    }
   }
   .slick-slide {
     margin-right: 15px;

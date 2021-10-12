@@ -17,6 +17,7 @@ jQuery(document).ready(function() {
   isElementExist(".logos-module__slider", initLogosSlider);
   isElementExist(".slider", initSlider);
   isElementExist(".accordions", initAccordions);
+  isElementExist(".marquee", initMarquee);
 
   // viewportCheckerAnimate function
   viewportCheckerAnimate(".a-bg-up", "_animate");
@@ -130,6 +131,16 @@ function initHomeBanner() {
       adaptiveHeight: true,
     });
   }
+}
+
+// init Marquee
+function initMarquee() {
+  // $('#marquee').marquee({
+  //   direction: 'vertical',
+  //   itemSelecter: 'li',
+  //   timing: 50,
+  //   delay: 0,
+  // });
 }
 
 // initialize slider
@@ -2682,19 +2693,16 @@ copies or substantial portions of the Software.
     }),
     (d.hashColor2rgb = function(a) {
       var b = a.match(/^#([0-9a-f]{3})$/i);
-      return b ?
-        [
+      return b ? [
           17 * parseInt(b[1].charAt(0), 16),
           17 * parseInt(b[1].charAt(1), 16),
           17 * parseInt(b[1].charAt(2), 16),
         ] :
-        (b = a.match(/^#([0-9a-f]{6})$/i)) ?
-        [
+        (b = a.match(/^#([0-9a-f]{6})$/i)) ? [
           parseInt(b[1].substr(0, 2), 16),
           parseInt(b[1].substr(2, 2), 16),
           parseInt(b[1].substr(4, 2), 16),
-        ] :
-        [0, 0, 0];
+        ] : [0, 0, 0];
     }),
     (d.rgb2HashColor = function(a, b, c) {
       var d,
