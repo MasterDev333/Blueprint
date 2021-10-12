@@ -1,0 +1,67 @@
+.slider {
+  .section-title {
+    @include mq(tablet) {
+      margin-bottom: vw(96px);
+    }
+  }
+  .slide {
+    width: 300px;
+    @include mq(tablet) {
+      display: flex;
+      width: auto;
+      align-items: center;
+    }
+    &-img {
+      width: 100%;
+      @include mq(tablet) {
+        width: vw(714px);
+        .img-a-img::before {
+          padding-top: 100%;
+        }
+      }
+    }
+    &-content {
+      display: flex;
+      padding: 28px 20px;
+      flex-direction: column;
+      background-color: $background_color;
+      width: 100%;
+      @include mq(tablet) {
+        padding: vw(100px) vw(40px);
+        width: vw(600px);
+      }
+      &__name {
+        @include typography(20px, 30px, 24.38px, 36.57px, 700, $f-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        @include mq(tablet) {
+          margin-bottom: vw(20px);
+        }
+      }
+      &__info,
+      &__bio {
+        @include typography(12px, 14px, 18px, 23.5px, 600, $f-secondary);
+      }
+      &__bio {
+        display: none;
+        @include mq(tablet) {
+          display: block;
+          margin-bottom: vw(36px);
+        }
+      }
+      hr {
+        margin: 20px 0;
+        width: 34px;
+        @include mq(tablet) {
+          margin: vw(12px) 0 vw(19px);
+          width: vw(60px);
+        }
+      }
+      &__testimonial {
+        margin-top: auto;
+        @include typography(18px, 22px, 25px, 35.29px, 600, $f-text);
+        letter-spacing: 0.01em;
+      }
+    }
+  }
+}

@@ -307,12 +307,31 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 .accordion-content ul { margin: 48px auto 0; max-width: 350px; text-align: left; }
 
 .logos-module { background: linear-gradient(96.63deg, #FFE6B1 0.57%, #F9F9F9 63.86%, #D3FBEA 100%); }
-@media only screen and (min-width: 769px) { .logos-module { padding: 2.6041666667vw 0 10.4166666667vw; } }
 .logos-module.logos-module--media { background: linear-gradient(96.1deg, #DFF5ED 7.09%, #F9F9F9 54.21%, #D8CBF2 99.41%); }
 @media only screen and (min-width: 769px) { .logos-module .section-title { margin-bottom: 5.7291666667vw; } }
 .logos-module .slick-track { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 @media only screen and (min-width: 769px) { .logos-module__link { margin-right: 7.2916666667vw; width: 11.4583333333vw !important; text-align: center; } }
 .logos-module__link img { margin: 0 auto; max-width: 100%; max-height: 4.1666666667vw; width: auto; }
+
+@media only screen and (min-width: 769px) { .slider .section-title { margin-bottom: 5vw; } }
+.slider .slide { width: 300px; }
+@media only screen and (min-width: 769px) { .slider .slide { display: -webkit-box; display: -ms-flexbox; display: flex; width: auto; -webkit-box-align: center; -ms-flex-align: center; align-items: center; } }
+.slider .slide-img { width: 100%; }
+@media only screen and (min-width: 769px) { .slider .slide-img { width: 37.1875vw; }
+  .slider .slide-img .img-a-img::before { padding-top: 100%; } }
+.slider .slide-content { display: -webkit-box; display: -ms-flexbox; display: flex; padding: 28px 20px; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; background-color: #fff; width: 100%; }
+@media only screen and (min-width: 769px) { .slider .slide-content { padding: 5.2083333333vw 2.0833333333vw; width: 31.25vw; } }
+.slider .slide-content__name { color: #141820; font-size: calc( 20px + 10 * ((100vw - 375px) / 1065) ); font-family: "Montserrat", sans-serif; font-weight: 700; line-height: calc( 24.38px + 12.19 * ((100vw - 375px) / 1065) ); text-transform: uppercase; letter-spacing: 0.04em; }
+@media only screen and (min-width: 1440px) { .slider .slide-content__name { font-size: 30px; line-height: 36.57px; } }
+@media only screen and (min-width: 769px) { .slider .slide-content__name { margin-bottom: 1.0416666667vw; } }
+.slider .slide-content__info, .slider .slide-content__bio { color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 1065) ); font-family: "Montserrat", sans-serif; font-weight: 600; line-height: calc( 18px + 5.5 * ((100vw - 375px) / 1065) ); }
+@media only screen and (min-width: 1440px) { .slider .slide-content__info, .slider .slide-content__bio { font-size: 14px; line-height: 23.5px; } }
+.slider .slide-content__bio { display: none; }
+@media only screen and (min-width: 769px) { .slider .slide-content__bio { display: block; margin-bottom: 1.875vw; } }
+.slider .slide-content hr { margin: 20px 0; width: 34px; }
+@media only screen and (min-width: 769px) { .slider .slide-content hr { margin: 0.625vw 0 0.9895833333vw; width: 3.125vw; } }
+.slider .slide-content__testimonial { margin-top: auto; color: #141820; font-size: calc( 18px + 4 * ((100vw - 375px) / 1065) ); font-family: "meno-text", sans-serif; font-weight: 600; line-height: calc( 25px + 10.29 * ((100vw - 375px) / 1065) ); letter-spacing: 0.01em; }
+@media only screen and (min-width: 1440px) { .slider .slide-content__testimonial { font-size: 22px; line-height: 35.29px; } }
 
 .text-primary { color: #141820; }
 
@@ -333,6 +352,7 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 
 .wpcf7 .ajax-loader { display: none; }
 
+@media only screen and (min-width: 769px) { .section { padding: 2.6041666667vw 0 10.4166666667vw; } }
 .section-title { color: #141820; font-size: calc( 16px + 2 * ((100vw - 375px) / 1065) ); font-family: "Montserrat", sans-serif; font-weight: 600; line-height: calc( 19.5px + 2.44 * ((100vw - 375px) / 1065) ); text-transform: uppercase; letter-spacing: 0.1em; }
 @media only screen and (min-width: 1440px) { .section-title { font-size: 18px; line-height: 21.94px; } }
 
