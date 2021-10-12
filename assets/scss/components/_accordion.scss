@@ -1,84 +1,114 @@
 .accordions {
-  text-align: center;
-  &-heading {
-    margin-bottom: 45px;
-    color: $heading_color;
+  &.accordions--dark {
+    background-color: $primary;
+    color: $c-white;
+  }
+  &.accordions--light {
+    background-color: $background_color;
+    color: $primary;
+  }
+  @include mq(tablet) {
+    padding-bottom: vw(140px);
+  }
+  .section-title {
     @include mq(tablet) {
-      margin-bottom: vw(57px);
+      margin-bottom: vw(87px);
     }
   }
 }
 .accordion {
-  margin-bottom: 14px;
-  @include mq(tablet) {
-    margin-bottom: 20px;
-  }
-  border: 1px solid #4a4a4a;
-  &:last-child {
-    margin-bottom: 0;
-  }
-  &-title {
-    position: relative;
-    padding: 15px;
-    font: 400 14px/2 $f-text;
-    letter-spacing: 0.3em;
-    color: $c-black;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    @include mq(tablet) {
-      padding: 11px 15px;
-      &:hover {
+  transition: all .5s ease-in-out;
+  &.hover,
+  &.active {
+    .accordion-header {
+      border-color: $primary;
+      &::before,
+      &::after {
         background-color: $primary;
       }
+    }
+    .accordion-title,
+    .accordion-subtitle {
+      color: $primary;
+    }
+  }
+  &-header {
+    position: relative;
+    padding: 12px 0;
+    border-bottom: 1px solid $c-white;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    @include mq(tablet) {
+      padding: vw(14px) 0 vw(23px);
+    }
+    @include when-inside('.accordions--light') {
+      border-color: $primary;
     }
     &::before,
     &::after {
       position: absolute;
       top: 50%;
-      content: "";
-      background-color: $c-black;
+      right: 0;
+      content: '';
+      width: 24px;
+      height: 1px;
+      background-color: $c-white;
       transform: translateY(-50%);
-      transition: transform 0.3s ease-in-out;
-      will-change: transform;
-    }
-    &::before {
-      width: 10px;
-      height: 2px;
-      right: 20px;
+      transition: all .3s ease-in-out;
+      @include mq(tablet) {
+        width: vw(38px);
+        height: 2px;
+      }
     }
     &::after {
-      width: 2px;
-      height: 10px;
-      right: 24px;
-    }
-    &.active {
-      &::after {
-        transform: translateY(-50%) rotate(90deg);
+      transform: translateY(-50%) rotate(90deg);
+      @include when-inside('.active') {
+        transform: translateY(-50%);
       }
+    }
+    
+  }
+  &-title {
+    @include typography(24px, 40px, 29.26px, 48.76px, 300, $f-secondary, $c-white);
+    transition: color .3s ease-in-out;
+  }
+  &-subtitle {
+    display: none;
+    font: 400 20px/35px $f-text;
+    color: $c-white;
+    transition: color .3s ease-in-out;
+    @include mq(tablet) {
+      display: block;
     }
   }
   &-content {
     display: none;
-    padding: 35px 15px;
+    padding: 40px 0;
+    @include mq(tablet) {
+      padding: vw(42px) 0 vw(60px);
+    }
     &__inner {
       @include mq(tablet) {
-        margin: auto;
-        max-width: vw(607px);
+        display: flex;
       }
     }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      margin-bottom: 40px;
+    &__image {
+      margin-bottom: 30px;
+      @include mq(tablet) {
+        margin-right: 40px;
+        margin-bottom: 0;
+        flex: 0 0 155px;
+      }
     }
-    @include listStyle();
-    ul {
-      margin: 48px auto 0;
-      max-width: 350px;
-      text-align: left;
+    &__text {
+      flex-grow: 1;
+      p {
+        font: 400 20px/34px $f-text;
+      }
+      @include mq(tablet) {
+        max-width: 830px;
+      }
     }
+
   }
 }

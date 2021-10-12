@@ -4,8 +4,8 @@ $social = get_field( 'social', 'options' );
 $footer_text = get_field( 'footer_text', 'options' ); 
 ?>
 <footer class="footer">
-    <div class="footer-top a-up">
-        <div class="container">
+    <div class="footer-top">
+        <div class="container a-up">
             <?php if( $social['title'] ) : ?>
                 <p class="footer-top__title"><?php echo $social['title']; ?></p>
             <?php endif; ?>
@@ -29,11 +29,11 @@ $footer_text = get_field( 'footer_text', 'options' );
             <?php endif; ?>
         </div>
     </div>
-    <div class="footer-main a-up">
-        <img class="footer-shape" src="<?php echo get_template_directory_uri(); ?>/assets/images/footer_shape.svg" alt="">
-        <img class="footer-logo" src="<?php echo get_template_directory_uri(); ?>/assets/images/footer_logo.svg" alt="Individual">
+    <div class="footer-main">
+        <img class="footer-shape a-up" src="<?php echo get_template_directory_uri(); ?>/assets/images/footer_shape.svg" alt="">
+        <img class="footer-logo a-up" src="<?php echo get_template_directory_uri(); ?>/assets/images/footer_logo.svg" alt="Individual">
         <?php if( $footer_text ) : ?>
-            <p class="footer-text"><?php echo $footer_text; ?></p>
+            <p class="footer-text a-up"><?php echo $footer_text; ?></p>
         <?php endif; ?>
     </div>
     <div class="footer-bottom a-up">

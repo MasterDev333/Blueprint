@@ -40,15 +40,57 @@ if( have_rows('modules') ):
                         <?php endwhile; ?>
                     </div>
                 <?php endif; ?>
-            </section>                
-       
+            </section>         
+            
+        <?php
+        // Case: Content
+        elseif( get_row_layout() == 'content' ): 
+            $heading = get_sub_field( 'heading' ); 
+            $content = get_sub_field( 'content' );?>
+            <section class="section content-module">
+                <div class="container">
+                    <?php if( $heading ): ?>
+                        <h2 class="section-title a-up"><?php echo $heading; ?></h2>
+                    <?php endif; ?>
+                    <?php if( $content ): ?>
+                        <div class="content-module__content a-up a-delay-1">
+                            <?php echo $content; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </section>
+
+        <?php
+        // Case: Media
+        elseif( get_row_layout() == 'media_content' ): ?>
+            <section class="media-content media-content--<?php echo get_sub_field('direction') ?: 'left'; ?>"  style="background-color: <?php the_sub_field( 'media_background' ); ?>">
+                <?php if( $image = get_sub_field( 'media' ) ): ?>
+                <div class="col media-content__image">
+                    <img class="a-up" src="<?php echo $image; ?>" alt="">
+                </div>
+                <?php endif; ?>
+                <div class="col media-content__content" style="background-color: <?php the_sub_field( 'content_background' ); ?>">
+                    <div class="media-content__content--inner">
+                        <?php if( $number = get_sub_field( 'number' ) ): ?>
+                            <div class="media-content__number a-up"><?php echo $number; ?></div>
+                        <?php endif; ?>
+                        <?php if( $title = get_sub_field( 'heading' ) ): ?>
+                            <h2 class="media-content__heading a-up a-delay-1"><?php echo $title; ?></h2>
+                        <?php endif; ?>
+                        <?php if( $desc = get_sub_field( 'description' ) ): ?>
+                            <p class="media-content__desc a-up a-delay-2"><?php echo $desc; ?></p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+
         <?php
         // Case: Slider.
         elseif( get_row_layout() == 'slider' ): 
             $id = get_sub_field( 'id' );
             $heading = get_sub_field( 'heading' );
             if( have_rows( 'slides' ) ): ?>
-                <section class="section slider">
+                <section class="section slider" id="<?php echo $id; ?>">
                     <div class="container">
                         <?php if( $heading ): ?>
                             <h2 class="section-title a-up"><?php echo $heading; ?></h2>
@@ -64,38 +106,91 @@ if( have_rows('modules') ):
                             $testimonial = get_sub_field( 'testimonial' );
                             $background = get_sub_field( 'background' ); 
                             ?>
-                            <div class="slide" data-bg="<?php echo $background; ?>">
-                                <div class="slide-img">
-                                    <div class="img-a">
-                                        <div class="img-a-img">
-                                            <img src="<?php echo $img_url; ?>" 
-                                                <?php echo $img_url_2x ? 'srcset="' . $img_url . ' 2x"' : ''; ?>
-                                                alt="">
+                            <div class="slide-wrapper">
+                                <div class="slide" data-bg="<?php echo $background; ?>">
+                                    <div class="slide-img">
+                                        <div class="img-a">
+                                            <div class="img-a-img">
+                                                <img src="<?php echo $img_url; ?>" 
+                                                    <?php echo $img_url_2x ? 'srcset="' . $img_url . ' 2x"' : ''; ?>
+                                                    alt="">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="slide-content">
-                                    <?php if( $name ): ?>
-                                        <div class="slide-content__name"><?php echo $name; ?></div>
-                                    <?php endif; ?> 
-                                    <?php if( $info ): ?>
-                                        <div class="slide-content__info"><?php echo $info; ?></div>
-                                    <?php endif; ?>
-                                    <hr>
-                                    <?php if( $bio ): ?>
-                                        <div class="slide-content__bio"><?php echo $bio; ?></div>
-                                    <?php endif; ?>
-                                    <?php if( $testimonial ): ?>
-                                        <div class="slide-content__testimonial"><?php echo $testimonial; ?></div>
-                                    <?php endif; ?>
+                                    <div class="slide-content">
+                                        <?php if( $name ): ?>
+                                            <div class="slide-content__name a-up"><?php echo $name; ?></div>
+                                        <?php endif; ?> 
+                                        <?php if( $info ): ?>
+                                            <div class="slide-content__info a-up a-delay-1"><?php echo $info; ?></div>
+                                        <?php endif; ?>
+                                        <hr class="a-up a-delay-2">
+                                        <?php if( $bio ): ?>
+                                            <div class="slide-content__bio a-up a-delay-3"><?php echo $bio; ?></div>
+                                        <?php endif; ?>
+                                        <?php if( $testimonial ): ?>
+                                            <div class="slide-content__testimonial a-up a-delay-4"><?php echo $testimonial; ?></div>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         <?php endwhile; ?>
                         </div>
                     </div>
                 </section>
-            <?php endif;
+            <?php endif; ?>
+
+        <?php 
+        // Case: Accordion
+        elseif( get_row_layout() == 'accordions' ): ?>
+            <section class="section accordions accordions--<?php the_sub_field( 'theme' ) ?: 'dark'; ?>">
+                <div class="container">
+                    <?php if( $heading = get_sub_field( 'heading' ) ): ?>
+                        <h2 class="section-title"><?php echo $heading; ?></h2>
+                    <?php endif; ?>
+                </div>
+                <?php if( have_rows( 'accordions' ) ): 
+                    while( have_rows( 'accordions') ): the_row( ); ?>
+                    <div class="accordion" id="accordion-<?php echo get_row_index(); ?>">
+                        <div class="container">
+                            <div class="accordion-header">
+                                <?php if( $title = get_sub_field( 'title' ) ): ?>
+                                    <div class="accordion-title"><?php echo $title; ?></div>
+                                <?php endif; ?>
+                                <?php if( $sub_title = get_sub_field( 'sub_title' ) ): ?>
+                                    <div class="accordion-subtitle"><?php echo $sub_title; ?></div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content__inner">
+                                    <?php if( $image = get_sub_field( 'image' ) ): ?>
+                                    <div class="accordion-content__image">
+                                        <img src="<?php echo $image; ?>" alt="">
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php if( $content = get_sub_field( 'content' ) ): ?>
+                                    <div class="accordion-content__text">
+                                        <?php echo $content; ?>
+                                    </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        #accordion-<?php echo get_row_index( ); ?>.active,
+                        #accordion-<?php echo get_row_index( ); ?>.hover {
+                            background: <?php the_sub_field( 'background_gradient' ); ?>
+                        }
+                    </style>
+                <?php endwhile;
+                endif; ?>
+            </section>
+
+        <?php
         endif;
+
+
 
     // End loop.
     endwhile;

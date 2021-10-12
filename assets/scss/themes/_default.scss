@@ -56,6 +56,7 @@
 }
 
 .section {
+  padding: 90px 0;
   @include mq(tablet) {
     padding: vw(50px) 0 vw(200px);
   }

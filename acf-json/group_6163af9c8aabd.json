@@ -398,7 +398,7 @@
                                     "placeholder": "",
                                     "maxlength": "",
                                     "rows": "",
-                                    "new_lines": ""
+                                    "new_lines": "br"
                                 },
                                 {
                                     "key": "field_6163b29fc9c48",
@@ -417,7 +417,7 @@
                                     "placeholder": "",
                                     "maxlength": "",
                                     "rows": "",
-                                    "new_lines": ""
+                                    "new_lines": "br"
                                 },
                                 {
                                     "key": "field_6163b2a9c9c49",
@@ -436,7 +436,7 @@
                                     "placeholder": "",
                                     "maxlength": "",
                                     "rows": "",
-                                    "new_lines": ""
+                                    "new_lines": "br"
                                 },
                                 {
                                     "key": "field_6163f73664834",
@@ -576,6 +576,25 @@
                             "mime_types": ""
                         },
                         {
+                            "key": "field_61651f39d882a",
+                            "label": "Number",
+                            "name": "number",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
                             "key": "field_6163b2fac9c4f",
                             "label": "Heading",
                             "name": "heading",
@@ -639,7 +658,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "33",
                                 "class": "",
                                 "id": ""
                             },
@@ -654,11 +673,36 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "33",
                                 "class": "",
                                 "id": ""
                             },
                             "default_value": ""
+                        },
+                        {
+                            "key": "field_6164f5388c3cc",
+                            "label": "Direction",
+                            "name": "direction",
+                            "type": "select",
+                            "instructions": "Image Direction",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "left": "Left",
+                                "right": "Right"
+                            },
+                            "default_value": "left",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -674,6 +718,25 @@
                             "key": "field_6163f5065ad08",
                             "label": "ID",
                             "name": "id",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_616524a803690",
+                            "label": "Heading",
+                            "name": "heading",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -809,6 +872,31 @@
                                     "maxlength": ""
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_616526c0244e2",
+                            "label": "Theme",
+                            "name": "theme",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "dark": "Dark",
+                                "light": "Light"
+                            },
+                            "default_value": "dark",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -837,5 +925,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1633946210
+    "modified": 1634019030
 }

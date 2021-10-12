@@ -14,6 +14,9 @@ jQuery(document).ready(function () {
   isElementExist(".a-bg-up", blockHeight, [".a-bg-up"]);
   isElementExist(".a-bg-down", blockHeight, [".a-bg-down"]);
   isElementExist(".logos-module__slider", initLogosSlider);
+  isElementExist(".slider", initSlider);
+  isElementExist(".accordions", initAccordions);
+
   // viewportCheckerAnimate function
   viewportCheckerAnimate(".a-bg-up", "_animate");
   viewportCheckerAnimate(".a-bg-down", "_animate");
@@ -97,6 +100,60 @@ function initCustomForms() {
     fakeDropInBody: false,
   });
   jcf.replaceAll();
+}
+
+// initialize slider
+function initSlider() {
+  $('.slides').on('init', function(event, slick) {
+    let $parent = $(this).closest('.slider'); 
+    let bg = $('.slide', slick.$slides[0]).attr('data-bg')
+    $parent.css("background-color", bg);
+  });
+  $('.slides').slick({
+    arrows: false,
+    dots: false,
+    nextArrow: $('.nextSlide'),
+    prevArrow: $('.prevSlide')
+  }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
+    let $parent = $(this).closest('.slider'); 
+    let bg = $('.slide', slick.$slides[nextSlide]).attr('data-bg')
+    $parent.css("background-color", bg);
+  });
+}
+
+// initialize accordion
+// function setAccordionColor($this) {
+//   let $accordion = $this.closest('.accordion');
+//   let bg = $accordion.attr('data-bg');
+//   $accordion.attr('style', 'background:' + bg);
+// }
+// function resetAccordionColor($this) {
+//   let $accordion = $this.closest('.accordion');
+//   let $accordions = $this.closest('.accordions');
+//   let bg = '#fff';
+//   if ($accordions.hasClass('accordions--dark')) bg = '#141820';
+//   $accordion.attr('style', 'background:' + bg);
+// }
+function initAccordions() {
+  $('.accordion-header').on('click', function() {
+    let $accordion = $(this).closest('.accordion');
+    $('.accordion-content', $accordion).slideToggle();
+    $accordion.toggleClass('active');
+    // if ($accordion.hasClass('active')) {
+    //   setAccordionColor($(this));
+    // } else {
+    //   resetAccordionColor($(this));
+    // }
+  });
+  $('.accordion-header').on('mouseenter', function() {
+    let $accordion = $(this).closest('.accordion');
+    $accordion.addClass('hover');
+    // setAccordionColor($(this));
+  }).on('mouseleave', function() {
+    let $accordion = $(this).closest('.accordion');
+    $accordion.removeClass('hover');
+    // resetAccordionColor($(this));
+  });
 }
 
 // initialize logos slider

@@ -1,0 +1,40 @@
+.content-module {
+  @include mq(tablet) {
+    padding-bottom: vw(285px);
+  }
+
+  .section-title {
+    margin-bottom: 68px;
+
+    @include mq(tablet) {
+      margin-bottom: vw(187px);
+    }
+  }
+
+  &__content {
+    @include mq(tablet) {
+      margin: 0 auto;
+      max-width: vw(870px);
+    }
+    p {
+      @include typography(46px, 61px, 600, $f-heading);
+      font: 400 30px/1.5 $f-text;
+
+      @include mq(tablet) {
+        font: 600 33.57px/44.51px $f-heading;
+        text-align: center;
+      }
+
+      @include mq(desktop-wide) {
+        font-size: 46px;
+        line-height: 61px;
+      }
+
+      i {
+        @include mq(tablet) {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

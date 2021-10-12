@@ -26,7 +26,9 @@
       flex-direction: column;
       background-color: $background_color;
       width: 100%;
+      z-index: 1;
       @include mq(tablet) {
+        margin-left: vw(-40px);
         padding: vw(100px) vw(40px);
         width: vw(600px);
       }
@@ -52,6 +54,7 @@
       hr {
         margin: 20px 0;
         width: 34px;
+        border-color: #CEAF87;
         @include mq(tablet) {
           margin: vw(12px) 0 vw(19px);
           width: vw(60px);
