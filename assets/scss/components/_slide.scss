@@ -1,7 +1,21 @@
 .slider {
   .section-title {
+    margin-bottom: 65px;
     @include mq(tablet) {
       margin-bottom: vw(96px);
+    }
+  }
+  .slick-track {
+    display: flex;
+  }
+  .container {
+    margin-right: -20px;
+  }
+  .slick-slide {
+    margin-right: 15px;
+    height: inherit !important;
+    @include mq(tablet, max) {
+      background-color: $c-white;
     }
   }
   .slide {
@@ -13,11 +27,12 @@
     }
     &-img {
       width: 100%;
+      line-height: 0;
       @include mq(tablet) {
         width: vw(714px);
-        .img-a-img::before {
-          padding-top: 100%;
-        }
+      }
+      .img-a-img::before {
+        padding-top: 100%;
       }
     }
     &-content {

@@ -1,5 +1,5 @@
 var $ = jQuery.noConflict();
-jQuery(document).ready(function () {
+jQuery(document).ready(function() {
   // single function
   initHeader();
   initCustomForms();
@@ -13,6 +13,7 @@ jQuery(document).ready(function () {
   isElementExist(".scroll-link", myScrollLink);
   isElementExist(".a-bg-up", blockHeight, [".a-bg-up"]);
   isElementExist(".a-bg-down", blockHeight, [".a-bg-down"]);
+  isElementExist(".home-banner", initHomeBanner);
   isElementExist(".logos-module__slider", initLogosSlider);
   isElementExist(".slider", initSlider);
   isElementExist(".accordions", initAccordions);
@@ -30,11 +31,13 @@ jQuery(document).ready(function () {
   viewportCheckerAnimate(".a-op", "fade");
   viewportCheckerAnimate(".a-b-up", "beforeHeightUp");
 
-  $(document).on("click", ".img-a-img picture", function () {
+  $(document).on("click", ".img-a-img picture", function() {
     $(this).parent().addClass("active");
     $(this).siblings().find("video").get(0).play();
     return false;
   });
+
+
 });
 
 //-------- -------- -------- --------
@@ -64,15 +67,15 @@ function isElementExist(_el, _cb, _argCb) {
 
 function initHeader() {
   // Sticky Header
-  $(window).scroll(function () {
+  $(window).scroll(function() {
     if ($(window).scrollTop() >= 50) $(".header").addClass("sticky");
     else $(".header").removeClass("sticky");
   });
   // Toggle Menu
-  $(".hamburger, .hamburger-close").on("click", function () {
+  $(".hamburger, .hamburger-close").on("click", function() {
     $(".header").toggleClass("header--open");
   });
-  $(".dropdown-toggle").on("click", function () {
+  $(".dropdown-toggle").on("click", function() {
     let $dropdown = $(this).closest(".dropdown");
     $(this).toggleClass("dropdown--open");
     $(".dropdown-menu", $dropdown).slideToggle();
@@ -80,9 +83,8 @@ function initHeader() {
 }
 
 function initAnchor() {
-  $(".arrow-bottom").click(function (event) {
-    $("html, body").animate(
-      {
+  $(".arrow-bottom").click(function(event) {
+    $("html, body").animate({
         scrollTop: $($.attr(this, "href")).offset().top,
       },
       500
@@ -102,10 +104,38 @@ function initCustomForms() {
   jcf.replaceAll();
 }
 
+// initialize home banner
+function initHomeBanner() {
+  if ($('.home-main__slider').length) {
+    $('.home-main__slider').slick({
+      dots: false,
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      speed: 1000,
+      vertical: true,
+      cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
+
+    });
+  }
+  if ($('.home-sub__slider').length) {
+    $('.home-sub__slider').slick({
+      dots: false,
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      speed: 1000,
+      vertical: true,
+      cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
+      adaptiveHeight: true,
+    });
+  }
+}
+
 // initialize slider
 function initSlider() {
   $('.slides').on('init', function(event, slick) {
-    let $parent = $(this).closest('.slider'); 
+    let $parent = $(this).closest('.slider');
     let bg = $('.slide', slick.$slides[0]).attr('data-bg')
     $parent.css("background-color", bg);
   });
@@ -113,46 +143,33 @@ function initSlider() {
     arrows: false,
     dots: false,
     nextArrow: $('.nextSlide'),
-    prevArrow: $('.prevSlide')
-  }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
-    let $parent = $(this).closest('.slider'); 
+    prevArrow: $('.prevSlide'),
+    responsive: [{
+      breakpoint: 768,
+      settings: {
+        variableWidth: true
+      }
+    }]
+  }).on("beforeChange", function(event, slick, currentSlide, nextSlide) {
+    let $parent = $(this).closest('.slider');
     let bg = $('.slide', slick.$slides[nextSlide]).attr('data-bg')
     $parent.css("background-color", bg);
   });
 }
 
 // initialize accordion
-// function setAccordionColor($this) {
-//   let $accordion = $this.closest('.accordion');
-//   let bg = $accordion.attr('data-bg');
-//   $accordion.attr('style', 'background:' + bg);
-// }
-// function resetAccordionColor($this) {
-//   let $accordion = $this.closest('.accordion');
-//   let $accordions = $this.closest('.accordions');
-//   let bg = '#fff';
-//   if ($accordions.hasClass('accordions--dark')) bg = '#141820';
-//   $accordion.attr('style', 'background:' + bg);
-// }
 function initAccordions() {
   $('.accordion-header').on('click', function() {
     let $accordion = $(this).closest('.accordion');
     $('.accordion-content', $accordion).slideToggle();
     $accordion.toggleClass('active');
-    // if ($accordion.hasClass('active')) {
-    //   setAccordionColor($(this));
-    // } else {
-    //   resetAccordionColor($(this));
-    // }
   });
   $('.accordion-header').on('mouseenter', function() {
     let $accordion = $(this).closest('.accordion');
     $accordion.addClass('hover');
-    // setAccordionColor($(this));
   }).on('mouseleave', function() {
     let $accordion = $(this).closest('.accordion');
     $accordion.removeClass('hover');
-    // resetAccordionColor($(this));
   });
 }
 
@@ -185,25 +202,24 @@ function windowResize(functName) {
 // helper Smooth Scroll Link
 function myScrollLink() {
   var navLink = jQuery(".scroll-link");
-  navLink.on("click", function (e) {
+  navLink.on("click", function(e) {
     var elementClick = jQuery(this).attr("href");
     var destination = jQuery(elementClick).offset().top;
     var scrollTime =
-      jQuery(this).attr("data-scrollTime") != undefined
-        ? +jQuery(this).attr("data-scrollTime")
-        : 1000;
+      jQuery(this).attr("data-scrollTime") != undefined ?
+      +jQuery(this).attr("data-scrollTime") :
+      1000;
     var scrollTopVar =
-      jQuery(this).attr("data-scrollTop") != undefined
-        ? +jQuery(this).attr("data-scrollTop")
-        : jQuery(".header").outerHeight();
+      jQuery(this).attr("data-scrollTop") != undefined ?
+      +jQuery(this).attr("data-scrollTop") :
+      jQuery(".header").outerHeight();
     var scrollBottomVar =
-      jQuery(this).attr("data-scrollBottom") != undefined
-        ? +jQuery(this).attr("data-scrollBottom")
-        : 0;
+      jQuery(this).attr("data-scrollBottom") != undefined ?
+      +jQuery(this).attr("data-scrollBottom") :
+      0;
     var destinationFull = destination - scrollTopVar + scrollBottomVar;
     console.log(destinationFull, destination);
-    jQuery("html,body").stop().animate(
-      {
+    jQuery("html,body").stop().animate({
         scrollTop: destinationFull,
       },
       scrollTime
@@ -224,9 +240,9 @@ function viewportCheckerAnimate(
       classToRemove: "a-hidden",
       classToAdd: "animated " + whatClassAdded,
       offset: 10,
-      callbackFunction: function (elem) {
+      callbackFunction: function(elem) {
         if (classAfterAnimate) {
-          elem.on("animationend", function () {
+          elem.on("animationend", function() {
             elem.addClass("animation-end");
           });
         }
@@ -242,22 +258,30 @@ function anImgRightOnScrollVewportChecker() {
     classToRemove: "",
     classToAddForFullView: "",
     offset: 100,
-    callbackFunction: function (elem, action) {
+    callbackFunction: function(elem, action) {
       let tl = gsap.timeline();
       let decor = elem.find(".img-a-decor");
       let elImg = elem.find(".img-a-img img");
       var durationVar = 0.5;
-      tl.to(decor, { duration: durationVar, x: "0%" })
-        .to(decor, { duration: durationVar, xPercent: 100 })
+      tl.to(decor, {
+          duration: durationVar,
+          x: "0%"
+        })
+        .to(decor, {
+          duration: durationVar,
+          xPercent: 100
+        })
         .to(
-          elImg,
-          {
+          elImg, {
             duration: durationVar,
             "clip-path": "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
           },
           "-=" + durationVar
         )
-        .to(decor, { duration: 0, opacity: 0 });
+        .to(decor, {
+          duration: 0,
+          opacity: 0
+        });
     },
   });
 }
@@ -270,25 +294,39 @@ function anImgRightOnScrollVewportCheckerAndVideo() {
     classToRemove: "",
     classToAddForFullView: "",
     offset: 100,
-    callbackFunction: function (elem, action) {
+    callbackFunction: function(elem, action) {
       let tl = gsap.timeline();
       let decor = elem.find(".img-a-decor");
       let elImg = elem.find(".img-a-img img");
       let elVideo = elem.find(".hero-img-popup-link");
       var durationVar = 0.5;
-      tl.to(decor, { duration: durationVar, x: "0%" })
-        .to(decor, { duration: durationVar, xPercent: 100 })
+      tl.to(decor, {
+          duration: durationVar,
+          x: "0%"
+        })
+        .to(decor, {
+          duration: durationVar,
+          xPercent: 100
+        })
         .to(
-          elImg,
-          {
+          elImg, {
             duration: durationVar,
             "clip-path": "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
           },
           "-=" + durationVar
         )
-        .to(elVideo, { duration: 1, opacity: 1 }, "+=" + 1)
-        .to(decor, { duration: 0.2, opacity: 0 })
-        .to(elImg, { duration: 0.2, opacity: 0 });
+        .to(elVideo, {
+          duration: 1,
+          opacity: 1
+        }, "+=" + 1)
+        .to(decor, {
+          duration: 0.2,
+          opacity: 0
+        })
+        .to(elImg, {
+          duration: 0.2,
+          opacity: 0
+        });
     },
   });
 }
@@ -301,15 +339,27 @@ function anImgLeftOnScrollVewportChecker() {
     classToRemove: "",
     classToAddForFullView: "",
     offset: 100,
-    callbackFunction: function (elem, action) {
+    callbackFunction: function(elem, action) {
       let tl = gsap.timeline();
       let decor = elem.find(".img-a-decor");
       let elImg = elem.find(".img-a-img img");
       var durationVar = 0.5;
-      tl.to(decor, { duration: durationVar, x: "0%" })
-        .to(decor, { duration: durationVar, xPercent: -100 })
-        .to(elImg, { duration: durationVar, width: "100%" }, "-=" + durationVar)
-        .to(decor, { duration: 0.2, opacity: 0 });
+      tl.to(decor, {
+          duration: durationVar,
+          x: "0%"
+        })
+        .to(decor, {
+          duration: durationVar,
+          xPercent: -100
+        })
+        .to(elImg, {
+          duration: durationVar,
+          width: "100%"
+        }, "-=" + durationVar)
+        .to(decor, {
+          duration: 0.2,
+          opacity: 0
+        });
     },
   });
 }
@@ -322,19 +372,30 @@ function anImgUpOnScrollVewportChecker() {
     classToRemove: "",
     classToAddForFullView: "",
     offset: 100,
-    callbackFunction: function (elem, action) {
+    callbackFunction: function(elem, action) {
       let tl = gsap.timeline();
       let decor = elem.find(".img-a-decor");
       let elImg = elem.find(".img-a-img img");
       var durationVar = 0.5;
-      tl.to(decor, { duration: durationVar, x: "0%" })
-        .to(decor, { duration: durationVar, xPercent: 100 })
+      tl.to(decor, {
+          duration: durationVar,
+          x: "0%"
+        })
+        .to(decor, {
+          duration: durationVar,
+          xPercent: 100
+        })
         .to(
-          elImg,
-          { duration: durationVar, yPercent: -100 },
+          elImg, {
+            duration: durationVar,
+            yPercent: -100
+          },
           "-=" + durationVar
         )
-        .to(decor, { duration: 0.2, opacity: 0 });
+        .to(decor, {
+          duration: 0.2,
+          opacity: 0
+        });
     },
   });
 }
@@ -380,11 +441,11 @@ function slickSliderInit() {
 function debounce(func, timeout) {
   var timeoutID,
     timeout = timeout || 200;
-  return function () {
+  return function() {
     var scope = this,
       args = arguments;
     clearTimeout(timeoutID);
-    timeoutID = setTimeout(function () {
+    timeoutID = setTimeout(function() {
       func.apply(scope, Array.prototype.slice.call(args));
     }, timeout);
   };
@@ -399,7 +460,7 @@ function debounce(func, timeout) {
  *
  * Version: 1.1.3
  */
-(function (root, factory) {
+(function(root, factory) {
   "use strict";
   if (typeof define === "function" && define.amd) {
     define(["jquery"], factory);
@@ -408,7 +469,7 @@ function debounce(func, timeout) {
   } else {
     root.jcf = factory(jQuery);
   }
-})(this, function ($) {
+})(this, function($) {
   "use strict";
 
   // define version
@@ -432,8 +493,8 @@ function debounce(func, timeout) {
 
   // detect device type
   var isTouchDevice =
-      "ontouchstart" in window ||
-      (window.DocumentTouch && document instanceof window.DocumentTouch),
+    "ontouchstart" in window ||
+    (window.DocumentTouch && document instanceof window.DocumentTouch),
     isWinPhoneDevice = /Windows Phone/.test(navigator.userAgent);
   commonOptions.isMobileDevice = !!(isTouchDevice || isWinPhoneDevice);
 
@@ -442,12 +503,12 @@ function debounce(func, timeout) {
   commonOptions.ios = isIOS;
 
   // create global stylesheet if custom forms are used
-  var createStyleSheet = function () {
+  var createStyleSheet = function() {
     var styleTag = $("<style>").appendTo("head"),
       styleSheet = styleTag.prop("sheet") || styleTag.prop("styleSheet");
 
     // crossbrowser style handling
-    var addCSSRule = function (selector, rules, index) {
+    var addCSSRule = function(selector, rules, index) {
       if (styleSheet.insertRule) {
         styleSheet.insertRule(selector + "{" + rules + "}", index);
       } else {
@@ -481,8 +542,8 @@ function debounce(func, timeout) {
     }
 
     // handle form reset event
-    html.on("reset", function () {
-      setTimeout(function () {
+    html.on("reset", function() {
+      setTimeout(function() {
         api.refreshAll();
       }, 0);
     });
@@ -492,12 +553,12 @@ function debounce(func, timeout) {
   };
 
   // simplified pointer events handler
-  (function () {
+  (function() {
     var pointerEventsSupported =
-        navigator.pointerEnabled || navigator.msPointerEnabled,
+      navigator.pointerEnabled || navigator.msPointerEnabled,
       touchEventsSupported =
-        "ontouchstart" in window ||
-        (window.DocumentTouch && document instanceof window.DocumentTouch),
+      "ontouchstart" in window ||
+      (window.DocumentTouch && document instanceof window.DocumentTouch),
       eventList,
       eventMap = {},
       eventPrefix = "jcf-";
@@ -520,27 +581,27 @@ function debounce(func, timeout) {
     }
 
     // create event map
-    $.each(eventList, function (targetEventName, fakeEventList) {
-      $.each(fakeEventList.split(" "), function (index, fakeEventName) {
+    $.each(eventList, function(targetEventName, fakeEventList) {
+      $.each(fakeEventList.split(" "), function(index, fakeEventName) {
         eventMap[fakeEventName] = targetEventName;
       });
     });
 
     // jQuery event hooks
-    $.each(eventList, function (eventName, eventHandlers) {
+    $.each(eventList, function(eventName, eventHandlers) {
       eventHandlers = eventHandlers.split(" ");
       $.event.special[eventPrefix + eventName] = {
-        setup: function () {
+        setup: function() {
           var self = this;
-          $.each(eventHandlers, function (index, fallbackEvent) {
+          $.each(eventHandlers, function(index, fallbackEvent) {
             if (self.addEventListener)
               self.addEventListener(fallbackEvent, fixEvent, false);
             else self["on" + fallbackEvent] = fixEvent;
           });
         },
-        teardown: function () {
+        teardown: function() {
           var self = this;
-          $.each(eventHandlers, function (index, fallbackEvent) {
+          $.each(eventHandlers, function(index, fallbackEvent) {
             if (self.addEventListener)
               self.removeEventListener(fallbackEvent, fixEvent, false);
             else self["on" + fallbackEvent] = null;
@@ -551,7 +612,7 @@ function debounce(func, timeout) {
 
     // check that mouse event are not simulated by mobile browsers
     var lastTouch = null;
-    var mouseEventSimulated = function (e) {
+    var mouseEventSimulated = function(e) {
       var dx = Math.abs(e.pageX - lastTouch.x),
         dy = Math.abs(e.pageY - lastTouch.y),
         rangeDistance = 25;
@@ -562,7 +623,7 @@ function debounce(func, timeout) {
     };
 
     // normalize event
-    var fixEvent = function (e) {
+    var fixEvent = function(e) {
       var origEvent = e || window.event,
         touchEventData = null,
         targetEventName = eventMap[origEvent.type];
@@ -589,15 +650,18 @@ function debounce(func, timeout) {
       }
 
       if (!e.pageX && !e.pageY) {
-        touchEventData = origEvent.changedTouches
-          ? origEvent.changedTouches[0]
-          : origEvent;
+        touchEventData = origEvent.changedTouches ?
+          origEvent.changedTouches[0] :
+          origEvent;
         e.pageX = touchEventData.pageX;
         e.pageY = touchEventData.pageY;
       }
 
       if (origEvent.type === "touchend") {
-        lastTouch = { x: e.pageX, y: e.pageY };
+        lastTouch = {
+          x: e.pageX,
+          y: e.pageY
+        };
       }
       if (e.pointerType === "mouse" && lastTouch && mouseEventSimulated(e)) {
         return;
@@ -608,26 +672,26 @@ function debounce(func, timeout) {
   })();
 
   // custom mousewheel/trackpad handler
-  (function () {
+  (function() {
     var wheelEvents = (
-        "onwheel" in document || document.documentMode >= 9
-          ? "wheel"
-          : "mousewheel DOMMouseScroll"
+        "onwheel" in document || document.documentMode >= 9 ?
+        "wheel" :
+        "mousewheel DOMMouseScroll"
       ).split(" "),
       shimEventName = "jcf-mousewheel";
 
     $.event.special[shimEventName] = {
-      setup: function () {
+      setup: function() {
         var self = this;
-        $.each(wheelEvents, function (index, fallbackEvent) {
+        $.each(wheelEvents, function(index, fallbackEvent) {
           if (self.addEventListener)
             self.addEventListener(fallbackEvent, fixEvent, false);
           else self["on" + fallbackEvent] = fixEvent;
         });
       },
-      teardown: function () {
+      teardown: function() {
         var self = this;
-        $.each(wheelEvents, function (index, fallbackEvent) {
+        $.each(wheelEvents, function(index, fallbackEvent) {
           if (self.addEventListener)
             self.removeEventListener(fallbackEvent, fixEvent, false);
           else self["on" + fallbackEvent] = null;
@@ -635,7 +699,7 @@ function debounce(func, timeout) {
       },
     };
 
-    var fixEvent = function (e) {
+    var fixEvent = function(e) {
       var origEvent = e || window.event;
       e = $.event.fix(origEvent);
       e.type = shimEventName;
@@ -678,8 +742,8 @@ function debounce(func, timeout) {
   // extra module methods
   var moduleMixin = {
     // provide function for firing native events
-    fireNativeEvent: function (elements, eventName) {
-      $(elements).each(function () {
+    fireNativeEvent: function(elements, eventName) {
+      $(elements).each(function() {
         var element = this,
           eventObject;
         if (element.dispatchEvent) {
@@ -694,12 +758,12 @@ function debounce(func, timeout) {
       });
     },
     // bind event handlers for module instance (functions beggining with "on")
-    bindHandlers: function () {
+    bindHandlers: function() {
       var self = this;
-      $.each(self, function (propName, propValue) {
+      $.each(self, function(propName, propValue) {
         if (propName.indexOf("on") === 0 && $.isFunction(propValue)) {
           // dont use $.proxy here because it doesn't create unique handler
-          self[propName] = function () {
+          self[propName] = function() {
             return propValue.apply(self, arguments);
           };
         }
@@ -711,10 +775,10 @@ function debounce(func, timeout) {
   var api = {
     version: version,
     modules: {},
-    getOptions: function () {
+    getOptions: function() {
       return $.extend({}, commonOptions);
     },
-    setOptions: function (moduleName, moduleOptions) {
+    setOptions: function(moduleName, moduleOptions) {
       if (arguments.length > 1) {
         // set module options
         if (this.modules[moduleName]) {
@@ -725,9 +789,9 @@ function debounce(func, timeout) {
         $.extend(commonOptions, moduleName);
       }
     },
-    addModule: function (proto) {
+    addModule: function(proto) {
       // add module to list
-      var Module = function (options) {
+      var Module = function(options) {
         // save instance to collection
         if (!options.element.data(commonOptions.dataKey)) {
           options.element.data(commonOptions.dataKey, this);
@@ -735,8 +799,7 @@ function debounce(func, timeout) {
         customInstances.push(this);
 
         // save options
-        this.options = $.extend(
-          {},
+        this.options = $.extend({},
           commonOptions,
           this.options,
           getInlineOptions(options.element),
@@ -751,7 +814,7 @@ function debounce(func, timeout) {
       };
 
       // parse options from HTML attribute
-      var getInlineOptions = function (element) {
+      var getInlineOptions = function(element) {
         var dataOptions = element.data(commonOptions.optionsKey),
           attrOptions = element.attr(commonOptions.optionsKey);
 
@@ -772,14 +835,14 @@ function debounce(func, timeout) {
       // add mixin methods to module proto
       $.extend(proto, moduleMixin);
       if (proto.plugins) {
-        $.each(proto.plugins, function (pluginName, plugin) {
+        $.each(proto.plugins, function(pluginName, plugin) {
           $.extend(plugin.prototype, moduleMixin);
         });
       }
 
       // override destroy method
       var originalDestroy = Module.prototype.destroy;
-      Module.prototype.destroy = function () {
+      Module.prototype.destroy = function() {
         this.options.element.removeData(this.options.dataKey);
 
         for (var i = customInstances.length - 1; i >= 0; i--) {
@@ -797,10 +860,10 @@ function debounce(func, timeout) {
       // save module to list
       this.modules[proto.name] = Module;
     },
-    getInstance: function (element) {
+    getInstance: function(element) {
       return $(element).data(commonOptions.dataKey);
     },
-    replace: function (elements, moduleName, customOptions) {
+    replace: function(elements, moduleName, customOptions) {
       var self = this,
         instance;
 
@@ -808,7 +871,7 @@ function debounce(func, timeout) {
         createStyleSheet();
       }
 
-      $(elements).each(function () {
+      $(elements).each(function() {
         var moduleOptions,
           element = $(this);
 
@@ -817,7 +880,7 @@ function debounce(func, timeout) {
           instance.refresh();
         } else {
           if (!moduleName) {
-            $.each(self.modules, function (currentModuleName, module) {
+            $.each(self.modules, function(currentModuleName, module) {
               if (
                 module.prototype.matchElement.call(module.prototype, element)
               ) {
@@ -827,43 +890,45 @@ function debounce(func, timeout) {
             });
           }
           if (moduleName) {
-            moduleOptions = $.extend({ element: element }, customOptions);
+            moduleOptions = $.extend({
+              element: element
+            }, customOptions);
             instance = new self.modules[moduleName](moduleOptions);
           }
         }
       });
       return instance;
     },
-    refresh: function (elements) {
-      $(elements).each(function () {
+    refresh: function(elements) {
+      $(elements).each(function() {
         var instance = $(this).data(commonOptions.dataKey);
         if (instance) {
           instance.refresh();
         }
       });
     },
-    destroy: function (elements) {
-      $(elements).each(function () {
+    destroy: function(elements) {
+      $(elements).each(function() {
         var instance = $(this).data(commonOptions.dataKey);
         if (instance) {
           instance.destroy();
         }
       });
     },
-    replaceAll: function (context) {
+    replaceAll: function(context) {
       var self = this;
-      $.each(this.modules, function (moduleName, module) {
-        $(module.prototype.selector, context).each(function () {
+      $.each(this.modules, function(moduleName, module) {
+        $(module.prototype.selector, context).each(function() {
           if (this.className.indexOf("jcf-ignore") < 0) {
             self.replace(this, moduleName);
           }
         });
       });
     },
-    refreshAll: function (context) {
+    refreshAll: function(context) {
       if (context) {
-        $.each(this.modules, function (moduleName, module) {
-          $(module.prototype.selector, context).each(function () {
+        $.each(this.modules, function(moduleName, module) {
+          $(module.prototype.selector, context).each(function() {
             var instance = $(this).data(commonOptions.dataKey);
             if (instance) {
               instance.refresh();
@@ -876,10 +941,10 @@ function debounce(func, timeout) {
         }
       }
     },
-    destroyAll: function (context) {
+    destroyAll: function(context) {
       if (context) {
-        $.each(this.modules, function (moduleName, module) {
-          $(module.prototype.selector, context).each(function (index, element) {
+        $.each(this.modules, function(moduleName, module) {
+          $(module.prototype.selector, context).each(function(index, element) {
             var instance = $(element).data(commonOptions.dataKey);
             if (instance) {
               instance.destroy();
@@ -908,7 +973,7 @@ function debounce(func, timeout) {
  *
  * Version: 1.1.3
  */
-(function ($, window) {
+(function($, window) {
   "use strict";
 
   jcf.addModule({
@@ -923,17 +988,17 @@ function debounce(func, timeout) {
       ComboBox: ComboBox,
       SelectList: SelectList,
     },
-    matchElement: function (element) {
+    matchElement: function(element) {
       return element.is("select");
     },
-    init: function () {
+    init: function() {
       this.element = $(this.options.element);
       this.createInstance();
     },
-    isListBox: function () {
+    isListBox: function() {
       return this.element.is("[size]:not([jcf-size]), [multiple]");
     },
-    createInstance: function () {
+    createInstance: function() {
       if (this.instance) {
         this.instance.destroy();
       }
@@ -943,7 +1008,7 @@ function debounce(func, timeout) {
         this.instance = new ComboBox(this.options);
       }
     },
-    refresh: function () {
+    refresh: function() {
       var typeMismatch =
         (this.isListBox() && this.instance instanceof ComboBox) ||
         (!this.isListBox() && this.instance instanceof ListBox);
@@ -954,25 +1019,22 @@ function debounce(func, timeout) {
         this.instance.refresh();
       }
     },
-    destroy: function () {
+    destroy: function() {
       this.instance.destroy();
     },
   });
 
   // combobox module
   function ComboBox(options) {
-    this.options = $.extend(
-      {
+    this.options = $.extend({
         wrapNative: true,
         wrapNativeOnMobile: true,
         fakeDropInBody: true,
         useCustomScroll: true,
         flipDropToFit: true,
         maxVisibleItems: 10,
-        fakeAreaStructure:
-          '<span class="jcf-select"><span class="jcf-select-text"></span><span class="jcf-select-opener"></span></span>',
-        fakeDropStructure:
-          '<div class="jcf-select-drop"><div class="jcf-select-drop-content"></div></div>',
+        fakeAreaStructure: '<span class="jcf-select"><span class="jcf-select-text"></span><span class="jcf-select-opener"></span></span>',
+        fakeDropStructure: '<div class="jcf-select-drop"><div class="jcf-select-drop-content"></div></div>',
         optionClassPrefix: "jcf-option-",
         selectClassPrefix: "jcf-select-",
         dropContentSelector: ".jcf-select-drop-content",
@@ -985,13 +1047,13 @@ function debounce(func, timeout) {
     this.init();
   }
   $.extend(ComboBox.prototype, {
-    init: function () {
+    init: function() {
       this.initStructure();
       this.bindHandlers();
       this.attachEvents();
       this.refresh();
     },
-    initStructure: function () {
+    initStructure: function() {
       // prepare structure
       this.win = $(window);
       this.doc = $(document);
@@ -1041,16 +1103,16 @@ function debounce(func, timeout) {
         // just hide native select
         this.realElement.addClass(this.options.hiddenClass);
         this.fakeElement.attr("title", this.realElement.attr("title"));
-        this.fakeDropTarget = this.options.fakeDropInBody
-          ? $("body")
-          : this.fakeElement;
+        this.fakeDropTarget = this.options.fakeDropInBody ?
+          $("body") :
+          this.fakeElement;
       }
     },
-    attachEvents: function () {
+    attachEvents: function() {
       // delayed refresh handler
       var self = this;
-      this.delayedRefresh = function () {
-        setTimeout(function () {
+      this.delayedRefresh = function() {
+        setTimeout(function() {
           self.refresh();
           if (self.list) {
             self.list.refresh();
@@ -1079,17 +1141,17 @@ function debounce(func, timeout) {
         });
       }
     },
-    onKeyDown: function (e) {
+    onKeyDown: function(e) {
       if (e.which === 13) {
         this.toggleDropdown();
       } else if (this.dropActive) {
         this.delayedRefresh();
       }
     },
-    onChange: function () {
+    onChange: function() {
       this.refresh();
     },
-    onFocus: function () {
+    onFocus: function() {
       if (!this.pressedFlag || !this.focusedFlag) {
         this.fakeElement.addClass(this.options.focusClass);
         this.realElement.on("blur", this.onBlur);
@@ -1097,7 +1159,7 @@ function debounce(func, timeout) {
         this.focusedFlag = true;
       }
     },
-    onBlur: function () {
+    onBlur: function() {
       if (!this.pressedFlag) {
         this.fakeElement.removeClass(this.options.focusClass);
         this.realElement.off("blur", this.onBlur);
@@ -1105,24 +1167,23 @@ function debounce(func, timeout) {
         this.focusedFlag = false;
       }
     },
-    onResize: function () {
+    onResize: function() {
       if (this.dropActive) {
         this.hideDropdown();
       }
     },
-    onSelectDropPress: function () {
+    onSelectDropPress: function() {
       this.pressedFlag = true;
     },
-    onSelectDropRelease: function (e, pointerEvent) {
+    onSelectDropRelease: function(e, pointerEvent) {
       this.pressedFlag = false;
       if (pointerEvent.pointerType === "mouse") {
         this.realElement.focus();
       }
     },
-    onSelectAreaPress: function (e) {
+    onSelectAreaPress: function(e) {
       // skip click if drop inside fake element or real select is disabled
-      var dropClickedInsideFakeElement =
-        !this.options.fakeDropInBody &&
+      var dropClickedInsideFakeElement = !this.options.fakeDropInBody &&
         $(e.target).closest(this.dropdown).length;
       if (
         dropClickedInsideFakeElement ||
@@ -1148,7 +1209,7 @@ function debounce(func, timeout) {
       this.fakeElement.addClass(this.options.pressedClass);
       this.doc.on("jcf-pointerup", this.onSelectAreaRelease);
     },
-    onSelectAreaRelease: function (e) {
+    onSelectAreaRelease: function(e) {
       if (this.focusedFlag && e.pointerType === "mouse") {
         this.realElement.focus();
       }
@@ -1156,17 +1217,17 @@ function debounce(func, timeout) {
       this.fakeElement.removeClass(this.options.pressedClass);
       this.doc.off("jcf-pointerup", this.onSelectAreaRelease);
     },
-    onOutsideClick: function (e) {
+    onOutsideClick: function(e) {
       var target = $(e.target),
         clickedInsideSelect =
-          target.closest(this.fakeElement).length ||
-          target.closest(this.dropdown).length;
+        target.closest(this.fakeElement).length ||
+        target.closest(this.dropdown).length;
 
       if (!clickedInsideSelect) {
         this.hideDropdown();
       }
     },
-    onSelect: function () {
+    onSelect: function() {
       this.refresh();
 
       if (this.realElement.prop("multiple")) {
@@ -1177,7 +1238,7 @@ function debounce(func, timeout) {
 
       this.fireNativeEvent(this.realElement, "change");
     },
-    toggleListMode: function (state) {
+    toggleListMode: function(state) {
       if (!this.options.wrapNative) {
         if (state) {
           // temporary change select to list to avoid appearing of native dropdown
@@ -1193,7 +1254,7 @@ function debounce(func, timeout) {
         }
       }
     },
-    createDropdown: function () {
+    createDropdown: function() {
       // destroy previous dropdown if needed
       if (this.dropdown) {
         this.list.destroy();
@@ -1242,7 +1303,7 @@ function debounce(func, timeout) {
         release: this.onSelectDropRelease,
       });
     },
-    repositionDropdown: function () {
+    repositionDropdown: function() {
       var selectOffset = this.fakeElement.offset(),
         selectWidth = this.fakeElement.outerWidth(),
         selectHeight = this.fakeElement.outerHeight(),
@@ -1257,7 +1318,7 @@ function debounce(func, timeout) {
       // check flip drop position
       if (
         selectOffset.top + selectHeight + dropHeight >
-          winScrollTop + winHeight &&
+        winScrollTop + winHeight &&
         selectOffset.top - dropHeight > winScrollTop
       ) {
         needFlipDrop = true;
@@ -1265,9 +1326,9 @@ function debounce(func, timeout) {
 
       if (this.options.fakeDropInBody) {
         bodyOffset =
-          this.fakeDropTarget.css("position") !== "static"
-            ? this.fakeDropTarget.offset().top
-            : 0;
+          this.fakeDropTarget.css("position") !== "static" ?
+          this.fakeDropTarget.offset().top :
+          0;
         if (this.options.flipDropToFit && needFlipDrop) {
           // calculate flipped dropdown position
           calcLeft = selectOffset.left;
@@ -1294,7 +1355,7 @@ function debounce(func, timeout) {
           this.options.flipDropToFit && needFlipDrop
         );
     },
-    showDropdown: function () {
+    showDropdown: function() {
       // do not show empty custom dropdown
       if (!this.realElement.prop("options").length) {
         return;
@@ -1318,7 +1379,7 @@ function debounce(func, timeout) {
       this.win.on("resize", this.onResize);
       this.doc.on("jcf-pointerdown", this.onOutsideClick);
     },
-    hideDropdown: function () {
+    hideDropdown: function() {
       if (this.dropdown) {
         this.savedScrollTop = this.list.getScrollTop();
         this.fakeElement.removeClass(
@@ -1333,26 +1394,26 @@ function debounce(func, timeout) {
         }
       }
     },
-    toggleDropdown: function () {
+    toggleDropdown: function() {
       if (this.dropActive) {
         this.hideDropdown();
       } else {
         this.showDropdown();
       }
     },
-    refreshSelectedText: function () {
+    refreshSelectedText: function() {
       // redraw selected area
       var selectedIndex = this.realElement.prop("selectedIndex"),
         selectedOption = this.realElement.prop("options")[selectedIndex],
-        selectedOptionImage = selectedOption
-          ? selectedOption.getAttribute("data-image")
-          : null,
+        selectedOptionImage = selectedOption ?
+        selectedOption.getAttribute("data-image") :
+        null,
         selectedOptionText = "",
         selectedOptionClasses,
         self = this;
 
       if (this.realElement.prop("multiple")) {
-        $.each(this.realElement.prop("options"), function (index, option) {
+        $.each(this.realElement.prop("options"), function(index, option) {
           if (option.selected) {
             selectedOptionText +=
               (selectedOptionText ? ", " : "") + option.innerHTML;
@@ -1394,7 +1455,7 @@ function debounce(func, timeout) {
         this.currentSelectedImage = selectedOptionImage;
       }
     },
-    refresh: function () {
+    refresh: function() {
       // refresh fake select visibility
       if (this.realElement.prop("style").display === "none") {
         this.fakeElement.hide();
@@ -1411,7 +1472,7 @@ function debounce(func, timeout) {
         this.realElement.is(":disabled")
       );
     },
-    destroy: function () {
+    destroy: function() {
       // restore structure
       if (this.options.wrapNative) {
         this.realElement
@@ -1442,12 +1503,10 @@ function debounce(func, timeout) {
 
   // listbox module
   function ListBox(options) {
-    this.options = $.extend(
-      {
+    this.options = $.extend({
         wrapNative: true,
         useCustomScroll: true,
-        fakeStructure:
-          '<span class="jcf-list-box"><span class="jcf-list-wrapper"></span></span>',
+        fakeStructure: '<span class="jcf-list-box"><span class="jcf-list-wrapper"></span></span>',
         selectClassPrefix: "jcf-select-",
         listHolder: ".jcf-list-wrapper",
       },
@@ -1456,12 +1515,12 @@ function debounce(func, timeout) {
     this.init();
   }
   $.extend(ListBox.prototype, {
-    init: function () {
+    init: function() {
       this.bindHandlers();
       this.initStructure();
       this.attachEvents();
     },
-    initStructure: function () {
+    initStructure: function() {
       this.realElement = $(this.options.element);
       this.fakeElement = $(this.options.fakeStructure).insertAfter(
         this.realElement
@@ -1485,16 +1544,16 @@ function debounce(func, timeout) {
         element: this.realElement,
       });
     },
-    attachEvents: function () {
+    attachEvents: function() {
       // delayed refresh handler
       var self = this;
-      this.delayedRefresh = function (e) {
+      this.delayedRefresh = function(e) {
         if (e && e.which === 16) {
           // ignore SHIFT key
           return;
         } else {
           clearTimeout(self.refreshTimer);
-          self.refreshTimer = setTimeout(function () {
+          self.refreshTimer = setTimeout(function() {
             self.refresh();
             self.list.scrollToActiveOption();
           }, 1);
@@ -1515,44 +1574,44 @@ function debounce(func, timeout) {
         release: this.onFakeOptionsRelease,
       });
     },
-    onFakeOptionsPress: function (e, pointerEvent) {
+    onFakeOptionsPress: function(e, pointerEvent) {
       this.pressedFlag = true;
       if (pointerEvent.pointerType === "mouse") {
         this.realElement.focus();
       }
     },
-    onFakeOptionsRelease: function (e, pointerEvent) {
+    onFakeOptionsRelease: function(e, pointerEvent) {
       this.pressedFlag = false;
       if (pointerEvent.pointerType === "mouse") {
         this.realElement.focus();
       }
     },
-    onSelect: function () {
+    onSelect: function() {
       this.fireNativeEvent(this.realElement, "change");
       this.fireNativeEvent(this.realElement, "click");
     },
-    onFocus: function () {
+    onFocus: function() {
       if (!this.pressedFlag || !this.focusedFlag) {
         this.fakeElement.addClass(this.options.focusClass);
         this.realElement.on("blur", this.onBlur);
         this.focusedFlag = true;
       }
     },
-    onBlur: function () {
+    onBlur: function() {
       if (!this.pressedFlag) {
         this.fakeElement.removeClass(this.options.focusClass);
         this.realElement.off("blur", this.onBlur);
         this.focusedFlag = false;
       }
     },
-    refresh: function () {
+    refresh: function() {
       this.fakeElement.toggleClass(
         this.options.disabledClass,
         this.realElement.is(":disabled")
       );
       this.list.refresh();
     },
-    destroy: function () {
+    destroy: function() {
       this.list.destroy();
       this.realElement
         .insertBefore(this.fakeElement)
@@ -1563,8 +1622,7 @@ function debounce(func, timeout) {
 
   // options list module
   function SelectList(options) {
-    this.options = $.extend(
-      {
+    this.options = $.extend({
         holder: null,
         maxVisibleItems: 10,
         selectOnClick: true,
@@ -1575,8 +1633,7 @@ function debounce(func, timeout) {
         alwaysPreventMouseWheel: false,
         indexAttribute: "data-index",
         cloneClassPrefix: "jcf-option-",
-        containerStructure:
-          '<span class="jcf-list"><span class="jcf-list-content"></span></span>',
+        containerStructure: '<span class="jcf-list"><span class="jcf-list-content"></span></span>',
         containerSelector: ".jcf-list-content",
         captionClass: "jcf-optgroup-caption",
         disabledClass: "jcf-disabled",
@@ -1591,12 +1648,12 @@ function debounce(func, timeout) {
     this.init();
   }
   $.extend(SelectList.prototype, {
-    init: function () {
+    init: function() {
       this.initStructure();
       this.refreshSelectedClass();
       this.attachEvents();
     },
-    initStructure: function () {
+    initStructure: function() {
       this.element = $(this.options.element);
       this.indexSelector = "[" + this.options.indexAttribute + "]";
       this.container = $(this.options.containerStructure).appendTo(
@@ -1606,7 +1663,7 @@ function debounce(func, timeout) {
       this.lastClickedIndex = this.element.prop("selectedIndex");
       this.rebuildList();
     },
-    attachEvents: function () {
+    attachEvents: function() {
       this.bindHandlers();
       this.listHolder.on(
         "jcf-pointerdown",
@@ -1623,15 +1680,15 @@ function debounce(func, timeout) {
         );
       }
     },
-    onPress: function (e) {
+    onPress: function(e) {
       $(this).trigger("press", e);
       this.listHolder.on("jcf-pointerup", this.onRelease);
     },
-    onRelease: function (e) {
+    onRelease: function(e) {
       $(this).trigger("release", e);
       this.listHolder.off("jcf-pointerup", this.onRelease);
     },
-    onHoverItem: function (e) {
+    onHoverItem: function(e) {
       var hoverIndex = parseFloat(
         e.currentTarget.getAttribute(this.options.indexAttribute)
       );
@@ -1640,7 +1697,7 @@ function debounce(func, timeout) {
         .eq(hoverIndex)
         .addClass(this.options.hoverClass);
     },
-    onItemPress: function (e) {
+    onItemPress: function(e) {
       if (e.pointerType === "touch" || this.options.selectOnClick) {
         // select option after "click"
         this.tmpListOffsetTop = this.list.offset().top;
@@ -1654,7 +1711,7 @@ function debounce(func, timeout) {
         this.onSelectItem(e);
       }
     },
-    onItemRelease: function (e) {
+    onItemRelease: function(e) {
       // remove event handlers and temporary data
       this.listHolder.off(
         "jcf-pointerup",
@@ -1666,19 +1723,20 @@ function debounce(func, timeout) {
       if (this.tmpListOffsetTop === this.list.offset().top) {
         this.listHolder.on(
           "click",
-          this.indexSelector,
-          { savedPointerType: e.pointerType },
+          this.indexSelector, {
+            savedPointerType: e.pointerType
+          },
           this.onSelectItem
         );
       }
       delete this.tmpListOffsetTop;
     },
-    onSelectItem: function (e) {
+    onSelectItem: function(e) {
       var clickedIndex = parseFloat(
           e.currentTarget.getAttribute(this.options.indexAttribute)
         ),
         pointerType =
-          (e.data && e.data.savedPointerType) || e.pointerType || "mouse",
+        (e.data && e.data.savedPointerType) || e.pointerType || "mouse",
         range;
 
       // remove click event handler
@@ -1697,14 +1755,13 @@ function debounce(func, timeout) {
           this.options.multipleSelectWithoutKey
         ) {
           // if CTRL/CMD pressed or touch devices - toggle selected option
-          this.realOptions[clickedIndex].selected =
-            !this.realOptions[clickedIndex].selected;
+          this.realOptions[clickedIndex].selected = !this.realOptions[clickedIndex].selected;
         } else if (e.shiftKey) {
           // if SHIFT pressed - update selection
-          range = [this.lastClickedIndex, clickedIndex].sort(function (a, b) {
+          range = [this.lastClickedIndex, clickedIndex].sort(function(a, b) {
             return a - b;
           });
-          this.realOptions.each(function (index, option) {
+          this.realOptions.each(function(index, option) {
             option.selected = index >= range[0] && index <= range[1];
           });
         } else {
@@ -1731,7 +1788,7 @@ function debounce(func, timeout) {
       // make callback when item selected
       $(this).trigger("select");
     },
-    rebuildList: function () {
+    rebuildList: function() {
       // rebuild options
       var self = this,
         rootElement = this.element[0];
@@ -1777,11 +1834,11 @@ function debounce(func, timeout) {
 
       // disable edge wheel scrolling
       if (this.options.alwaysPreventMouseWheel) {
-        this.preventWheelHandler = function (e) {
+        this.preventWheelHandler = function(e) {
           var currentScrollTop = self.listHolder.scrollTop(),
             maxScrollTop =
-              self.listHolder.prop("scrollHeight") -
-              self.listHolder.innerHeight();
+            self.listHolder.prop("scrollHeight") -
+            self.listHolder.innerHeight();
 
           // check edge cases
           if (
@@ -1794,14 +1851,14 @@ function debounce(func, timeout) {
         this.listHolder.on("jcf-mousewheel", this.preventWheelHandler);
       }
     },
-    refreshSelectedClass: function () {
+    refreshSelectedClass: function() {
       var self = this,
         selectedItem,
         isMultiple = this.element.prop("multiple"),
         selectedIndex = this.element.prop("selectedIndex");
 
       if (isMultiple) {
-        this.realOptions.each(function (index, option) {
+        this.realOptions.each(function(index, option) {
           self.fakeOptions
             .eq(index)
             .toggleClass(self.options.selectedClass, !!option.selected);
@@ -1818,17 +1875,17 @@ function debounce(func, timeout) {
         }
       }
     },
-    scrollToActiveOption: function () {
+    scrollToActiveOption: function() {
       // scroll to target option
       var targetOffset = this.getActiveOptionOffset();
       if (typeof targetOffset === "number") {
         this.listHolder.prop("scrollTop", targetOffset);
       }
     },
-    getSelectedIndexRange: function () {
+    getSelectedIndexRange: function() {
       var firstSelected = -1,
         lastSelected = -1;
-      this.realOptions.each(function (index, option) {
+      this.realOptions.each(function(index, option) {
         if (option.selected) {
           if (firstSelected < 0) {
             firstSelected = index;
@@ -1838,7 +1895,7 @@ function debounce(func, timeout) {
       });
       return [firstSelected, lastSelected];
     },
-    getChangedSelectedIndex: function () {
+    getChangedSelectedIndex: function() {
       var selectedIndex = this.element.prop("selectedIndex"),
         targetIndex;
 
@@ -1859,7 +1916,7 @@ function debounce(func, timeout) {
         return selectedIndex;
       }
     },
-    getActiveOptionOffset: function () {
+    getActiveOptionOffset: function() {
       // calc values
       var dropHeight = this.listHolder.height(),
         dropScrollTop = this.listHolder.prop("scrollTop"),
@@ -1877,7 +1934,7 @@ function debounce(func, timeout) {
         return fakeOptionOffset;
       }
     },
-    getOverflowHeight: function (sizeValue) {
+    getOverflowHeight: function(sizeValue) {
       var item = this.fakeListItems.eq(sizeValue - 1),
         listOffset = this.list.offset().top,
         itemOffset = item.offset().top,
@@ -1885,13 +1942,13 @@ function debounce(func, timeout) {
 
       return itemOffset + itemHeight - listOffset;
     },
-    getScrollTop: function () {
+    getScrollTop: function() {
       return this.listHolder.scrollTop();
     },
-    setScrollTop: function (value) {
+    setScrollTop: function(value) {
       this.listHolder.scrollTop(value);
     },
-    createOption: function (option) {
+    createOption: function(option) {
       var newOption = document.createElement("span");
       newOption.className = this.options.optionClass;
       newOption.innerHTML = option.innerHTML;
@@ -1914,7 +1971,7 @@ function debounce(func, timeout) {
       }
       return newOption;
     },
-    createOptGroup: function (optgroup) {
+    createOptGroup: function(optgroup) {
       var optGroupContainer = document.createElement("span"),
         optGroupName = optgroup.getAttribute("label"),
         optGroupCaption,
@@ -1935,15 +1992,15 @@ function debounce(func, timeout) {
       optGroupContainer.className = this.options.groupClass;
       return optGroupContainer;
     },
-    createOptionContainer: function () {
+    createOptionContainer: function() {
       var optionContainer = document.createElement("li");
       return optionContainer;
     },
-    createOptionsList: function (container) {
+    createOptionsList: function(container) {
       var self = this,
         list = document.createElement("ul");
 
-      $.each(container.children, function (index, currentNode) {
+      $.each(container.children, function(index, currentNode) {
         var item = self.createOptionContainer(currentNode),
           newNode;
 
@@ -1959,7 +2016,7 @@ function debounce(func, timeout) {
       });
       return list;
     },
-    refresh: function () {
+    refresh: function() {
       // check for select innerHTML changes
       if (this.storedSelectHTML !== this.element.prop("innerHTML")) {
         this.rebuildList();
@@ -1974,7 +2031,7 @@ function debounce(func, timeout) {
       // refresh selectes classes
       this.refreshSelectedClass();
     },
-    destroy: function () {
+    destroy: function() {
       this.listHolder.off("jcf-mousewheel", this.preventWheelHandler);
       this.listHolder.off(
         "jcf-pointerdown",
@@ -1991,17 +2048,18 @@ function debounce(func, timeout) {
   });
 
   // helper functions
-  var getPrefixedClasses = function (className, prefixToAdd) {
-    return className
-      ? className.replace(/[\s]*([\S]+)+[\s]*/gi, prefixToAdd + "$1 ")
-      : "";
+  var getPrefixedClasses = function(className, prefixToAdd) {
+    return className ?
+      className.replace(/[\s]*([\S]+)+[\s]*/gi, prefixToAdd + "$1 ") :
+      "";
   };
-  var makeUnselectable = (function () {
+  var makeUnselectable = (function() {
     var unselectableClass = jcf.getOptions().unselectableClass;
+
     function preventHandler(e) {
       e.preventDefault();
     }
-    return function (node) {
+    return function(node) {
       node.addClass(unselectableClass).on("selectstart", preventHandler);
     };
   })();
@@ -2023,8 +2081,8 @@ subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 */
-(function ($) {
-  $.fn.viewportChecker = function (useroptions) {
+(function($) {
+  $.fn.viewportChecker = function(useroptions) {
     // Define options and extend with user
     var options = {
       classToAdd: "visible",
@@ -2034,7 +2092,7 @@ copies or substantial portions of the Software.
       offset: 100,
       repeat: false,
       invertBottomOffset: true,
-      callbackFunction: function (elem, action) {},
+      callbackFunction: function(elem, action) {},
       scrollHorizontal: false,
       scrollBox: window,
     };
@@ -2048,7 +2106,7 @@ copies or substantial portions of the Software.
     /*
      * Main method that checks the elements and adds or removes the class(es)
      */
-    this.checkElements = function () {
+    this.checkElements = function() {
       var viewportStart, viewportEnd;
       // Set some vars to check with
       if (!options.scrollHorizontal) {
@@ -2067,7 +2125,7 @@ copies or substantial portions of the Software.
         viewportEnd = viewportStart + boxSize.width;
       }
       // Loop through all given dom elements
-      $elem.each(function () {
+      $elem.each(function() {
         var $obj = $(this),
           objOptions = {},
           attrOptions = {};
@@ -2104,17 +2162,17 @@ copies or substantial portions of the Software.
             (parseInt(objOptions.offset) / 100) * boxSize.height;
         }
         // Get the raw start and end positions
-        var rawStart = !objOptions.scrollHorizontal
-            ? $obj.offset().top
-            : $obj.offset().left,
-          rawEnd = !objOptions.scrollHorizontal
-            ? rawStart + $obj.height()
-            : rawStart + $obj.width();
+        var rawStart = !objOptions.scrollHorizontal ?
+          $obj.offset().top :
+          $obj.offset().left,
+          rawEnd = !objOptions.scrollHorizontal ?
+          rawStart + $obj.height() :
+          rawStart + $obj.width();
         // Add the defined offset
         var elemStart = Math.round(rawStart) + objOptions.offset,
-          elemEnd = !objOptions.scrollHorizontal
-            ? elemStart + $obj.height()
-            : elemStart + $obj.width();
+          elemEnd = !objOptions.scrollHorizontal ?
+          elemStart + $obj.height() :
+          elemStart + $obj.width();
         if (objOptions.invertBottomOffset) elemEnd -= objOptions.offset * 2;
         // Add class if in viewport
         if (elemStart < viewportEnd && elemEnd > viewportStart) {
@@ -2132,7 +2190,7 @@ copies or substantial portions of the Software.
           if (objOptions.removeClassAfterAnimation) {
             $obj.one(
               "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
-              function () {
+              function() {
                 $obj.removeClass(objOptions.classToAdd);
               }
             );
@@ -2169,7 +2227,7 @@ copies or substantial portions of the Software.
     // Always load on window load
     $(options.scrollBox).bind("load scroll", this.checkElements);
     // On resize change the height var
-    $(window).resize(function (e) {
+    $(window).resize(function(e) {
       boxSize = {
         height: $(options.scrollBox).height(),
         width: $(options.scrollBox).width(),
@@ -2185,19 +2243,23 @@ copies or substantial portions of the Software.
 
 // library for scroll https://github.com/chayka/jQuery.Scroolly
 // https://github.com/chayka/jQuery.Scroolly
-!(function (a, b) {
+!(function(a, b) {
   "use strict";
-  return "function" == typeof define && define.amd
-    ? void define(["jquery"], function (c) {
-        return b(a, c, !1);
-      })
-    : void b(a, a.jQuery || a.Zepto || a.ender || a.$, !0);
-})(this, function (a, b, c) {
+  return "function" == typeof define && define.amd ?
+    void define(["jquery"], function(c) {
+      return b(a, c, !1);
+    }) :
+    void b(a, a.jQuery || a.Zepto || a.ender || a.$, !0);
+})(this, function(a, b, c) {
   "use strict";
   var d;
   return (
     (d = {
-      options: { timeout: null, meter: b(".scroolly"), body: document },
+      options: {
+        timeout: null,
+        meter: b(".scroolly"),
+        body: document
+      },
       theCSSPrefix: "",
       theDashedCSSPrefix: "",
       isMobile: !1,
@@ -2212,19 +2274,19 @@ copies or substantial portions of the Software.
       winHeight: b(window).height(),
     }),
     (d.scrollLayout = {}),
-    (d._isObject = function (a) {
+    (d._isObject = function(a) {
       return "object" == typeof a;
     }),
-    (d._isArray = function (a) {
+    (d._isArray = function(a) {
       return a instanceof Array;
     }),
-    (d._isNumber = function (a) {
+    (d._isNumber = function(a) {
       return a instanceof Number || "number" == typeof a;
     }),
-    (d._isString = function (a) {
+    (d._isString = function(a) {
       return a instanceof String || "string" == typeof a;
     }),
-    (d._default = function (a, b, c) {
+    (d._default = function(a, b, c) {
       void 0 === c && (c = null);
       var e = (b + "").split(".");
       if (a && (d._isObject(a) || d._isArray(a))) {
@@ -2241,7 +2303,7 @@ copies or substantial portions of the Software.
       }
       return c;
     }),
-    (d.parseCoords = function (a) {
+    (d.parseCoords = function(a) {
       var b = a.split(/\s*=\s*/),
         c = b[0] || "doc-top",
         e = d.parseCoord(c),
@@ -2249,7 +2311,7 @@ copies or substantial portions of the Software.
         g = d.parseCoord(f);
       return [e, g];
     }),
-    (d.parseCoord = function (a) {
+    (d.parseCoord = function(a) {
       var b = /((vp|doc|el|con)-)?(top|center|bottom)?/i,
         c = "(\\+|-)?\\s*(\\d+)(\\%|vp|doc|el|con)?",
         d = new RegExp(c, "gi"),
@@ -2263,16 +2325,24 @@ copies or substantial portions of the Software.
         d = new RegExp(c, "i");
         for (var j, k, l, m, n, o = 0; o < f.length; o++)
           (j = f[o]),
-            (k = j.match(d)),
-            (l = k[1] && "-" === k[1] ? -1 : 1),
-            (m = (k[2] && parseInt(k[2]) * l) || 0),
-            (n = "px"),
-            k[3] && (n = "%" === k[3] ? g : k[3]),
-            i.push({ offset: m, subject: n });
+          (k = j.match(d)),
+          (l = k[1] && "-" === k[1] ? -1 : 1),
+          (m = (k[2] && parseInt(k[2]) * l) || 0),
+          (n = "px"),
+          k[3] && (n = "%" === k[3] ? g : k[3]),
+          i.push({
+            offset: m,
+            subject: n
+          });
       }
-      return { original: a, subject: g, anchor: h, offsets: i };
+      return {
+        original: a,
+        subject: g,
+        anchor: h,
+        offsets: i
+      };
     }),
-    (d.calculateCoord = function (a, b, c) {
+    (d.calculateCoord = function(a, b, c) {
       d._isString(a) && (a = d.parseCoord(a));
       var e = 0;
       if ("vp" === a.subject)
@@ -2336,10 +2406,10 @@ copies or substantial portions of the Software.
       }
       return e;
     }),
-    (d.cmpCoords = function (a, b, c) {
+    (d.cmpCoords = function(a, b, c) {
       return d.calculateCoord(a[0], b, c) - d.calculateCoord(a[1], b, c);
     }),
-    (d.isRuleInActiveWidthRange = function (a) {
+    (d.isRuleInActiveWidthRange = function(a) {
       var c,
         e,
         f,
@@ -2347,14 +2417,14 @@ copies or substantial portions of the Software.
         h = d._default(a, "maxWidth", "infinity"),
         i = d._default(d.options, "meter"),
         j = b(window).width();
-      return i.length
-        ? ((c = i.length ? parseInt(i.css("min-width")) : 0),
+      return i.length ?
+        ((c = i.length ? parseInt(i.css("min-width")) : 0),
           (e = i.length ? i.css("max-width") : "none"),
           (e = "none" === e ? "infinity" : parseInt(e)),
-          (f = c >= g && ("infinity" === h || h >= e)))
-        : j > g && ("infinity" === h || h >= j);
+          (f = c >= g && ("infinity" === h || h >= e))) :
+        j > g && ("infinity" === h || h >= j);
     }),
-    (d.isRuleActive = function (a, b, c) {
+    (d.isRuleActive = function(a, b, c) {
       var e = d.isRuleInActiveWidthRange(a);
       if (!e) return !1;
       var f = d._default(a, "direction", 0),
@@ -2365,20 +2435,23 @@ copies or substantial portions of the Software.
         j = d.cmpCoords(h, b, c);
       if (j > 0) return !1;
       var k = d.cmpCoords(i, b, c);
-      return 0 >= k ? !1 : { offset: -j, length: k - j };
+      return 0 >= k ? !1 : {
+        offset: -j,
+        length: k - j
+      };
     }),
-    (d.getScrollLayoutLength = function () {
-      return Object.keys
-        ? Object.keys(d.scrollLayout).length
-        : b.map(d.scrollLayout, function () {
-            return 1;
-          }).length;
+    (d.getScrollLayoutLength = function() {
+      return Object.keys ?
+        Object.keys(d.scrollLayout).length :
+        b.map(d.scrollLayout, function() {
+          return 1;
+        }).length;
     }),
-    (d.addItem = function (a, c, e, f) {
+    (d.addItem = function(a, c, e, f) {
       if (!c.length) return !1;
       f = f || "self";
       var g, h, i, j, k, l, m;
-      m = function (a, b, c, e) {
+      m = function(a, b, c, e) {
         var f,
           g,
           h = b / c,
@@ -2387,25 +2460,25 @@ copies or substantial portions of the Software.
           k = {};
         for (var l in i)
           (f = i[l]),
-            (g = d._default(j, l, f)),
-            (k[l] = d.getTransitionValue(f, g, h));
+          (g = d._default(j, l, f)),
+          (k[l] = d.getTransitionValue(f, g, h));
         a.css(d.extendCssWithPrefix(k));
       };
       for (var n in e)
         (g = e[n]),
-          (h = !f),
-          (i = d._default(g, "from", "doc-top")),
-          (d._isString(i) || d._isNumber(i)) &&
-            ((i = d.parseCoords("" + i)), (g.from = i)),
-          (j = d._default(g, "to", "doc-bottom")),
-          (d._isString(j) || d._isNumber(j)) &&
-            ((j = d.parseCoords("" + j)), (g.to = j)),
-          (k = d._default(g, "cssFrom")),
-          (l = d._default(g, "cssTo")),
-          k && l && (g.cssOnScroll = m);
+        (h = !f),
+        (i = d._default(g, "from", "doc-top")),
+        (d._isString(i) || d._isNumber(i)) &&
+        ((i = d.parseCoords("" + i)), (g.from = i)),
+        (j = d._default(g, "to", "doc-bottom")),
+        (d._isString(j) || d._isNumber(j)) &&
+        ((j = d.parseCoords("" + j)), (g.to = j)),
+        (k = d._default(g, "cssFrom")),
+        (l = d._default(g, "cssTo")),
+        k && l && (g.cssOnScroll = m);
       if (c.length > 1)
         return (
-          c.each(function (c) {
+          c.each(function(c) {
             for (var g, h, i = [], j = null, k = 0; k < e.length; k++)
               (g = e[k]), (h = {}), b.extend(h, g), i.push(h);
             f &&
@@ -2417,25 +2490,29 @@ copies or substantial portions of the Software.
         );
       var o = d._default(d.scrollLayout, a);
       return (
-        o
-          ? o.rules.concat(e)
-          : (d.scrollLayout[a] = { element: c, container: f, rules: e }),
+        o ?
+        o.rules.concat(e) :
+        (d.scrollLayout[a] = {
+          element: c,
+          container: f,
+          rules: e
+        }),
         !0
       );
     }),
-    (d.factory = function (a, b, c, e) {
+    (d.factory = function(a, b, c, e) {
       return (
         d.init(),
-        a.length && b
-          ? ((e = e || a[0].tagName + "_" + d.getScrollLayoutLength()),
-            void d.addItem(e, a, b, c, !1))
-          : !1
+        a.length && b ?
+        ((e = e || a[0].tagName + "_" + d.getScrollLayoutLength()),
+          void d.addItem(e, a, b, c, !1)) :
+        !1
       );
     }),
-    (d.stickItem = function (a, b, c) {
+    (d.stickItem = function(a, b, c) {
       d.stickItemXY(a, b, c instanceof Array ? c : [c]);
     }),
-    (d.stickItemXY = function (a, c, e) {
+    (d.stickItemXY = function(a, c, e) {
       e = e || [];
       var f,
         g,
@@ -2448,66 +2525,66 @@ copies or substantial portions of the Software.
         n = [];
       for (var o in e)
         (f = e[o]),
-          (g = d._default(f, "$bottomContainer", b("body"))),
-          (h = d._default(f, "mode")),
-          (i = d._default(f, "offsetTop", 0)),
-          (j = d._default(f, "offsetBottom", 0)),
-          (k = d._default(f, "minWidth", 0)),
-          (l = d._default(f, "maxWidth", "infinity")),
-          (m = d._default(f, "static", !1)),
-          "next" === g
-            ? ((h = h || "margin"), (g = b(c).next()))
-            : ("parent" !== g && g) ||
-              ((h = h || "padding"), (g = b(c).parent())),
-          m
-            ? n.push({
-                source: "sticky",
-                alias: "static",
-                minWidth: k,
-                maxWidth: l,
-                bottomContainer: g,
-              })
-            : (n.push({
-                source: "sticky",
-                alias: "top",
-                minWidth: k,
-                maxWidth: l,
-                offsetTop: i,
-                offsetBottom: j,
-                bottomContainer: g,
-                mode: h,
-              }),
-              n.push({
-                source: "sticky",
-                alias: "fixed",
-                minWidth: k,
-                maxWidth: l,
-                offsetTop: i,
-                offsetBottom: j,
-                bottomContainer: g,
-                mode: h,
-              }),
-              n.push({
-                source: "sticky",
-                alias: "bottom",
-                minWidth: k,
-                maxWidth: l,
-                offsetTop: i,
-                offsetBottom: j,
-                bottomContainer: g,
-                mode: h,
-              }));
+        (g = d._default(f, "$bottomContainer", b("body"))),
+        (h = d._default(f, "mode")),
+        (i = d._default(f, "offsetTop", 0)),
+        (j = d._default(f, "offsetBottom", 0)),
+        (k = d._default(f, "minWidth", 0)),
+        (l = d._default(f, "maxWidth", "infinity")),
+        (m = d._default(f, "static", !1)),
+        "next" === g ?
+        ((h = h || "margin"), (g = b(c).next())) :
+        ("parent" !== g && g) ||
+        ((h = h || "padding"), (g = b(c).parent())),
+        m ?
+        n.push({
+          source: "sticky",
+          alias: "static",
+          minWidth: k,
+          maxWidth: l,
+          bottomContainer: g,
+        }) :
+        (n.push({
+            source: "sticky",
+            alias: "top",
+            minWidth: k,
+            maxWidth: l,
+            offsetTop: i,
+            offsetBottom: j,
+            bottomContainer: g,
+            mode: h,
+          }),
+          n.push({
+            source: "sticky",
+            alias: "fixed",
+            minWidth: k,
+            maxWidth: l,
+            offsetTop: i,
+            offsetBottom: j,
+            bottomContainer: g,
+            mode: h,
+          }),
+          n.push({
+            source: "sticky",
+            alias: "bottom",
+            minWidth: k,
+            maxWidth: l,
+            offsetTop: i,
+            offsetBottom: j,
+            bottomContainer: g,
+            mode: h,
+          }));
       d.addItem(a, b(c), n);
     }),
-    (d.processStickyItemRange = function (a, c) {
+    (d.processStickyItemRange = function(a, c) {
       c = c || {};
       var e = d._default(c, "bottomContainer", b("body")),
         f = (d._default(c, "mode"), d._default(c, "offsetTop", 0)),
         g = d._default(c, "offsetBottom", 0),
         h =
-          parseInt(a.css("margin-top")) +
-          a.height() +
-          parseInt(a.css("margin-bottom"));
+        parseInt(a.css("margin-top")) +
+        a.height() +
+        parseInt(a.css("margin-bottom"));
       "border-box" === a.css("box-sizing") &&
         (h +=
           parseInt(a.css("padding-top")) + parseInt(a.css("padding-bottom")));
@@ -2523,30 +2600,42 @@ copies or substantial portions of the Software.
       switch (c.alias) {
         case "top":
           (c.from = 0),
-            (c.to = j - f),
-            (c.css = { position: "absolute", top: j + "px" }),
-            (c.itemHeight = h);
+          (c.to = j - f),
+          (c.css = {
+            position: "absolute",
+            top: j + "px"
+          }),
+          (c.itemHeight = h);
           break;
         case "fixed":
           (c.from = j - f),
-            (c.to = k),
-            (c.css = { position: "fixed", top: f + "px" }),
-            (c.itemHeight = h);
+          (c.to = k),
+          (c.css = {
+            position: "fixed",
+            top: f + "px"
+          }),
+          (c.itemHeight = h);
           break;
         case "bottom":
           (c.from = k),
-            (c.css = { position: "absolute", top: k + f + "px" }),
-            (c.itemHeight = h);
+          (c.css = {
+            position: "absolute",
+            top: k + f + "px"
+          }),
+          (c.itemHeight = h);
           break;
         case "static":
-          (c.from = 0), (c.css = { position: "", top: "" }), (c.itemHeight = 0);
+          (c.from = 0), (c.css = {
+            position: "",
+            top: ""
+          }), (c.itemHeight = 0);
       }
       return c;
     }),
-    (d.onResize = function () {
+    (d.onResize = function() {
       (d.winHeight = b(window).height()),
-        (d.docHeight = d.body.height()),
-        (d.docMiddle = Math.floor(d.docHeight / 2));
+      (d.docHeight = d.body.height()),
+      (d.docMiddle = Math.floor(d.docHeight / 2));
       var a = !1;
       for (var c in d.scrollLayout) {
         var e,
@@ -2555,27 +2644,27 @@ copies or substantial portions of the Software.
           h = d.scrollLayout[c];
         for (var i in h.rules)
           (e = h.rules[i]),
-            (f = d.isRuleInActiveWidthRange(e)),
-            (a |= f),
-            f &&
-              void 0 === e.from &&
-              (b(h.element).css("position", ""),
-              b(h.element).css("top", ""),
-              e.bottomContainer && e.bottomContainer.css("margin-top", ""),
-              (g = d._default(e, "source")),
-              "sticky" === g &&
-                (h.rules[i] = d.processStickyItemRange(h.element, e)));
+          (f = d.isRuleInActiveWidthRange(e)),
+          (a |= f),
+          f &&
+          void 0 === e.from &&
+          (b(h.element).css("position", ""),
+            b(h.element).css("top", ""),
+            e.bottomContainer && e.bottomContainer.css("margin-top", ""),
+            (g = d._default(e, "source")),
+            "sticky" === g &&
+            (h.rules[i] = d.processStickyItemRange(h.element, e)));
       }
       return (
         a &&
-          ((d.scrollLayout = d.scrollLayout),
-          setTimeout(function () {
+        ((d.scrollLayout = d.scrollLayout),
+          setTimeout(function() {
             d.onScroll(!0);
           }, 0)),
         !0
       );
     }),
-    (d.getProgress = function (a, b) {
+    (d.getProgress = function(a, b) {
       var c = a / b;
       return {
         offset: a,
@@ -2585,40 +2674,40 @@ copies or substantial portions of the Software.
         leftRelative: 1 - c,
       };
     }),
-    (d.getTransitionFloatValue = function (a, b, c) {
+    (d.getTransitionFloatValue = function(a, b, c) {
       return 0 >= c ? a : c >= 1 ? b : a + (b - a) * c;
     }),
-    (d.getTransitionIntValue = function (a, b, c) {
+    (d.getTransitionIntValue = function(a, b, c) {
       return Math.round(d.getTransitionFloatValue(a, b, c));
     }),
-    (d.hashColor2rgb = function (a) {
+    (d.hashColor2rgb = function(a) {
       var b = a.match(/^#([0-9a-f]{3})$/i);
-      return b
-        ? [
-            17 * parseInt(b[1].charAt(0), 16),
-            17 * parseInt(b[1].charAt(1), 16),
-            17 * parseInt(b[1].charAt(2), 16),
-          ]
-        : (b = a.match(/^#([0-9a-f]{6})$/i))
-        ? [
-            parseInt(b[1].substr(0, 2), 16),
-            parseInt(b[1].substr(2, 2), 16),
-            parseInt(b[1].substr(4, 2), 16),
-          ]
-        : [0, 0, 0];
+      return b ?
+        [
+          17 * parseInt(b[1].charAt(0), 16),
+          17 * parseInt(b[1].charAt(1), 16),
+          17 * parseInt(b[1].charAt(2), 16),
+        ] :
+        (b = a.match(/^#([0-9a-f]{6})$/i)) ?
+        [
+          parseInt(b[1].substr(0, 2), 16),
+          parseInt(b[1].substr(2, 2), 16),
+          parseInt(b[1].substr(4, 2), 16),
+        ] :
+        [0, 0, 0];
     }),
-    (d.rgb2HashColor = function (a, b, c) {
+    (d.rgb2HashColor = function(a, b, c) {
       var d,
         e,
         f = "#";
       for (var g in arguments)
         (d = arguments[g]),
-          (e = d.toString(16)),
-          16 > d && (e = "0" + e),
-          (f += e);
+        (e = d.toString(16)),
+        16 > d && (e = "0" + e),
+        (f += e);
       return f;
     }),
-    (d.getTransitionColorValue = function (a, b, c) {
+    (d.getTransitionColorValue = function(a, b, c) {
       if (0 >= c) return a;
       if (c >= 1) return b;
       var e = d.hashColor2rgb(a),
@@ -2628,7 +2717,7 @@ copies or substantial portions of the Software.
         i = d.getTransitionIntValue(e[2], f[2], c);
       return d.rgb2HashColor(g, h, i);
     }),
-    (d.getTransitionValue = function (a, b, c) {
+    (d.getTransitionValue = function(a, b, c) {
       if (0 >= c) return a;
       if (c >= 1) return b;
       var e = 0;
@@ -2636,31 +2725,31 @@ copies or substantial portions of the Software.
         return d.getTransitionFloatValue(a, b, c);
       var f = /(\d*\.\d+)|(\d+)|(#[0-9a-f]{6})|(#[0-9a-f]{3})/gi,
         g = ("" + b).match(f);
-      return ("" + a).replace(f, function (a, b, f, h, i) {
+      return ("" + a).replace(f, function(a, b, f, h, i) {
         var j = g[e];
         return (
           e++,
-          f && f.length
-            ? /\d*\.\d+/.test(j)
-              ? d.getTransitionFloatValue(parseFloat(a), parseFloat(j), c)
-              : d.getTransitionIntValue(parseInt(a), parseInt(j), c)
-            : b && b.length
-            ? d.getTransitionFloatValue(parseFloat(a), parseFloat(j), c)
-            : (h && h.length) || (i && i.length)
-            ? d.getTransitionColorValue(a, j, c)
-            : a
+          f && f.length ?
+          /\d*\.\d+/.test(j) ?
+          d.getTransitionFloatValue(parseFloat(a), parseFloat(j), c) :
+          d.getTransitionIntValue(parseInt(a), parseInt(j), c) :
+          b && b.length ?
+          d.getTransitionFloatValue(parseFloat(a), parseFloat(j), c) :
+          (h && h.length) || (i && i.length) ?
+          d.getTransitionColorValue(a, j, c) :
+          a
         );
       });
     }),
-    (d.onScroll = function (a) {
+    (d.onScroll = function(a) {
       var b = d.body.scrollTop();
       if (!a && b === d.scrollTop) return !1;
       var c = d.scrollTop,
         e = d.direction;
       (d.scrollTop = b),
-        (d.scrollBottom = b + d.winHeight),
-        (d.scrollCenter = b + Math.floor(d.winHeight / 2)),
-        (d.direction = b - c);
+      (d.scrollBottom = b + d.winHeight),
+      (d.scrollCenter = b + Math.floor(d.winHeight / 2)),
+      (d.direction = b - c);
       var f,
         g,
         h,
@@ -2685,96 +2774,94 @@ copies or substantial portions of the Software.
       for (k in d.scrollLayout) {
         for (
           f = d.scrollLayout[k],
-            g = f.rules.length,
-            h = [],
-            i = [],
-            j = [],
-            l = 0;
-          g > l;
-          l++
+          g = f.rules.length,
+          h = [],
+          i = [],
+          j = [],
+          l = 0; g > l; l++
         )
           (o = f.rules[l]),
-            (p = d._default(o, "minWidth", 0)),
-            (q = d._default(o, "maxWidth", "infinity")),
-            (r = "self" === f.container ? f.element : f.container),
-            (o.checkin = d.isRuleActive(o, f.element, r)),
-            (o["class"] =
-              o["class"] ||
-              "scroll-pos-" + o.alias + " window-width-" + p + "-to-" + q),
-            o.checkin
-              ? (j.push(l), o.isActive || ((o.isActive = !0), h.push(l)))
-              : o.isActive && ((o.isActive = !1), i.push(l)),
-            (f.rules[l] = o);
+          (p = d._default(o, "minWidth", 0)),
+          (q = d._default(o, "maxWidth", "infinity")),
+          (r = "self" === f.container ? f.element : f.container),
+          (o.checkin = d.isRuleActive(o, f.element, r)),
+          (o["class"] =
+            o["class"] ||
+            "scroll-pos-" + o.alias + " window-width-" + p + "-to-" + q),
+          o.checkin ?
+          (j.push(l), o.isActive || ((o.isActive = !0), h.push(l))) :
+          o.isActive && ((o.isActive = !1), i.push(l)),
+          (f.rules[l] = o);
         for (n = 0; n < i.length; n++)
           (l = i[n]),
-            (o = f.rules[l]),
-            f.element.removeClass(o["class"]),
-            o.cssOnScroll &&
-              ((m = o.length || 0),
-              o.cssOnScroll(f.element, b > c ? m : 0, m, o)),
-            o.onScroll &&
-              ((m = o.length || 0), o.onScroll(f.element, b > c ? m : 0, m, o)),
-            o.onCheckOut && o.onCheckOut(f.element, o),
-            o.onTopOut && c > b
-              ? o.onTopOut(f.element, o)
-              : o.onBottomOut && b > c && o.onBottomOut(f.element, o);
+          (o = f.rules[l]),
+          f.element.removeClass(o["class"]),
+          o.cssOnScroll &&
+          ((m = o.length || 0),
+            o.cssOnScroll(f.element, b > c ? m : 0, m, o)),
+          o.onScroll &&
+          ((m = o.length || 0), o.onScroll(f.element, b > c ? m : 0, m, o)),
+          o.onCheckOut && o.onCheckOut(f.element, o),
+          o.onTopOut && c > b ?
+          o.onTopOut(f.element, o) :
+          o.onBottomOut && b > c && o.onBottomOut(f.element, o);
         for (n = 0; n < h.length; n++)
           (l = h[n]),
-            (o = f.rules[l]),
-            o.css && f.element.css(d.extendCssWithPrefix(o.css)),
-            o.addClass && f.element.addClass(o.addClass),
-            o.removeClass && f.element.removeClass(o.removeClass),
-            f.element.addClass(o["class"]),
-            (s = d._default(o, "bottomContainer")),
-            (t = d._default(o, "mode")),
-            (u = d._default(o, "itemHeight")),
-            s && t && u && s.css(t + "-top", u + "px"),
-            o.onCheckIn && o.onCheckIn(f.element, o),
-            o.onTopIn && b > c
-              ? o.onTopIn(f.element, o)
-              : o.onBottomIn && c > b && o.onBottomIn(f.element, o),
-            (o.length = o.checkin.length);
+          (o = f.rules[l]),
+          o.css && f.element.css(d.extendCssWithPrefix(o.css)),
+          o.addClass && f.element.addClass(o.addClass),
+          o.removeClass && f.element.removeClass(o.removeClass),
+          f.element.addClass(o["class"]),
+          (s = d._default(o, "bottomContainer")),
+          (t = d._default(o, "mode")),
+          (u = d._default(o, "itemHeight")),
+          s && t && u && s.css(t + "-top", u + "px"),
+          o.onCheckIn && o.onCheckIn(f.element, o),
+          o.onTopIn && b > c ?
+          o.onTopIn(f.element, o) :
+          o.onBottomIn && c > b && o.onBottomIn(f.element, o),
+          (o.length = o.checkin.length);
         for (n = 0; n < j.length; n++)
           (l = j[n]),
-            (o = f.rules[l]),
-            o.cssOnScroll &&
-              o.cssOnScroll(f.element, o.checkin.offset, o.checkin.length, o),
-            o.onScroll &&
-              o.onScroll(f.element, o.checkin.offset, o.checkin.length, o),
-            v &&
-              o.onDirectionChanged &&
-              o.onDirectionChanged(f.element, d.direction, o);
+          (o = f.rules[l]),
+          o.cssOnScroll &&
+          o.cssOnScroll(f.element, o.checkin.offset, o.checkin.length, o),
+          o.onScroll &&
+          o.onScroll(f.element, o.checkin.offset, o.checkin.length, o),
+          v &&
+          o.onDirectionChanged &&
+          o.onDirectionChanged(f.element, d.direction, o);
         d.scrollLayout[k] = f;
       }
     }),
-    (d.detectCSSPrefix = function () {
+    (d.detectCSSPrefix = function() {
       var a = /^(?:O|Moz|webkit|ms)|(?:-(?:o|moz|webkit|ms)-)/;
       if (window.getComputedStyle) {
         var b = window.getComputedStyle(document.body, null);
         for (var c in b)
           if (
             ((d.theCSSPrefix = c.match(a) || (+c === c && b[c].match(a))),
-            d.theCSSPrefix)
+              d.theCSSPrefix)
           )
             break;
         if (!d.theCSSPrefix)
-          return void (d.theCSSPrefix = d.theDashedCSSPrefix = "");
+          return void(d.theCSSPrefix = d.theDashedCSSPrefix = "");
         (d.theCSSPrefix = d.theCSSPrefix[0]),
-          "-" === d.theCSSPrefix.slice(0, 1)
-            ? ((d.theDashedCSSPrefix = d.theCSSPrefix),
-              (d.theCSSPrefix = {
-                "-webkit-": "webkit",
-                "-moz-": "Moz",
-                "-ms-": "ms",
-                "-o-": "O",
-              }[d.theCSSPrefix]))
-            : (d.theDashedCSSPrefix = "-" + d.theCSSPrefix.toLowerCase() + "-");
+        "-" === d.theCSSPrefix.slice(0, 1) ?
+          ((d.theDashedCSSPrefix = d.theCSSPrefix),
+            (d.theCSSPrefix = {
+              "-webkit-": "webkit",
+              "-moz-": "Moz",
+              "-ms-": "ms",
+              "-o-": "O",
+            } [d.theCSSPrefix])) :
+          (d.theDashedCSSPrefix = "-" + d.theCSSPrefix.toLowerCase() + "-");
       }
     }),
-    (d.cssPrefix = function (a) {
+    (d.cssPrefix = function(a) {
       return d.theDashedCSSPrefix + a;
     }),
-    (d.extendCssWithPrefix = function (a) {
+    (d.extendCssWithPrefix = function(a) {
       var c,
         e,
         f,
@@ -2783,54 +2870,54 @@ copies or substantial portions of the Software.
         i = {};
       for (c in a)
         (e = /^-(moz-|webkit-|o-|ms-)?/i),
-          (f = c.match(e)),
-          (g = c.slice(1)),
-          f &&
-            !f[1] &&
-            ((h = a[c]), (i[g] = h), (i[d.cssPrefix(g)] = h), delete a[c]);
+        (f = c.match(e)),
+        (g = c.slice(1)),
+        f &&
+        !f[1] &&
+        ((h = a[c]), (i[g] = h), (i[d.cssPrefix(g)] = h), delete a[c]);
       return b.extend(a, i), a;
     }),
     (d.now =
       Date.now ||
-      function () {
+      function() {
         return +new Date();
       }),
-    (d.getRAF = function () {
+    (d.getRAF = function() {
       var a =
-          window.requestAnimationFrame ||
-          window[d.theCSSPrefix.toLowerCase() + "RequestAnimationFrame"],
+        window.requestAnimationFrame ||
+        window[d.theCSSPrefix.toLowerCase() + "RequestAnimationFrame"],
         b = d.now();
       return (
         a ||
-          (a = function (a) {
-            var c = d.now() - b,
-              e = Math.max(0, 1e3 / 60 - c);
-            return window.setTimeout(function () {
-              (b = d.now()), a();
-            }, e);
-          }),
+        (a = function(a) {
+          var c = d.now() - b,
+            e = Math.max(0, 1e3 / 60 - c);
+          return window.setTimeout(function() {
+            (b = d.now()), a();
+          }, e);
+        }),
         a
       );
     }),
-    (d.getCAF = function () {
+    (d.getCAF = function() {
       var a =
         window.cancelAnimationFrame ||
         window[d.theCSSPrefix.toLowerCase() + "CancelAnimationFrame"];
       return (
         (d.isMobile || !a) &&
-          (a = function (a) {
-            return window.clearTimeout(a);
-          }),
+        (a = function(a) {
+          return window.clearTimeout(a);
+        }),
         a
       );
     }),
-    (d.animLoop = function () {
+    (d.animLoop = function() {
       d.onScroll(), (d.animFrame = window.requestAnimFrame(d.animLoop));
     }),
-    (d.init = function (a) {
-      return d.isInitialized
-        ? !1
-        : (b.extend(d.options, a),
+    (d.init = function(a) {
+      return d.isInitialized ?
+        !1 :
+        (b.extend(d.options, a),
           (d.isMobile = d._default(
             d.options,
             "isMobile",
@@ -2843,26 +2930,26 @@ copies or substantial portions of the Software.
           (window.requestAnimFrame = d.getRAF()),
           (window.cancelAnimFrame = d.getCAF()),
           (d.timesCalled = 0),
-          b(document).ready(function () {
+          b(document).ready(function() {
             b(window).resize(d.onResize).resize(), d.animLoop();
           }),
-          void (d.isInitialized = !0));
+          void(d.isInitialized = !0));
     }),
-    (d.destroy = function () {
+    (d.destroy = function() {
       window.cancelAnimFrame(d.animFrame);
     }),
-    (d.factorySticky = function (a, b, c) {
+    (d.factorySticky = function(a, b, c) {
       return (
         (c = c || a[0].tagName + "_" + d.getScrollLayoutLength()),
         d.stickItemXY(c, a, b instanceof Array ? b : [b]) ? c : !1
       );
     }),
     c &&
-      ((b.scroolly = d),
-      (b.fn.scroolly = function (a, b, c) {
+    ((b.scroolly = d),
+      (b.fn.scroolly = function(a, b, c) {
         return d.factory(this, a, b, c), this;
       }),
-      (b.fn.scroollySticky = function (a, b) {
+      (b.fn.scroollySticky = function(a, b) {
         return d.init(), this.length ? d.factorySticky(this, a, b) : !1;
       })),
     d

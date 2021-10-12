@@ -11,7 +11,36 @@ if( have_rows('modules') ):
     while ( have_rows('modules') ) : the_row();
         // Case Home Banner
         if( get_row_layout() == 'home_banner' ): ?>
-            <section class="section home-banner">
+            <section class="section home-banner" id="<?php the_sub_field( 'id' ); ?>">
+                <div class="home-banner__slider a-right">
+                    <?php if( $down_images = get_sub_field( 'down_images') ): ?>
+                    <div class="home-main__slider">
+                        <?php foreach( $down_images as $image ): 
+                        $img_url = $image['sizes']['home-slider'];
+                        $img_url_2x = $image['sizes']['home-slider-2x']; ?> 
+                            <div class="home-main__slide">
+                                <img src="<?php echo $img_url; ?>" srcset="<?php echo $img_url_2x; ?> 2x" alt="">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+                    <?php if( $up_images = get_sub_field( 'up_images') ): ?>
+                    <div class="home-sub__slider a-left">
+                        <?php foreach( $up_images as $image ): 
+                        $img_url = $image['sizes']['home-slider'];
+                        $img_url_2x = $image['sizes']['home-slider-2x']; ?> 
+                            <div class="home-sub__slide">
+                                <img src="<?php echo $img_url; ?>" srcset="<?php echo $img_url_2x; ?> 2x" alt="">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <?php if( $content = get_sub_field( 'content' ) ): ?>
+                <div class="home-banner__content a-up">
+                    <?php echo $content; ?>
+                </div>
+                <?php endif; ?>
             </section>
 
         <?php
