@@ -19,7 +19,7 @@
       }
     }
     &__title {
-      @include typography(14px, 26px, 16.8px, 31.2px, 700, $f-text, $secondary);
+      @include typography(14px, 18.97px, 16.8px, 22.77px, 700, $f-text, $secondary);
       letter-spacing: 0.1em;
       font-style: italic;
       @include mq(tablet, max) {
@@ -27,6 +27,9 @@
       }
       @include mq(tablet) {
         margin-right: vw(60px);
+      }
+      @include mq(desktop-wide) {
+        @include typography(14px, 26px, 16.8px, 31.2px, 700, $f-text, $secondary);
       }
     }
   }
@@ -37,13 +40,31 @@
     font: 400 21.89px/1.3 $f-secondary;
     color: $secondary;
     @include mq(tablet) {
-      margin-right: vw(65px);      
+      margin-right: vw(65px);   
+      &:hover {
+        svg {
+          transform: translateY(-5px);
+        }
+        span::after {
+          transform: scaleX(0);
+        }
+      }   
     }
     @include mq(desktop-wide) {
       font-size: 30px;
     }
     &:last-child {
       margin-right: 0;
+    }
+    svg {
+      width: 30px;
+      height: 30px;
+      transition: transform .3s ease-in-out;
+      will-change: transform;
+      @include mq(tablet) {
+        width: vw(58px);
+        height: vw(58px);
+      }
     }
     span {
       display: none;
@@ -62,11 +83,6 @@
         background-color: $c-white;
         transition: transform .3s ease-in-out;
         will-change: transform;
-      }
-      &:hover {
-        &::after {
-          transform: scaleX(0);
-        }
       }
     }
   }
@@ -90,9 +106,12 @@
     }
   }
   &-text {
-    @include typography(14px, 26px, 16.8px, 31.2px, 700, $f-text);
+    @include typography(14px, 18.97px, 16.8px, 22.77px, 700, $f-text);
     letter-spacing: 0.1em;
     font-style: italic;
+    @include mq(desktop-wide) {
+      @include typography(14px, 26px, 16.8px, 31.2px, 700, $f-text);
+    }
   }
   &-bottom {
     display: flex;
@@ -106,7 +125,7 @@
   }
   &-link,
   &-copy {
-    @include typography(10px, 16px, 15px, 14px, 400, $f-secondary);
+    @include typography(10px, 11.68px, 15px, 17.51px, 400, $f-secondary);
     text-transform: uppercase;
 
     @include mq(tablet, max) {
@@ -115,6 +134,12 @@
     @include mq(tablet) {
       margin-right: vw(34px);
     }
+    @include mq(desktop-wide) {
+      @include typography(10px, 16px, 15px, 14px, 400, $f-secondary);
+    }
+  }
+  &-link {
+    @include button-underline(1px, $primary);
   }
   &-copy {
     margin-right: 0;

@@ -320,3 +320,18 @@ html {
     }
   }
 }
+
+.section {
+  padding: 90px 0;
+  @include mq(tablet) {
+    padding: vw(50px) 0 vw(200px);
+  }
+  &-title {
+    @include typography(16px, 13.13px, 19.5px, 16.01px, 600, $f-secondary, $primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    @include mq(desktop-wide) {
+      @include typography(16px, 18px, 19.5px, 21.94px, 600, $f-secondary, $primary);
+    }
+  }
+}

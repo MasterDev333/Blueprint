@@ -31,7 +31,7 @@
     }
   }
   .slide {
-    width: 300px;
+    width: vw(300px, $viewport-sm);
     @include mq(tablet) {
       display: flex;
       width: auto;
@@ -63,16 +63,22 @@
         width: vw(600px);
       }
       &__name {
-        @include typography(20px, 30px, 24.38px, 36.57px, 700, $f-secondary);
+        @include typography(20px, 21.89px, 24.38px, 26.68px, 700, $f-secondary);
         text-transform: uppercase;
         letter-spacing: 0.04em;
         @include mq(tablet) {
           margin-bottom: vw(20px);
         }
+        @include mq(desktop-wide) {
+          @include typography(20px, 30px, 24.38px, 36.57px, 700, $f-secondary);
+        }
       }
       &__info,
       &__bio {
-        @include typography(12px, 14px, 18px, 23.5px, 600, $f-secondary);
+        @include typography(12px, 10.22px, 18px, 17.15px, 600, $f-secondary);
+        @include mq(desktop-wide) {
+          @include typography(12px, 14px, 18px, 23.5px, 600, $f-secondary);
+        }
       }
       &__bio {
         display: none;
@@ -92,8 +98,11 @@
       }
       &__testimonial {
         margin-top: auto;
-        @include typography(18px, 22px, 25px, 35.29px, 600, $f-text);
+        @include typography(18px, 16.05px, 25px, 25.75px, 600, $f-text);
         letter-spacing: 0.01em;
+        @include mq(desktop-wide) {
+          @include typography(18px, 22px, 25px, 35.29px, 600, $f-text);
+        }
       }
     }
   }

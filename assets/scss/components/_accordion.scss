@@ -1,16 +1,20 @@
 .accordions {
+  @include mq(tablet) {
+    padding: vw(100px) 0 vw(140px);
+  }
   &.accordions--dark {
     background-color: $primary;
     color: $c-white;
+    .section-title {
+      color: $c-white;
+    }
   }
   &.accordions--light {
     background-color: $background_color;
     color: $primary;
   }
-  @include mq(tablet) {
-    padding-bottom: vw(140px);
-  }
   .section-title {
+    margin-bottom: 63px;
     @include mq(tablet) {
       margin-bottom: vw(87px);
     }
@@ -69,16 +73,22 @@
     
   }
   &-title {
-    @include typography(24px, 40px, 29.26px, 48.76px, 300, $f-secondary, $c-white);
+    @include typography(24px, 29.19px, 29.26px, 35.58px, 300, $f-secondary, $c-white);
     transition: color .3s ease-in-out;
+    @include mq(desktop-wide) {
+      @include typography(24px, 40px, 29.26px, 48.76px, 300, $f-secondary, $c-white);
+    }
   }
   &-subtitle {
     display: none;
-    font: 400 20px/35px $f-text;
-    color: $c-white;
+    @include typography(20px, 14.59px, 35px, 25.54px, 400, $f-text, $c-white);
     transition: color .3s ease-in-out;
     @include mq(tablet) {
       display: block;
+    }
+    @include mq(desktop-wide) {
+      font-size: 20px;
+      line-height: 35px;
     }
   }
   &-content {

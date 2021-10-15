@@ -14,6 +14,9 @@
   &__content {
     @include mq(tablet) {
       margin: 0 auto;
+      max-width: 100%;
+    }
+    @include mq(desktop-small) {
       max-width: vw(870px);
     }
     p {

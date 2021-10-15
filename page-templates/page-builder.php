@@ -160,7 +160,7 @@ if( have_rows('modules') ):
                     <img class="a-up" src="<?php echo $image; ?>" alt="">
                 </div>
                 <?php endif; ?>
-                <div class="col media-content__content" style="background-color: <?php the_sub_field( 'content_background' ); ?>">
+                <div class="col media-content__content <?php echo 'media-content__content--' . get_sub_field( 'content_color' ); ?>" style="background-color: <?php the_sub_field( 'content_background' ); ?>">
                     <div class="media-content__content--inner">
                         <?php if( $number = get_sub_field( 'number' ) ): ?>
                             <div class="media-content__number a-up"><?php echo $number; ?></div>
@@ -249,18 +249,22 @@ if( have_rows('modules') ):
                                 <?php endif; ?>
                             </div>
                             <div class="accordion-content">
-                                <div class="accordion-content__inner">
-                                    <?php if( $image = get_sub_field( 'image' ) ): ?>
-                                    <div class="accordion-content__image">
-                                        <img src="<?php echo $image; ?>" alt="">
+                                <?php if( have_rows( 'content_row' ) ): 
+                                    while( have_rows( 'content_row' ) ) : the_row( ); ?>
+                                    <div class="accordion-content__inner">
+                                        <?php if( $image = get_sub_field( 'image' ) ): ?>
+                                        <div class="accordion-content__image">
+                                            <img src="<?php echo $image; ?>" alt="">
+                                        </div>
+                                        <?php endif; ?>
+                                        <?php if( $content = get_sub_field( 'content' ) ): ?>
+                                        <div class="accordion-content__text">
+                                            <?php echo $content; ?>
+                                        </div>
+                                        <?php endif; ?>
                                     </div>
-                                    <?php endif; ?>
-                                    <?php if( $content = get_sub_field( 'content' ) ): ?>
-                                    <div class="accordion-content__text">
-                                        <?php echo $content; ?>
-                                    </div>
-                                    <?php endif; ?>
-                                </div>
+                                <?php endwhile;
+                                endif; ?>
                             </div>
                         </div>
                     </div>

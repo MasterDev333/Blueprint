@@ -62,6 +62,16 @@
   }
 }
 
+
+@mixin mq_mobile_landscape() {
+  @include when-inside('.mobile') {
+    @include orientation(landscape) {
+      @content;      
+    }
+  }
+}
+
+
 @mixin orientation($direction) {
   $orientation-landscape: "(orientation:landscape)";
   $orientation-portrait: "(orientation:portrait)";
@@ -100,7 +110,10 @@
 }
 
 @mixin heading1() {
-  @include typography(40px, 74px, 48px, 87.51px);
+  @include typography(40px, 54px, 48px, 63.85px);
+  @include mq(desktop-wide) {
+    @include typography(40px, 74px, 48px, 87.51px);
+  }
 }
 @mixin heading2() {
 }
@@ -182,7 +195,7 @@
 @mixin button-underline($height: 1px, $color: #000) {
   position: relative;
   display: inline-block;
-  padding-bottom: 3px;
+  padding-bottom: 2px;
   &::after {
     position: absolute;
     content: "";

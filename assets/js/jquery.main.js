@@ -146,7 +146,7 @@ function initSlider() {
     autoplay: true,
     autoplaySpeed: 5000,
     responsive: [{
-      breakpoint: 768,
+      breakpoint: 769,
       settings: {
         arrows: false,
         variableWidth: true
