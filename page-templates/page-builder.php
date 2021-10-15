@@ -139,13 +139,16 @@ if( have_rows('modules') ):
                     </div>
                 </div>
                 <?php if( $marquee_text ): ?>
-                    <div class="marquee">
+                    <!-- <div class="marquee">
                         <ul id="marquee">
                             <li>
                                 <p class="marquee-text"><?php echo $marquee_text; ?></p>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
+                    <marquee direction="up" scrollamount="15" loop="true" class="marquee">
+                        <span class="marquee-text"><?php echo $marquee_text; ?></span>
+                    </marquee>
                 <?php endif; ?>
             </section>
         <?php
@@ -197,13 +200,9 @@ if( have_rows('modules') ):
                             <div class="slide-wrapper">
                                 <div class="slide" data-bg="<?php echo $background; ?>">
                                     <div class="slide-img">
-                                        <div class="img-a">
-                                            <div class="img-a-img">
-                                                <img src="<?php echo $img_url; ?>" 
-                                                    <?php echo $img_url_2x ? 'srcset="' . $img_url . ' 2x"' : ''; ?>
-                                                    alt="">
-                                            </div>
-                                        </div>
+                                        <img src="<?php echo $img_url; ?>" 
+                                            <?php echo $img_url_2x ? 'srcset="' . $img_url . ' 2x"' : ''; ?>
+                                            alt="">
                                     </div>
                                     <div class="slide-content">
                                         <?php if( $name ): ?>

@@ -47,8 +47,10 @@
   }
 
   &__content {
-    @include when-inside('.svg-block--top') {
-      order: 1;
+    @include mq(tablet, max) {
+      @include when-inside('.svg-block--top') {
+        order: 1;
+      }
     }
     @include mq(tablet) {
       max-width: vw(405px);
@@ -79,11 +81,13 @@
   display: none;
   position: absolute;
   top: 0;
-  width: 0;
-  transform: rotate(90deg);
+  width: 20px;
+  height: 100%;
+  // transform: rotate(90deg);
   @include mq(tablet) {
     display: block;
     left: vw(130px);
+
   }
 }
 .marquee-text {
@@ -94,7 +98,6 @@
   text-orientation: mixed;
   z-index: 2;
   white-space: nowrap;
-  transform: rotate(-90deg);
   @include mq(tablet) {
     font: 700 14.66px/17.59px $f-text;
   }

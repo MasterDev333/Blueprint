@@ -2,7 +2,7 @@ var $ = jQuery.noConflict();
 jQuery(document).ready(function() {
   // single function
   initHeader();
-  initCustomForms();
+  // initCustomForms();
   initAnchor();
 
   // isElementExist helper
@@ -17,7 +17,6 @@ jQuery(document).ready(function() {
   isElementExist(".logos-module__slider", initLogosSlider);
   isElementExist(".slider", initSlider);
   isElementExist(".accordions", initAccordions);
-  isElementExist(".marquee", initMarquee);
 
   // viewportCheckerAnimate function
   viewportCheckerAnimate(".a-bg-up", "_animate");
@@ -116,7 +115,6 @@ function initHomeBanner() {
       speed: 1000,
       vertical: true,
       cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
-
     });
   }
   if ($('.home-sub__slider').length) {
@@ -133,16 +131,6 @@ function initHomeBanner() {
   }
 }
 
-// init Marquee
-function initMarquee() {
-  // $('#marquee').marquee({
-  //   direction: 'vertical',
-  //   itemSelecter: 'li',
-  //   timing: 50,
-  //   delay: 0,
-  // });
-}
-
 // initialize slider
 function initSlider() {
   $('.slides').on('init', function(event, slick) {
@@ -151,13 +139,16 @@ function initSlider() {
     $parent.css("background-color", bg);
   });
   $('.slides').slick({
-    arrows: false,
+    arrows: true,
     dots: false,
-    nextArrow: $('.nextSlide'),
-    prevArrow: $('.prevSlide'),
+    nextArrow: '<button class="slick-arrow slick-next"><svg width="69" height="53" viewBox="0 0 69 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.0156 26.4266L1.34375 26.4266M67.0156 26.4266L42.3887 51.2359M67.0156 26.4266L42.3887 1.61719" stroke="#141820" stroke-width="2.18906" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
+    prevArrow: $('.slick-prev'),
+    autoplay: true,
+    autoplaySpeed: 5000,
     responsive: [{
       breakpoint: 768,
       settings: {
+        arrows: false,
         variableWidth: true
       }
     }]

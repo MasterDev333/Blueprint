@@ -5,10 +5,16 @@
       margin-bottom: vw(96px);
     }
   }
+  .slick-list {
+    @include mq(tablet) {
+      overflow: visible;
+    }
+  }
   .slick-track {
     display: flex;
   }
   .container {
+    position: relative;
     @include mq(tablet, max) {
       margin-right: -20px;
     }
@@ -17,7 +23,11 @@
     margin-right: 15px;
     height: inherit !important;
     @include mq(tablet, max) {
+      margin-right: vw(90px);
       background-color: $c-white;
+    }
+    @include mq(desktop-wide) {
+      margin-right: 90px;
     }
   }
   .slide {
@@ -32,6 +42,9 @@
       line-height: 0;
       @include mq(tablet) {
         width: vw(714px);
+      }
+      img {
+        @include coverImage();
       }
       .img-a-img::before {
         padding-top: 100%;
@@ -81,6 +94,37 @@
         margin-top: auto;
         @include typography(18px, 22px, 25px, 35.29px, 600, $f-text);
         letter-spacing: 0.01em;
+      }
+    }
+  }
+  .slick-arrow {
+    &::before {
+      content: none;
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      transition: transform .3s ease-in-out;
+      will-change: transform;
+    }
+    @include mq(tablet, max) {
+      display: none;
+    }
+  }
+  .slick-next {
+    width: auto;
+    height: auto;
+    @include mq(tablet) {
+      right: vw(120px);
+      width: vw(69px);
+    }
+    @include mq(desktop-wide) {
+      right: 120px;
+      width: 69px;
+    }
+    &:hover {
+      svg {
+        transform: translateX(20px);
       }
     }
   }
