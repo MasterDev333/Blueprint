@@ -7,10 +7,10 @@
   }
 
   @include mq(tablet) {
+    padding: 0 vw(60px) !important;
     max-height: vw(800px, $viewport-lg);
     overflow: hidden;
     align-items: center;
-    padding: 0 vw(60px) !important;
   }
   @include mq(desktop-wide) {
     max-height: 100vh;
@@ -61,7 +61,7 @@
 
 .home-main__slider,
 .home-sub__slider {
-  height: vw(535px, $viewport-sm);
+  height: svw(535px);
 
   @include mq(tablet) {
     height: vw(807px, $viewport-lg);
@@ -72,7 +72,7 @@
 }
 
 .home-main__slider {
-  width: vw(240px, $viewport-sm);
+  width: svw(240px);
 
   @include mq(tablet) {
     width: vw(650px);
@@ -82,7 +82,7 @@
   //   height: 100% !important;
   // }
   .home-main__slide {
-    height: vw(535px, $viewport-sm);
+    height: svw(535px);
 
     @include mq(tablet) {
       height: vw(807px, $viewport-lg);
@@ -99,7 +99,7 @@
 }
 
 .home-sub__slider {
-  width: vw(135px, $viewport-sm);
+  width: svw(135px);
   @include mq(tablet) {
     width: vw(375px);
   }

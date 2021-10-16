@@ -278,10 +278,90 @@ if( have_rows('modules') ):
                 endif; ?>
             </section>
 
+        <?php 
+        // Case: Blueprint Hero
+        elseif( get_row_layout() == 'blueprint_banner' ): 
+            $id = get_sub_field( 'id' ) ?: 'blueprint-banner';
+            $image = get_sub_field( 'image' ); 
+            $mobile_top = get_sub_field( 'mobile_bg_top' ); 
+            $mobile_bottom = get_sub_field( 'mobile_bg_bottom' ); ?>
+            <section class="section blueprint-banner" id="<?php echo $id; ?>">
+                <div class="blueprint-banner__content">
+                    <?php if( $heading = get_sub_field( 'heading' ) ): ?>
+                        <h1 class="blueprint-banner__heading a-up"><?php echo $heading; ?></h1>
+                    <?php endif; ?>
+                    <?php if( $description = get_sub_field( 'description' ) ): ?>
+                        <p class="blueprint-banner__desc a-up a-delay-1"><?php echo $description; ?></p>
+                    <?php endif; ?>
+                </div>
+            </section>
+            <style>
+                @media only screen and (max-width: 768px) {
+                    #<?php echo $id; ?> {
+                        background-image: url(<?php echo $mobile_top; ?>), url(<?php echo $mobile_bottom; ?>);
+                    }   
+                }
+                @media only screen and (min-width: 769px) {
+                    #<?php echo $id; ?> {
+                        background-image: url(<?php echo $image; ?>);
+                    }   
+                }
+            </style>
+        <?php
+        // Case: Blueprint Experience
+        elseif( get_row_layout() == 'blueprint_experience' ): 
+            $id = get_sub_field( 'id' ) ?: 'blueprint-experience';
+            $left_image = get_sub_field( 'left_image' );
+            $right_image = get_sub_field( 'right_image' ); 
+            $mobile_bg = get_sub_field( 'mobile_bg' ); ?>
+            <section class="section blueprint-experience"
+                    id="<?php echo $id; ?>">
+                <div class="container">
+                    <div class="blueprint-experience__content">
+                        <?php if( $heading = get_sub_field( 'heading' ) ): ?>
+                            <h2 class="section-title blueprint-experience__title a-up"><?php echo $heading; ?></h2>
+                        <?php endif; ?>
+                        <?php if( $content = get_sub_field( 'content' ) ): ?>
+                            <div class="blueprint-experience__text a-up a-delay-1">
+                                <?php echo $content; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+            <style>
+                @media only screen and (max-width: 768px) {
+                    #<?php echo $id; ?> {
+                        background-image: url(<?php echo $mobile_bg; ?>);
+                    }
+                }
+                @media only screen and (min-width: 769px) {
+                    #<?php echo $id; ?> {
+                        background-image: url(<?php echo $left_image; ?>), url(<?php echo $right_image; ?>);
+                    }
+                }
+            </style>
+        <?php
+        // Case: Contact
+        elseif( get_row_layout() == 'contact' ): ?>
+            <section class="section section-contact"
+                    id="<?php the_sub_field( 'id' ); ?>">
+                <div class="container">
+                    <?php if( $heading = get_sub_field( 'heading' ) ): ?>
+                        <h2 class="section-contact__heading"><?php echo $heading; ?></h2>
+                    <?php endif; ?>
+                    <?php if( $cta = get_sub_field( 'cta' ) ): ?>
+                        <a href="<?php echo $cta['url']; ?>" 
+                            class="btn btn-black btn-contact"
+                            target="<?php echo $cta['target']; ?>">
+                            <?php echo $cta['title']; ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </section>
+
         <?php
         endif;
-
-
 
     // End loop.
     endwhile;

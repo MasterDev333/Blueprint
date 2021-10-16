@@ -206,6 +206,8 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 @media screen and (max-width: 600px) { .admin-bar .header.sticky { top: 0; } }
 .header.sticky .menu-item .nav-link { color: #fff; }
 .header.sticky .menu-item .nav-link::after { border-color: #fff; }
+@media only screen and (min-width: 769px) { .header.header--light .menu-item .nav-link { color: #fff; }
+  .header.header--light .menu-item .nav-link::after { border-color: #fff; } }
 .header-nav { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; }
 @media only screen and (min-width: 769px) { .header-nav { -webkit-box-align: end; -ms-flex-align: end; align-items: flex-end; padding: 0 3.125vw; } }
 .sticky .header-nav { -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
@@ -340,7 +342,7 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
   100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
 .home-banner { display: -webkit-box; display: -ms-flexbox; display: flex; }
 @media only screen and (max-width: 768px) { .home-banner { padding: 93px 0 0 !important; -webkit-box-orient: vertical; -webkit-box-direction: reverse; -ms-flex-direction: column-reverse; flex-direction: column-reverse; } }
-@media only screen and (min-width: 769px) { .home-banner { max-height: 55.5555555556vw; overflow: hidden; -webkit-box-align: center; -ms-flex-align: center; align-items: center; padding: 0 3.125vw !important; } }
+@media only screen and (min-width: 769px) { .home-banner { padding: 0 3.125vw !important; max-height: 55.5555555556vw; overflow: hidden; -webkit-box-align: center; -ms-flex-align: center; align-items: center; } }
 @media only screen and (min-width: 1441px) { .home-banner { max-height: 100vh; } }
 .home-banner__slider { display: -webkit-box; display: -ms-flexbox; display: flex; }
 .home-banner__slider img { display: block; width: 100%; }
@@ -533,6 +535,26 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 .marquee-text { background: -webkit-linear-gradient(#FFA012, #AD73FD, #59E8AC, #1CB2F2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-writing-mode: vertical-rl; -ms-writing-mode: tb-rl; writing-mode: vertical-rl; text-orientation: mixed; z-index: 2; white-space: nowrap; }
 @media only screen and (min-width: 769px) { .marquee-text { font: 700 14.66px/17.59px "meno-text", sans-serif; } }
 @media only screen and (min-width: 1441px) { .marquee-text { font-size: 20.09px; line-height: 24.11px; } }
+
+.blueprint-banner { padding: 66.6666666667vw 0 64vw; background-color: #041281; background-position: top 21.3333333333vw right 4vw, bottom 26.6666666667vw left 0; background-repeat: no-repeat; max-height: 100vh; overflow: hidden; }
+@media only screen and (min-width: 769px) { .blueprint-banner { padding: 20.8333333333vw 0 13.0208333333vw; max-height: 55.5555555556vw; background-position: top 8.6979166667vw left 10.6770833333vw; background-size: 69.6354166667vw; } }
+@media only screen and (min-width: 1441px) { .blueprint-banner { max-height: 100vh; } }
+.blueprint-banner__content { padding: 0 45px 0 20px; width: 100%; }
+@media only screen and (min-width: 769px) { .blueprint-banner__content { margin-left: auto; margin-right: 6.25vw; padding: 0; width: 37.2395833333vw; } }
+.blueprint-banner__heading { font: 400 67.37px/80.84px "meno-banner", sans-serif; color: #fff; }
+@media only screen and (min-width: 769px) { .blueprint-banner__heading { font-size: 9.375vw; line-height: 11.25vw; margin-bottom: 1.0416666667vw; } }
+.blueprint-banner__desc { font: 700 32px/38.4px "meno-banner", sans-serif; color: #fff; }
+@media only screen and (min-width: 769px) { .blueprint-banner__desc { font-size: 1.875vw; line-height: 2.25vw; } }
+
+.blueprint-experience { padding-top: 53.3333333333vw; background-color: #EDF7FF; background-repeat: no-repeat; background-position: top 19.4666666667vw left 0; }
+@media only screen and (min-width: 769px) { .blueprint-experience { padding: 8.8541666667vw 0 7.8125vw; background-position: top 4.5833333333vw left 0, top 10.78125vw right 0; background-size: 23.2291666667vw, 20.5729166667vw; } }
+@media only screen and (min-width: 1201px) { .blueprint-experience__content { margin: auto; max-width: 45.3125vw; } }
+.blueprint-experience__title { margin-bottom: 9.6vw; color: #141820; font-size: calc( 16px + 2 * ((100vw - 375px) / 1065) ); font-family: "Montserrat", sans-serif; font-weight: 600; line-height: calc( 34px + 0 * ((100vw - 375px) / 1065) ); }
+@media only screen and (min-width: 1441px) { .blueprint-experience__title { font-size: 18px; line-height: 34px; } }
+@media only screen and (min-width: 769px) { .blueprint-experience__title { margin-bottom: 2.3958333333vw; } }
+@media only screen and (max-width: 768px) { .blueprint-experience__text { width: 80vw; } }
+.blueprint-experience__text p { margin-bottom: 1em; color: #141820; font-size: calc( 20px + 8 * ((100vw - 375px) / 1065) ); font-family: "meno-text", sans-serif; font-weight: 400; line-height: calc( 34px + 6 * ((100vw - 375px) / 1065) ); }
+@media only screen and (min-width: 1441px) { .blueprint-experience__text p { font-size: 28px; line-height: 40px; } }
 
 .text-primary { color: #141820; }
 

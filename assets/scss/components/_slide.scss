@@ -31,7 +31,7 @@
     }
   }
   .slide {
-    width: vw(300px, $viewport-sm);
+    width: svw(300px);
     @include mq(tablet) {
       display: flex;
       width: auto;

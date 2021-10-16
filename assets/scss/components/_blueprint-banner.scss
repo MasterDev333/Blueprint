@@ -1,0 +1,46 @@
+.blueprint-banner {
+  padding: svw(250px) 0 svw(240px);
+  background-color: $c-blue;
+  background-position: top svw(80px) right svw(15px), bottom svw(100px) left 0;
+  background-repeat: no-repeat;
+  max-height: 100vh;
+  overflow: hidden;
+  @include mq(tablet) {
+    padding: vw(400px) 0 vw(250px);
+    max-height: vw(800px, $viewport-lg);
+    background-position: top vw(167px) left vw(205px);
+    background-size: vw(1337px);
+  }
+
+  @include mq(desktop-wide) {
+    max-height: 100vh;
+  }
+
+  &__content {
+    padding: 0 45px 0 20px;
+    width: 100%;
+    @include mq(tablet) {
+      margin-left: auto;
+      margin-right: vw(120px);
+      padding: 0;
+      width: vw(715px);
+    }
+  }
+  &__heading {
+    font: 400 67.37px/80.84px $f-heading; 
+    color: $secondary;
+    @include mq(tablet) {
+      font-size: vw(180px);
+      line-height: vw(216px);
+      margin-bottom: vw(20px);
+    }
+  }
+  &__desc {
+    font: 700 32px/38.4px $f-heading;
+    color: $secondary;
+    @include mq(tablet) {
+      font-size: vw(36px);
+      line-height: vw(43.2px);
+    }
+  }
+}

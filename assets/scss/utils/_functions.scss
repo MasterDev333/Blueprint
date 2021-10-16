@@ -1,4 +1,7 @@
 // Calculate VW
+@function svw($px-vw, $base-vw: $viewport-sm) {
+  @return ($px-vw * 100vw) / $base-vw;
+}
 @function vw($px-vw, $base-vw: 1920px) {
   @return ($px-vw * 100vw) / $base-vw;
 }

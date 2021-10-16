@@ -1,0 +1,33 @@
+.blueprint-experience {
+  padding-top: svw(200px);
+  background-color: #EDF7FF;
+  background-repeat: no-repeat;
+  background-position: top svw(73px) left 0;
+  @include mq(tablet) {
+    padding: vw(170px) 0 vw(150px); 
+    background-position: top vw(88px) left 0, top vw(207px) right 0;
+    background-size: vw(446px), vw(395px);
+  }
+  &__content {
+    @include mq(desktop) {
+      margin: auto;
+      max-width: vw(870px);      
+    }
+  }
+  &__title {
+    margin-bottom: svw(36px);
+    @include typography(16px, 18px, 34px, 34px, 600, $f-secondary, $primary);
+    @include mq(tablet) {
+      margin-bottom: vw(46px);
+    }
+  }
+  &__text {
+    @include mq(tablet, max) {
+      width: svw(300px);
+    }
+    p {
+      margin-bottom: 1em;
+      @include typography(20px, 28px, 34px, 40px, 400, $f-text);
+    }
+  }
+}

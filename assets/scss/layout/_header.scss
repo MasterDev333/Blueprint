@@ -29,6 +29,16 @@
       }
     }
   }
+  &.header--light {
+    .menu-item .nav-link {
+      @include mq(tablet) {
+        color: $c-white;
+        &::after {
+          border-color: $c-white;
+        }
+      }
+    }
+  }
 
   &-nav {
     display: flex;
