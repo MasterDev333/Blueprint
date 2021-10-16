@@ -2,8 +2,9 @@
 <?php
 $social = get_field( 'social', 'options' );
 $footer_text = get_field( 'footer_text', 'options' ); 
+$footer_style = get_field( 'footer_style' ) ?: 'normal';
 ?>
-<footer class="footer">
+<footer class="footer footer--<?php echo $footer_style; ?>">
     <div class="footer-top">
         <div class="container a-up">
             <?php if( $social['title'] ) : ?>

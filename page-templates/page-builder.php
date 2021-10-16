@@ -233,12 +233,12 @@ if( have_rows('modules') ):
             <section class="section accordions accordions--<?php the_sub_field( 'theme' ) ?: 'dark'; ?>">
                 <div class="container">
                     <?php if( $heading = get_sub_field( 'heading' ) ): ?>
-                        <h2 class="section-title"><?php echo $heading; ?></h2>
+                        <h2 class="section-title a-up"><?php echo $heading; ?></h2>
                     <?php endif; ?>
                 </div>
                 <?php if( have_rows( 'accordions' ) ): 
                     while( have_rows( 'accordions') ): the_row( ); ?>
-                    <div class="accordion" id="accordion-<?php echo get_row_index(); ?>">
+                    <div class="accordion a-up a-delay-<?php echo get_row_index(); ?>" id="accordion-<?php echo get_row_index(); ?>">
                         <div class="container">
                             <div class="accordion-header">
                                 <?php if( $title = get_sub_field( 'title' ) ): ?>

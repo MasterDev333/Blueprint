@@ -24,16 +24,29 @@
   transition: all .5s ease-in-out;
   &.hover,
   &.active {
+    @include when-inside('.accordions--light') {
+      background-color: $c-blue;
+    }
     .accordion-header {
       border-color: $primary;
       &::before,
       &::after {
         background-color: $primary;
       }
+      @include when-inside('.accordions--light') {
+        border-color: $c-gold;
+        &::before,
+        &::after {
+          background-color: $c-gold;
+        }
+      }
     }
     .accordion-title,
     .accordion-subtitle {
       color: $primary;
+      @include when-inside('.accordions--light') {
+        color: $c-gold;
+      }
     }
   }
   &-header {
@@ -63,6 +76,9 @@
         width: vw(38px);
         height: 2px;
       }
+      @include when-inside('.accordions--light') {
+        background-color: $primary;
+      }
     }
     &::after {
       transform: translateY(-50%) rotate(90deg);
@@ -78,6 +94,9 @@
     @include mq(desktop-wide) {
       @include typography(24px, 40px, 29.26px, 48.76px, 300, $f-secondary, $c-white);
     }
+    @include when-inside('.accordions--light') {
+      color: $primary;
+    }
   }
   &-subtitle {
     display: none;
@@ -90,16 +109,25 @@
       font-size: 20px;
       line-height: 35px;
     }
+    @include when-inside('.accordions--light') {
+      color: $primary;
+    }
   }
   &-content {
     display: none;
     padding: 40px 0;
     @include mq(tablet) {
       padding: vw(42px) 0 vw(60px);
+      @include when-inside('.accordions--light') {
+        padding: vw(60px) 0;
+      }
     }
     &__inner {
       @include mq(tablet) {
         display: flex;
+        @include when-inside('.accordions--light') {
+          margin-bottom: vw(30px);
+        }
       }
     }
     &__image {
@@ -108,16 +136,32 @@
         margin-right: 40px;
         margin-bottom: 0;
         flex: 0 0 155px;
+        @include when-inside('.accordions--light') {
+          flex: 0 0 120px;
+        }
       }
     }
     &__text {
       flex-grow: 1;
+      h5 {
+        @include when-inside('.accordions--light') {
+          font: 600 18px/33px $f-secondary;
+          color: $c-gold;
+          @include mq(tablet) {
+            margin-bottom: vw(11px);
+          }
+        }
+      }
       p {
         font: 400 20px/34px $f-text;
+        @include when-inside('.accordions--light') {
+          color: $c-white;
+        }
       }
       @include mq(tablet) {
         max-width: 830px;
       }
+      
     }
 
   }

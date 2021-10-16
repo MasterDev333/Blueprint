@@ -10,6 +10,9 @@
     @include mq(tablet) {
       padding: vw(26px) 0;
     }
+    @include when-inside('.footer--blue') {
+      background-color: $c-blue;
+    }
     .container {
       display: flex;
       align-items: center;
@@ -91,6 +94,9 @@
     background: linear-gradient(325.2deg, #B997E7 1%, #FFCDD3 42.14%, #FED78B 79.84%);
     @include mq(tablet) {
       padding: vw(90px) vw(60px) vw(30px);
+    }
+    @include when-inside('.footer--blue') {
+      background: linear-gradient(314.01deg, #0028B1 -24.43%, #8EC8FE 25.6%, #FFECB7 75.16%);
     }
   }
   &-shape {

@@ -1,0 +1,15 @@
+.section-contact {
+  padding: 80px 0;
+  background-color: $c-gold;
+  text-align: center;
+  @include mq(tablet) {
+    padding: vw(142px) 0 vw(128px);
+  }
+  &__heading {
+    margin-bottom: 30px;
+    @include typography(32px, 46px, 45px, 55.2px, 700, $f-heading, #000);
+    @include mq(tablet) {
+      margin-bottom: vw(45px);
+    }
+  }
+}

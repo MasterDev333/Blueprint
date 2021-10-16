@@ -1,0 +1,28 @@
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  @include typography(14px, 24px, 17.07px, 30px, 600, $f-secondary, $primary);
+  border: 1px solid #0000;
+  border-radius: 30px;
+  color: $primary;
+  background-color: $c-white;
+  text-decoration: none;
+  appearance: none;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  &:hover {
+    color: $c-white;
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  &-black {
+    color: $c-white;
+    background-color: $primary;
+    &:hover {
+      border-color: $primary;
+      background-color: #0000;
+      color: $primary;
+    }
+  }
+}
