@@ -400,7 +400,8 @@
                             },
                             "choices": {
                                 "brand": "Brand",
-                                "media": "Media"
+                                "media": "Media",
+                                "blue": "Blue"
                             },
                             "default_value": "brand",
                             "allow_null": 0,
@@ -1545,5 +1546,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634351496
+    "modified": 1634568985
 }

@@ -155,16 +155,10 @@
       @include mq(tablet, max) {
         display: none;
       }
-      @include mq_mobile_landscape() {
-        display: none;
-      }
     }
     &.menu-contact {
       @include mq(tablet) {
         display: none;
-      }
-      @include mq_mobile_landscape() {
-        display: block;
       }
       .nav-link {
         width: 104px;
@@ -206,6 +200,9 @@
   line {
     transition: stroke .3s ease-in-out;
     @include when-inside('.sticky') {
+      stroke: $c-white;
+    }
+    @include when-inside('.header--light') {
       stroke: $c-white;
     }
   }

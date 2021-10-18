@@ -37,7 +37,7 @@ $footer_style = get_field( 'footer_style' ) ?: 'normal';
             <p class="footer-text a-up"><?php echo $footer_text; ?></p>
         <?php endif; ?>
     </div>
-    <div class="footer-bottom a-up">
+    <div class="footer-bottom">
         <?php if( have_rows( 'footer_links', 'options' ) ) : ?>
             <?php while( have_rows( 'footer_links', 'options' ) ) : the_row( ); 
                 $link = get_sub_field( 'link' ); ?>

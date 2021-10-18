@@ -1,9 +1,10 @@
 .blueprint-banner {
-  padding: svw(250px) 0 svw(240px);
+  padding: svw(240px) 0 svw(200px);
   background-color: $c-blue;
   background-position: top svw(80px) right svw(15px), bottom svw(100px) left 0;
+  background-size: svw(190px), svw(370px);
   background-repeat: no-repeat;
-  max-height: 100vh;
+  max-height: svw(667px);
   overflow: hidden;
   @include mq(tablet) {
     padding: vw(400px) 0 vw(250px);

@@ -3,6 +3,9 @@
   &.logos-module--media {
     background: linear-gradient(96.1deg, #DFF5ED 7.09%, #F9F9F9 54.21%, #D8CBF2 99.41%);
   }
+  &.logos-module--blue {
+    background: linear-gradient(96.1deg, #FEECB5 7.09%, #F9F9F9 54.21%, #D8CBF2 99.41%);
+  }
 
   .section-title {
     margin-bottom: 60px;
@@ -26,10 +29,13 @@
     width: 135px !important;
 
     @include mq(tablet) {
-      margin-left: 0;
-      margin-right: vw(140px);
+      margin: 0 vw(70px);
       width: vw(220px) !important;
       text-align: center;
+    }
+    @include mq(desktop) {
+      margin: 0 70px;
+      width: 220px !important;
     }
     &:hover img {
       transform: scale(0.9);

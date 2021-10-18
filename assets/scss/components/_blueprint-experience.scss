@@ -3,15 +3,19 @@
   background-color: #EDF7FF;
   background-repeat: no-repeat;
   background-position: top svw(73px) left 0;
+  background-size: svw(253px);
   @include mq(tablet) {
     padding: vw(170px) 0 vw(150px); 
     background-position: top vw(88px) left 0, top vw(207px) right 0;
     background-size: vw(446px), vw(395px);
   }
   &__content {
-    @include mq(desktop) {
+    @include mq(tablet) {
       margin: auto;
       max-width: vw(870px);      
+    }
+    @include mq(desktop-wide) {
+      max-width: 870px;
     }
   }
   &__title {
