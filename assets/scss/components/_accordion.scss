@@ -62,6 +62,11 @@
       }
     }
   }
+  &.hover:not(.active) {
+    .accordion-header {
+      border-bottom-color: transparent;
+    }
+  }
 
   &-header {
     position: relative;
@@ -206,5 +211,8 @@
 
     }
 
+    .btn {
+      font: 600 14px/17.07px $f-secondary;
+    }
   }
 }

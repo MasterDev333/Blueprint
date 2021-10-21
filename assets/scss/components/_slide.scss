@@ -1,4 +1,5 @@
 .slider {
+  transition: background .3s ease-in-out;
   .section-title {
     margin-bottom: 65px;
     @include mq(tablet) {
@@ -107,6 +108,15 @@
     }
   }
   .slick-arrow {
+    width: auto;
+    height: auto;
+    z-index: 10;
+    @include mq(tablet) {
+      width: vw(69px);
+    }
+    @include mq(desktop-wide) {
+      width: 69px;
+    }
     &::before {
       content: none;
     }
@@ -121,19 +131,31 @@
     }
   }
   .slick-next {
-    width: auto;
-    height: auto;
     @include mq(tablet) {
       right: vw(120px);
-      width: vw(69px);
     }
     @include mq(desktop-wide) {
       right: 120px;
-      width: 69px;
     }
     &:hover {
       svg {
         transform: translateX(20px);
+      }
+    }
+  }
+  .slick-prev {
+    @include mq(tablet) {
+      left: vw(-55px);
+    }
+    @include mq(desktop-wide) {
+      left: -55px;
+    }
+    svg {
+      transform: scaleX(-1);
+    }
+    &:hover {
+      svg {
+        transform: translateX(-20px) scaleX(-1);
       }
     }
   }

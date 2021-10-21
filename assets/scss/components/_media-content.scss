@@ -69,10 +69,14 @@
     margin-bottom: 6px;
     @include typography(50px, 67.51px, 60px, 81.01px, 700, $f-heading);
     @include mq(tablet) {
+      font-size: vw(67.51px, $viewport-lg);
+      line-height: vw(81.01px, $viewport-lg);
       margin-bottom: 12px;
     }
     @include mq(desktop-wide) {
-      @include typography(50px, 92.52px, 60px, 111.02px, 700, $f-heading);
+      // @include typography(50px, 92.52px, 60px, 111.02px, 700, $f-heading);
+      font-size: vw(92.52px);
+      line-height: vw(111.02px);
     }
     @include when-inside('.media-content__content--light') {
       color: $c-white;
@@ -81,8 +85,14 @@
 
   &__desc {
     @include typography(22px, 29.19px, 31.15px, 39.4px, 700, $f-heading);
+    @include mq(tablet) {
+      font-size: vw(30px, $viewport-lg);
+      line-height: vw(40.5px, $viewport-lg);
+    }
     @include mq(desktop-wide) {
-      @include typography(22px, 40px, 31.15px, 54px, 700, $f-heading);
+      // @include typography(22px, 40px, 31.15px, 54px, 700, $f-heading);
+      font-size: vw(40px);
+      line-height: vw(54px);
     }
     @include when-inside('.media-content__content--light') {
       color: $c-white;

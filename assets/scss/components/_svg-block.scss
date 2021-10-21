@@ -16,6 +16,7 @@
   }
 
   &--bottom {
+    background-color: $primary;
     @include mq(tablet) {
       padding-bottom: vw(150px);
     }
@@ -25,7 +26,11 @@
         margin-bottom: vw(180px);
       }
     }
-    background-color: $primary;
+    .svg-block__text {
+      @include mq(tablet) {
+        margin-bottom: vw(85px);
+      }
+    }
   }
 
   &__inner {

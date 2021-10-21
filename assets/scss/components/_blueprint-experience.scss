@@ -14,9 +14,6 @@
       margin: auto;
       max-width: vw(870px);      
     }
-    @include mq(desktop-wide) {
-      max-width: 870px;
-    }
   }
   &__title {
     margin-bottom: svw(36px);
