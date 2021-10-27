@@ -11,25 +11,12 @@
   transition: all 0.3s ease-in-out;
   z-index: 10;
   @include adminbar-offset();
-
-  &.sticky {
-    background: $primary;
-    border-bottom: 1px solid $primary;
-
-    @include when-inside(".admin-bar") {
-      @media screen and (max-width: 600px) {
-        top: 0;
+  &.header--light:not(.sticky) {
+    .header-logo {
+      &--dark {
+        display: none;
       }
     }
-
-    .menu-item .nav-link {
-      color: $c-white;
-      &::after {
-        border-color: $c-white;
-      }
-    }
-  }
-  &.header--light {
     .menu-item .nav-link {
       @include mq(tablet) {
         color: $c-white;
@@ -39,20 +26,148 @@
       }
     }
   }
+  &.sticky {
+    @include when-inside(".admin-bar") {
+      @media screen and (max-width: 600px) {
+        top: 0;
+      }
+    }
+
+    .menu-item {
+      @include mq(tablet) {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        &.btn-menu-toggler,
+        &:last-child {
+          display: flex;
+          flex-direction: column;
+          opacity: 1;
+          visibility: visible;
+          pointer-events: all;
+        }
+
+        &:last-child {
+          .nav-link {
+            padding: 5px 10px;
+            font-weight: 600;
+            border-radius: 18px;
+            background-color: $primary;
+            border: 1px solid $primary;
+            color: $c-white;
+            transition: all .3s ease-in-out;
+
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    &.header--white {
+      .header-logo {
+        &--dark {
+          display: none;
+        }
+      }
+  
+      .menu-item {
+        &.btn-menu-toggler {
+          line {
+            stroke: $c-white;
+          }
+        }
+  
+        &:last-child {
+          .nav-link {
+            background-color: $c-white;
+            color: $primary;
+            border-color: $c-white;
+          }
+        }
+  
+        .nav-link {
+          @include mq(tablet) {
+            color: $c-white;
+  
+            &::after {
+              border-color: $c-white;
+            }
+          }
+        }
+      }
+    }
+  
+    &.header-nav--open {
+      .menu-main-menu-container {
+        position: relative;
+        &::after {
+          position: absolute;
+          content: '';
+          top: -1px;
+          right: -1px;
+          border-radius: 0 30px 30px 0;
+          height: calc(100% + 2px);
+          background: linear-gradient(270deg, #FFFFFF 65.84%, rgba(255, 255, 255, 0) 85.01%, rgba(255, 255, 255, 0) 119.63%);
+          @include mq(tablet) {
+            width: vw(950px);
+          }
+        }
+        .menu-items {
+          position: relative;
+          z-index: 1;
+        }
+      }
+      .menu-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+  
+        &.btn-menu-toggler {
+          .open {
+            display: none;
+          }
+  
+          .close {
+            display: block;
+          }
+        }
+        &:last-child {
+          .nav-link {
+            border: 1px solid $primary;
+          }
+        }
+  
+        .nav-link {
+          @include mq(tablet) {
+            color: $primary;
+  
+            &::after {
+              border-color: $primary;
+            }
+          }
+        }
+      }
+    }
+  }
+
 
   &-nav {
+    padding: 0 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     @include mq(tablet) {
-      align-items: flex-end;
       padding: 0 vw(60px);
+      align-items: flex-end;
     }
 
-    @include when-inside('.sticky') {
-      align-items: center;
-    }
   }
 
   &-logo {
@@ -69,10 +184,28 @@
     &--mobile {
       display: none;
 
-      @include mq(tablet) {}
-
       @include when-inside('.sticky') {
         display: block;
+      }
+      @include when-inside('.header--light:not(.sticky)') {
+        display: none !important;
+      }
+    }
+
+    &--light {
+      display: none;
+      
+      @include when-inside('.header--light:not(.sticky)') {
+        display: block;
+      }
+      @include when-inside('.sticky.header--black') {
+        display: none;
+      }
+    }
+
+    &--dark {
+      @include when-inside('.sticky.header--white') {
+        display: none;
       }
     }
   }
@@ -88,8 +221,10 @@
       color: $c-white;
       transform: translateY(-100%);
       transition: all .3s ease-in-out;
+
       @include when-inside('.header--open') {
         transform: none;
+
         @include orientation(landscape) {
           padding-bottom: 50px;
           height: 100vh;
@@ -97,13 +232,15 @@
         }
       }
     }
-    
+
     &__top {
       margin-bottom: 43px;
+
       @include mq(tablet) {
         display: none;
       }
     }
+
     .hamburger-close {
       position: absolute;
       top: 13px;
@@ -151,15 +288,18 @@
       margin-right: vw(38px);
       text-align: left;
     }
+
     &.mobile--hidden {
       @include mq(tablet, max) {
         display: none;
       }
     }
+
     &.menu-contact {
       @include mq(tablet) {
         display: none;
       }
+
       .nav-link {
         width: 104px;
         padding: 5px;
@@ -170,15 +310,44 @@
         border-radius: 20px;
       }
     }
+
+    &.btn-menu-toggler {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      @include mq(tablet) {
+        margin-right: vw(14px);
+      }
+      .nav-link {
+        padding: 0;
+        line-height: 0;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      .close {
+        display: none;
+      }
+
+      line {
+        transition: stroke .3s ease-in-out;
+
+      }
+    }
+
     .nav-link {
       position: relative;
       font: 700 40px/48px $f-heading;
       color: $secondary;
       @include button-underline(1px, $primary);
+
       @include mq(tablet) {
         font: 400 11.68px/14.23px $f-secondary;
         color: $primary;
       }
+
       @include mq(desktop-wide) {
         font-size: 16px;
         line-height: 19.5px;
@@ -197,13 +366,19 @@
   @include mq(tablet) {
     display: none;
   }
+
   line {
     transition: stroke .3s ease-in-out;
-    @include when-inside('.sticky') {
-      stroke: $c-white;
-    }
     @include when-inside('.header--light') {
       stroke: $c-white;
+    }
+
+    @include when-inside('.header--white') {
+      stroke: $c-white;
+    }
+
+    @include when-inside('.header--black') {
+      stroke: $primary;
     }
   }
 }

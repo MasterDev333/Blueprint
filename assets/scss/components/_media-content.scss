@@ -1,7 +1,8 @@
 .media-content {
+  padding-top: 0;
   padding-bottom: 15px;
   @include mq(tablet) {
-    padding-bottom: 0;
+    padding: 0;
     display: flex;
   }
   .col {

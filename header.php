@@ -17,19 +17,23 @@
 		<nav class="header-nav">
 			<?php 
 			$header_style = get_field( 'header_style' ) ?: 'dark';
-			$logo = ( $header_style == 'dark' ) ? get_field( 'logo', 'options' ) : get_field( 'logo_white', 'options' );
-			$logo_mobile = ( $header_style == 'dark' ) ? get_field( 'logo_mobile', 'options' ) : get_field( 'logo_mobile_white', 'options' );
+			// $logo = ( $header_style == 'dark' ) ? get_field( 'logo', 'options' ) : get_field( 'logo_white', 'options' );
+			// $logo_mobile = ( $header_style == 'dark' ) ? get_field( 'logo_mobile', 'options' ) : get_field( 'logo_mobile_white', 'options' );
 			?>
-			<?php if ($logo || $logo_mobile) : ?>
-				<a href="<?php echo esc_url(home_url()); ?>" class="logo-link">
-					<?php if ($logo) : ?>
-					<img class="header-logo" src="<?php echo $logo; ?>" alt="Individual">
-					<?php endif; ?>
-					<?php if ($logo_mobile) : ?>
-					<img class="header-logo--mobile" src="<?php echo $logo_mobile; ?>" alt="Individual">
-					<?php endif; ?>
-				</a>
-			<?php endif; ?>
+			<a href="<?php echo esc_url(home_url()); ?>" class="logo-link">
+				<?php if( $logo = get_field( 'logo', 'options' ) ): ?>
+					<img class="header-logo header-logo--dark" src="<?php echo $logo; ?>" alt="Individual">
+				<?php endif; ?>
+				<?php if( $logo_white = get_field( 'logo_white', 'options' ) ): ?>
+					<img class="header-logo header-logo--light" src="<?php echo $logo_white; ?>" alt="Individual">
+				<?php endif; ?>
+				<?php if( $logo_mobile = get_field( 'logo_mobile', 'options' ) ): ?>
+					<img class="header-logo--mobile header-logo--dark" src="<?php echo $logo_mobile; ?>" alt="Individual">
+				<?php endif; ?>
+				<?php if( $logo_mobile_white = get_field( 'logo_mobile_white', 'options' ) ): ?>
+					<img class="header-logo--mobile header-logo--light" src="<?php echo $logo_mobile_white; ?>" alt="Individual">
+				<?php endif; ?>
+			</a>
 			<div class="header-menus">
 				<div class="header-menus__top">
 					<a href="<?php echo esc_url(home_url()); ?>">

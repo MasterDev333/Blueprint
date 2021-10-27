@@ -11,7 +11,7 @@ if( have_rows('modules') ):
     while ( have_rows('modules') ) : the_row();
         // Case Home Banner
         if( get_row_layout() == 'home_banner' ): ?>
-            <section class="section home-banner" id="<?php the_sub_field( 'id' ); ?>">
+            <section class="section home-banner" id="<?php the_sub_field( 'id' ); ?>" data-color="black">
                 <div class="home-banner__slider a-right">
                     <?php if( $down_images = get_sub_field( 'down_images') ): ?>
                     <div class="home-main__slider">
@@ -60,7 +60,7 @@ if( have_rows('modules') ):
             $id = get_sub_field( 'id' );
             $heading = get_sub_field( 'heading' );
             $style = get_sub_field( 'style' ); ?>
-            <section class="section logos-module logos-module--<?php echo $style; ?>" id="<?php echo $id; ?>">
+            <section class="section logos-module logos-module--<?php echo $style; ?>" id="<?php echo $id; ?>" data-color="black"> 
                 <div class="container">
                     <?php if( $heading ) : ?>
                         <h2 class="section-title a-up"><?php echo $heading; ?></h2>
@@ -87,7 +87,7 @@ if( have_rows('modules') ):
         elseif( get_row_layout() == 'content' ): 
             $heading = get_sub_field( 'heading' ); 
             $content = get_sub_field( 'content' );?>
-            <section class="section content-module">
+            <section class="section content-module" data-color="black">
                 <div class="container">
                     <?php if( $heading ): ?>
                         <h2 class="section-title a-up"><?php echo $heading; ?></h2>
@@ -107,7 +107,7 @@ if( have_rows('modules') ):
             $bottom = get_sub_field( 'bottom' );
             $marquee_text = get_sub_field( 'gradient_marquee' ); ?>
             <section class="svg-section">
-                <div class="section svg-block svg-block--top" id="<?php echo $top['id']; ?>">
+                <div class="section svg-block svg-block--top" id="<?php echo $top['id']; ?>" data-color="black">
                     <div class="container">
                         <?php if( $top['title'] ): ?>
                             <h2 class="section-title a-up"><?php echo $top['title']; ?></h2>
@@ -128,7 +128,7 @@ if( have_rows('modules') ):
                         </div>
                     </div>
                 </div>
-                <div class="section svg-block svg-block--bottom" id="<?php echo $bottom['id']; ?>">
+                <div class="section svg-block svg-block--bottom" id="<?php echo $bottom['id']; ?>" data-color="white">
                     <div class="container">
                         <?php if( $bottom['title'] ): ?>
                             <h2 class="section-title a-up"><?php echo $bottom['title']; ?></h2>
@@ -165,7 +165,9 @@ if( have_rows('modules') ):
         <?php
         // Case: Media
         elseif( get_row_layout() == 'media_content' ): ?>
-            <section class="media-content media-content--<?php echo get_sub_field('direction') ?: 'left'; ?>"  style="background-color: <?php the_sub_field( 'media_background' ); ?>">
+            <section class="section media-content media-content--<?php echo get_sub_field('direction') ?: 'left'; ?>"  
+                    style="background-color: <?php the_sub_field( 'media_background' ); ?>" 
+                    data-color="white">
                 <?php if( $image = get_sub_field( 'media' ) ): ?>
                 <div class="col media-content__image">
                     <img class="a-up" src="<?php echo $image; ?>" alt="">
@@ -192,7 +194,7 @@ if( have_rows('modules') ):
             $id = get_sub_field( 'id' );
             $heading = get_sub_field( 'heading' );
             if( have_rows( 'slides' ) ): ?>
-                <section class="section slider" id="<?php echo $id; ?>">
+                <section class="section slider" id="<?php echo $id; ?>" data-color="black">
                     <div class="container">
                         <?php if( $heading ): ?>
                             <h2 class="section-title a-up"><?php echo $heading; ?></h2>
@@ -240,8 +242,10 @@ if( have_rows('modules') ):
 
         <?php 
         // Case: Accordion
-        elseif( get_row_layout() == 'accordions' ): ?>
-            <section class="section accordions accordions--<?php the_sub_field( 'theme' ) ?: 'dark'; ?>">
+        elseif( get_row_layout() == 'accordions' ): 
+            $theme = get_sub_field( 'theme' ) ?: 'dark'; 
+            $color = $theme == 'dark' ? 'white' : 'black'; ?>
+            <section class="section accordions accordions--<?php echo $theme; ?>" data-color="<?php echo $color; ?>">
                 <div class="container">
                     <?php if( $heading = get_sub_field( 'heading' ) ): ?>
                         <h2 class="section-title a-up"><?php echo $heading; ?></h2>
@@ -296,7 +300,7 @@ if( have_rows('modules') ):
             $image = get_sub_field( 'image' ); 
             $mobile_top = get_sub_field( 'mobile_bg_top' ); 
             $mobile_bottom = get_sub_field( 'mobile_bg_bottom' ); ?>
-            <section class="section blueprint-banner" id="<?php echo $id; ?>">
+            <section class="section blueprint-banner" id="<?php echo $id; ?>" data-color="white">
                 <div class="blueprint-banner__content">
                     <?php if( $heading = get_sub_field( 'heading' ) ): ?>
                         <h1 class="blueprint-banner__heading a-up"><?php echo $heading; ?></h1>
@@ -326,7 +330,8 @@ if( have_rows('modules') ):
             $right_image = get_sub_field( 'right_image' ); 
             $mobile_bg = get_sub_field( 'mobile_bg' ); ?>
             <section class="section blueprint-experience"
-                    id="<?php echo $id; ?>">
+                    id="<?php echo $id; ?>"
+                    data-color="black">
                 <div class="container">
                     <div class="blueprint-experience__content">
                         <?php if( $heading = get_sub_field( 'heading' ) ): ?>
@@ -356,7 +361,8 @@ if( have_rows('modules') ):
         // Case: Contact
         elseif( get_row_layout() == 'contact' ): ?>
             <section class="section section-contact"
-                    id="<?php the_sub_field( 'id' ); ?>">
+                    id="<?php the_sub_field( 'id' ); ?>"
+                    data-color="black">
                 <div class="container">
                     <?php if( $heading = get_sub_field( 'heading' ) ): ?>
                         <h2 class="section-contact__heading"><?php echo $heading; ?></h2>

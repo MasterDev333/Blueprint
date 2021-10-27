@@ -45,7 +45,7 @@ jQuery(document).ready(function() {
 //-------- -------- -------- --------
 
 // register ScrollTrigger Plugin for gsap
-// gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 // for debug gsap + ScrollTrigger
 // ScrollTrigger.defaults({markers: true});
 
@@ -79,6 +79,41 @@ function initHeader() {
     let $dropdown = $(this).closest(".dropdown");
     $(this).toggleClass("dropdown--open");
     $(".dropdown-menu", $dropdown).slideToggle();
+  });
+
+  // Change color
+  gsap.utils.toArray('.section').forEach((section, i) => {
+    let bgClass = 'header--' + section.dataset.color;
+    gsap.to('.header', {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 60px',
+        end: 'bottom 60px',
+        onEnter() {
+          $('.header').addClass(bgClass);
+        },
+        onLeave() {
+          $('.header').removeClass(bgClass);
+        },
+        onEnterBack() {
+          $('.header').addClass(bgClass);
+        },
+        onLeaveBack() {
+          $('.header').removeClass(bgClass);
+        }
+      },
+      onComplete:function() {
+        console.log(bgClass);
+      }
+    });
+  });
+
+  // toggle desktop menu
+  $('.btn-menu-toggler').on('click', function(e) {
+    $('.header').toggleClass('header-nav--open');
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
   });
 }
 
