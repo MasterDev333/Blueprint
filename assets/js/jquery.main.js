@@ -129,6 +129,17 @@ function initHomeBanner() {
       adaptiveHeight: true,
     });
   }
+  if ( $('.dynamic-texts').length ) {
+    $('.dynamic-texts').slick({
+      dots: false,
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      speed: 500,
+      fade: true,
+      cssEase: 'linear'
+    });
+  }
 }
 
 // initialize slider
@@ -185,8 +196,8 @@ function initLogosSlider() {
     arrows: false,
     dots: false,
     speed: 500,
-    autoplay: true,
-    autoplaySpeed: 2000,
+    // autoplay: true,
+    // autoplaySpeed: 2000,
     variableWidth: true,
   });
 }

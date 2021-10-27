@@ -39,6 +39,17 @@ if( have_rows('modules') ):
                 <?php if( $content = get_sub_field( 'content' ) ): ?>
                 <div class="home-banner__content a-up">
                     <?php echo $content; ?>
+                    <?php if( have_rows( 'dynamic_text' ) ): ?>
+                    <div class="dynamic-texts">
+                        <?php while( have_rows( 'dynamic_text' ) ): the_row( );
+                            if( $text = get_sub_field( 'text' ) ): ?>
+                            <div class="dynamic-text h-1">
+                                <?php echo $text; ?>
+                            </div>
+                        <?php endif;
+                        endwhile; ?>
+                    </div>
+                    <?php endif; ?>
                 </div>
                 <?php endif; ?>
             </section>

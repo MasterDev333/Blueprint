@@ -1,6 +1,7 @@
 .content-module {
   @include mq(tablet) {
     padding-bottom: vw(285px);
+    max-height: 100vh;
   }
 
   .section-title {
@@ -17,7 +18,7 @@
       max-width: 100%;
     }
     @include mq(desktop-small) {
-      max-width: vw(870px);
+      max-width: 870px;
     }
     p {
       @include typography(46px, 61px, 600, $f-heading);

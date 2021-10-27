@@ -110,9 +110,9 @@
 }
 
 @mixin heading1() {
-  @include typography(40px, 54px, 48px, 63.85px);
+  @include typography(40px, 55.02px, 48px, 65.07px);
   @include mq(desktop-wide) {
-    @include typography(40px, 74px, 48px, 87.51px);
+    @include typography(40px, 60.8px, 48px, 71.89px);
   }
 }
 @mixin heading2() {

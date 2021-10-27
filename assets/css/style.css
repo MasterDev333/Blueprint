@@ -84,10 +84,10 @@ html .magnify > .magnify-lens { width: 170px; height: 170px; -webkit-box-shadow:
 /** Basic typography style for copy text */
 h1, h2, h3, h4, h5, h6 { margin: 0; }
 
-h1, .h-1 { color: #141820; font-size: calc( 40px + 14 * ((100vw - 375px) / 1065) ); font-family: "meno-banner", sans-serif; font-weight: 400; line-height: calc( 48px + 15.85 * ((100vw - 375px) / 1065) ); }
-@media only screen and (min-width: 1441px) { h1, .h-1 { font-size: 54px; line-height: 63.85px; } }
-@media only screen and (min-width: 1441px) { h1, .h-1 { color: #141820; font-size: calc( 40px + 34 * ((100vw - 375px) / 1065) ); font-family: "meno-banner", sans-serif; font-weight: 400; line-height: calc( 48px + 39.51 * ((100vw - 375px) / 1065) ); } }
-@media only screen and (min-width: 1441px) and (min-width: 1441px) { h1, .h-1 { font-size: 74px; line-height: 87.51px; } }
+h1, .h-1 { color: #141820; font-size: calc( 40px + 15.02 * ((100vw - 375px) / 1065) ); font-family: "meno-banner", sans-serif; font-weight: 400; line-height: calc( 48px + 17.07 * ((100vw - 375px) / 1065) ); }
+@media only screen and (min-width: 1441px) { h1, .h-1 { font-size: 55.02px; line-height: 65.07px; } }
+@media only screen and (min-width: 1441px) { h1, .h-1 { color: #141820; font-size: calc( 40px + 20.8 * ((100vw - 375px) / 1065) ); font-family: "meno-banner", sans-serif; font-weight: 400; line-height: calc( 48px + 23.89 * ((100vw - 375px) / 1065) ); } }
+@media only screen and (min-width: 1441px) and (min-width: 1441px) { h1, .h-1 { font-size: 60.8px; line-height: 71.89px; } }
 
 h6 { color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 1065) ); font-family: "meno-text", sans-serif; font-weight: 600; line-height: calc( 14.4px + 2.4 * ((100vw - 375px) / 1065) ); letter-spacing: 0.3em; text-transform: uppercase; }
 @media only screen and (min-width: 1441px) { h6 { font-size: 14px; line-height: 16.8px; } }
@@ -494,11 +494,11 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 .slider .slick-prev svg { -webkit-transform: scaleX(-1); transform: scaleX(-1); }
 .slider .slick-prev:hover svg { -webkit-transform: translateX(-20px) scaleX(-1); transform: translateX(-20px) scaleX(-1); }
 
-@media only screen and (min-width: 769px) { .content-module { padding-bottom: 14.84375vw; } }
+@media only screen and (min-width: 769px) { .content-module { padding-bottom: 14.84375vw; max-height: 100vh; } }
 .content-module .section-title { margin-bottom: 68px; }
 @media only screen and (min-width: 769px) { .content-module .section-title { margin-bottom: 9.7395833333vw; } }
 @media only screen and (min-width: 769px) { .content-module__content { margin: 0 auto; max-width: 100%; } }
-@media only screen and (min-width: 1025px) { .content-module__content { max-width: 45.3125vw; } }
+@media only screen and (min-width: 1025px) { .content-module__content { max-width: 870px; } }
 .content-module__content p { color: #141820; font-size: calc( 46px + 15 * ((100vw - 375px) / 1065) ); font-family: "meno-banner", sans-serif; font-weight: 400; line-height: calc( 600 + "meno-banner", sans-serif-600/1px * ((100vw - 375px) / 1065) ); font: 400 30px/1.5 "meno-text", sans-serif; }
 @media only screen and (min-width: 1441px) { .content-module__content p { font-size: 61px; line-height: "meno-banner", sans-serif; } }
 @media only screen and (min-width: 769px) { .content-module__content p { font: 600 33.57px/44.51px "meno-banner", sans-serif; text-align: center; } }
