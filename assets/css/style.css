@@ -404,6 +404,7 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 .home-sub__slider { width: 36vw; }
 @media only screen and (min-width: 769px) { .home-sub__slider { width: 19.53125vw; } }
 .home-sub__slider .slick-list { height: 100% !important; }
+@media only screen and (min-width: 769px) { .home-sub__slider .home-sub__slide { padding-top: 3.125vw; } }
 
 @media only screen and (min-width: 769px) { .accordions { padding: 5.2083333333vw 0 7.2916666667vw; } }
 .accordions.accordions--dark { background-color: #141820; color: #fff; }

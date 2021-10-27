@@ -108,4 +108,10 @@
   .slick-list {
     height: 100% !important;
   }
+
+  .home-sub__slide {
+    @include mq(tablet) {
+      padding-top: vw(60px);
+    }
+  }
 }
