@@ -198,6 +198,7 @@
       }
 
       p {
+        margin-bottom: 1em;
         font: 400 20px/34px $f-text;
 
         @include when-inside('.accordions--light') {

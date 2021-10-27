@@ -25,7 +25,7 @@
 			// $logo = ( $header_style == 'dark' ) ? get_field( 'logo', 'options' ) : get_field( 'logo_white', 'options' );
 			// $logo_mobile = ( $header_style == 'dark' ) ? get_field( 'logo_mobile', 'options' ) : get_field( 'logo_mobile_white', 'options' );
 			?>
-			<a href="<?php echo esc_url(home_url()); ?>" class="logo-link">
+			<a href="#" class="logo-link">
 				<?php if( $logo = get_field( 'logo', 'options' ) ): ?>
 					<img class="header-logo header-logo--dark" src="<?php echo $logo; ?>" alt="Individual">
 				<?php endif; ?>
@@ -41,7 +41,7 @@
 			</a>
 			<div class="header-menus">
 				<div class="header-menus__top">
-					<a href="<?php echo esc_url(home_url()); ?>">
+					<a href="#" class="header-menus__logo">
 						<img src="<?php the_field( 'logo_mobile_white', 'options' ); ?>" alt="">
 					</a>
 					<button class="hamburger-close">

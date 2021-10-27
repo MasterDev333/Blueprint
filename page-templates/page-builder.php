@@ -157,9 +157,9 @@ if( have_rows('modules') ):
                             </li>
                         </ul>
                     </div> -->
-                    <marquee direction="up" scrollamount="15" loop="true" class="marquee">
+                    <!-- <marquee direction="up" scrollamount="15" loop="true" class="marquee">
                         <span class="marquee-text"><?php echo $marquee_text; ?></span>
-                    </marquee>
+                    </marquee> -->
                 <?php endif; ?>
             </section>
         <?php

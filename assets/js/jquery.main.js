@@ -194,6 +194,14 @@ function initAnchor() {
     );
     event.preventDefault();
   });
+  $(".logo-link, .header-menus__logo").click(function(event) {
+    $("html, body").animate({
+        scrollTop: 0,
+      },
+      1000
+    );
+    event.preventDefault();
+  });
 }
 
 // initialize custom form elements (checkbox, radio, select) https://github.com/w3co/jcf

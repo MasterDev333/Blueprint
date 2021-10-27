@@ -67,6 +67,7 @@
       }
     }
     p {
+      margin-bottom: 1em;
       font: 400 28px/40px $f-text;
       @include mq(tablet) {
         font-size: 16.78px;
