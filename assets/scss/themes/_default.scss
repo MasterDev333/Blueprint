@@ -54,3 +54,16 @@
 .wpcf7 .ajax-loader {
   display: none;
 }
+
+// Cursor
+.cursor {
+  position: fixed;
+  opacity: 0;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  // transition: all .3s ease-in-out;
+  &.left {
+    transform: scaleX(-1);
+  }
+}

@@ -85,6 +85,7 @@
     height: svw(535px);
 
     @include mq(tablet) {
+      padding-top: vw(60px);
       height: vw(807px, $viewport-lg);
     }
     @include mq(desktop-wide) {

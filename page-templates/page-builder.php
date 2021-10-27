@@ -67,7 +67,7 @@ if( have_rows('modules') ):
                     <?php endif; ?>
                 </div>
                 <?php if( have_rows( 'logos' )) : ?>
-                    <div class="logos-module__slider a-up a-delay-1">
+                    <div class="logos-module__slider slick-carousel a-up a-delay-1">
                         <?php while( have_rows( 'logos' ) ) : the_row(); 
                         $link = get_sub_field( 'link' );
                         $logo = get_sub_field( 'logo' );
@@ -199,7 +199,7 @@ if( have_rows('modules') ):
                         <?php if( $heading ): ?>
                             <h2 class="section-title a-up"><?php echo $heading; ?></h2>
                         <?php endif; ?>
-                        <div class="slides">
+                        <div class="slides slick-carousel">
                         <?php while( have_rows( 'slides' ) ): the_row( );
                             $image = get_sub_field( 'image' );
                             $img_url = $image['sizes']['slide'];

@@ -1,5 +1,6 @@
 .slider {
   transition: background .3s ease-in-out;
+  cursor: none !important;
   .section-title {
     margin-bottom: 65px;
     @include mq(tablet) {

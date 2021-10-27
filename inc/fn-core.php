@@ -216,12 +216,13 @@ function am_add_javascript( ) {
         //external Javascript
         $am_links = array( 
             'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js'); 
+            'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js'); 
         foreach($am_links as $am_link){
             wp_enqueue_script('am_'.sanitize_title($am_link), $am_link,array('jquery'), '');
         }  
-        $am_files = array('/assets/js/jquery.main.js'); // example: array('script1', 'script2');
+        $am_files = array(
+            '/assets/js/slick.js',
+            '/assets/js/jquery.main.js'); // example: array('script1', 'script2');
         foreach($am_files as $am_file){
             wp_enqueue_script('am_'.sanitize_title($am_file), get_theme_file_uri($am_file), array('jquery'), '', true );
         }

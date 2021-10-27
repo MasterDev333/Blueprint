@@ -12,6 +12,11 @@
 </head>
 
 <body <?php body_class(); ?>>
+	<!-- Begin Cursor -->
+	<div class="cursor">
+		<svg width="69" height="53" viewBox="0 0 69 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.0156 26.4266L1.34375 26.4266M67.0156 26.4266L42.3887 51.2359M67.0156 26.4266L42.3887 1.61719" stroke="#141820" stroke-width="2.18906" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+	</div>
+	<!-- End Cursor -->
 	<!-- Begin Header  -->
 	<header class="header<?php echo (get_field('header_style') == 'light') ? ' header--light' : ''; ?>">
 		<nav class="header-nav">

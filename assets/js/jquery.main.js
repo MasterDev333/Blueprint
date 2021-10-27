@@ -4,6 +4,7 @@ jQuery(document).ready(function() {
   initHeader();
   // initCustomForms();
   initAnchor();
+  initCursor();
 
   // isElementExist helper
   isElementExist(".img-a", anImgRightOnScrollVewportChecker);
@@ -102,11 +103,27 @@ function initHeader() {
           $('.header').removeClass(bgClass);
         }
       },
-      onComplete:function() {
-        console.log(bgClass);
-      }
     });
   });
+  gsap.to('.header', {
+    scrollTrigger: {
+      trigger: 'footer',
+      start: 'top 60px',
+      end: 'bottom 60px',
+      onEnter() {
+        $('.header').addClass('header--black');
+      },
+      onLeave() {
+        $('.header').removeClass('header--black');
+      },
+      onEnterBack() {
+        $('.header').addClass('header--black');
+      },
+      onLeaveBack() {
+        $('.header').removeClass('header--black');
+      }
+    }
+  })
 
   // toggle desktop menu
   $('.btn-menu-toggler').on('click', function(e) {
@@ -114,6 +131,57 @@ function initHeader() {
     e.preventDefault();
     e.stopPropagation();
     return false;
+  });
+}
+
+function initCursor() {
+  // CURSOR
+  var cursor = $(".cursor");
+  var mouseX = 0,
+      mouseY = 0;
+
+  TweenMax.to({}, 0.016, {
+    repeat: -1,
+    onRepeat: function() {
+      TweenMax.set(cursor, {
+          css: {
+          left: mouseX,
+          top: mouseY
+          }
+      });
+    }
+  });
+
+  $(document).on("mousemove", function(e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+  });
+
+  // Show cursor on logos slider
+  $(document).on('mousemove', '.logos-module, .section.slider', function(e) {
+    if (e.pageX <= $(window).width() / 2) {
+      gsap.to(cursor, 0.3, {
+        scaleX: -1,
+        scaleY: 1,
+        autoAlpha: 1
+      });
+    } else {
+      gsap.to(cursor, 0.3, {
+        scale: 1,
+        autoAlpha: 1
+      });
+    }
+  }).on('mouseout', '.logos-module, .section.slider', function(e) {
+    gsap.to(cursor, 0.3, {
+      scale: 0.5,
+      autoAlpha: 0
+    });
+  }).on('click', '.logos-module, .section.slider', function(e) {
+    if (e.pageX <= $(window).width() / 2) {
+      $(this).find('.slick-carousel').slick('slickPrev');
+    } else {
+      $(this).find('.slick-carousel').slick('slickNext');
+    }
   });
 }
 
@@ -150,6 +218,7 @@ function initHomeBanner() {
       speed: 1000,
       vertical: true,
       cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
+      pauseOnHover: false
     });
   }
   if ($('.home-sub__slider').length) {
@@ -160,8 +229,10 @@ function initHomeBanner() {
       autoplaySpeed: 2000,
       speed: 1000,
       vertical: true,
+      // verticalDirection: 'reverse',
       cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
       adaptiveHeight: true,
+      pauseOnHover: false
     });
   }
   if ( $('.dynamic-texts').length ) {
@@ -170,7 +241,7 @@ function initHomeBanner() {
       arrows: false,
       autoplay: true,
       autoplaySpeed: 2000,
-      speed: 500,
+      speed: 1000,
       fade: true,
       cssEase: 'linear'
     });
@@ -185,10 +256,10 @@ function initSlider() {
     $parent.css("background-color", bg);
   });
   $('.slides').slick({
-    arrows: true,
+    arrows: false,
     dots: false,
-    nextArrow: '<button class="slick-arrow slick-next"><svg width="69" height="53" viewBox="0 0 69 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.0156 26.4266L1.34375 26.4266M67.0156 26.4266L42.3887 51.2359M67.0156 26.4266L42.3887 1.61719" stroke="#141820" stroke-width="2.18906" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
-    prevArrow: '<button class="slick-arrow slick-prev"><svg width="69" height="53" viewBox="0 0 69 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.0156 26.4266L1.34375 26.4266M67.0156 26.4266L42.3887 51.2359M67.0156 26.4266L42.3887 1.61719" stroke="#141820" stroke-width="2.18906" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
+    // nextArrow: '<button class="slick-arrow slick-next"><svg width="69" height="53" viewBox="0 0 69 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.0156 26.4266L1.34375 26.4266M67.0156 26.4266L42.3887 51.2359M67.0156 26.4266L42.3887 1.61719" stroke="#141820" stroke-width="2.18906" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
+    // prevArrow: '<button class="slick-arrow slick-prev"><svg width="69" height="53" viewBox="0 0 69 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.0156 26.4266L1.34375 26.4266M67.0156 26.4266L42.3887 51.2359M67.0156 26.4266L42.3887 1.61719" stroke="#141820" stroke-width="2.18906" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
     autoplay: true,
     autoplaySpeed: 5000,
     responsive: [{
