@@ -36,9 +36,12 @@
 
     @include mq(tablet) {
       margin-bottom: 0;
-      margin-left: vw(60px);
+      margin-left: vw(60px, $viewport-lg);
       padding: 0;
       max-width: vw(620px);
+    }
+    @include mq(desktop-wide) {
+      margin-left: vw(115px);
     }
     em {
       font-size: 40px;
@@ -75,6 +78,9 @@
   width: svw(240px);
 
   @include mq(tablet) {
+    width: vw(470.54px, $viewport-lg);
+  }
+  @include mq(desktop-wide) {
     width: vw(650px);
   }
 
@@ -85,10 +91,11 @@
     height: svw(535px);
 
     @include mq(tablet) {
-      padding-top: vw(60px);
-      height: vw(807px, $viewport-lg);
+      padding-top: vw(50px, $viewport-lg);
+      height: vw(827px, $viewport-lg);
     }
     @include mq(desktop-wide) {
+      padding-top: vw(60px);
       height: 100vh;
     }
 
@@ -102,6 +109,9 @@
 .home-sub__slider {
   width: svw(135px);
   @include mq(tablet) {
+    width: vw(270px, $viewport-lg);
+  }
+  @include mq(desktop-wide) {
     width: vw(375px);
   }
 

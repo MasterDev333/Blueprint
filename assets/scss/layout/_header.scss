@@ -180,6 +180,10 @@
     display: block;
 
     @include mq(tablet) {
+      height: vw(50px, $viewport-lg);
+    }
+
+    @include mq(desktop-wide) {
       height: vw(60px);
     }
 

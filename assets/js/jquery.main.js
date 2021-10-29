@@ -500,11 +500,31 @@ function initLogosSlider() {
   $('.logos-module__slider').slick({
     arrows: false,
     dots: false,
-    speed: 500,
+    speed: 1000,
     // autoplay: true,
     // autoplaySpeed: 2000,
-    variableWidth: true,
-    // slidesToScroll: 5,
+    // variableWidth: true,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    responsive: [{
+      breakpoint: 1440,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 4
+      }
+    }, {
+      breakpoint: 991,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      }
+    }, {
+      breakpoint: 576,
+      settings: {
+        slidesToScroll: 2,
+        slidesToShow: 2,
+      }
+    }]
   });
 }
 
