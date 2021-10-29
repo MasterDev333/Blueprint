@@ -428,8 +428,8 @@ function initHomeBanner() {
       speed: 1000,
       vertical: true,
       // verticalDirection: 'reverse',
-      cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
-      adaptiveHeight: true,
+      // cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
+      // adaptiveHeight: true,
       pauseOnHover: false
     });
   }
@@ -500,11 +500,11 @@ function initLogosSlider() {
   $('.logos-module__slider').slick({
     arrows: false,
     dots: false,
-    speed: 1000,
+    speed: 500,
     // autoplay: true,
     // autoplaySpeed: 2000,
     variableWidth: true,
-    slidesToScroll: 5,
+    // slidesToScroll: 5,
   });
 }
 
