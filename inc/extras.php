@@ -168,6 +168,7 @@ function my_acf_json_load_point( $paths ) {
 //** *Enable upload for webp image files.*/
 function webp_upload_mimes($existing_mimes) {
 	$existing_mimes['webp'] = 'image/webp';
+	$existing_mimes['json'] = 'application/json';
 	return $existing_mimes;
 }
 add_filter('mime_types', 'webp_upload_mimes');

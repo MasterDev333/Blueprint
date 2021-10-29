@@ -99,7 +99,7 @@
                             "key": "field_6163b1f0c9c3a",
                             "label": "Content",
                             "name": "content",
-                            "type": "wysiwyg",
+                            "type": "textarea",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -109,10 +109,10 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "tabs": "all",
-                            "toolbar": "full",
-                            "media_upload": 1,
-                            "delay": 0
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": "",
+                            "new_lines": "br"
                         },
                         {
                             "key": "field_61774e739e788",
@@ -360,21 +360,6 @@
                             "layout": "table",
                             "button_label": "",
                             "sub_fields": [
-                                {
-                                    "key": "field_6163b21dc9c3f",
-                                    "label": "Link",
-                                    "name": "link",
-                                    "type": "link",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "return_format": "url"
-                                },
                                 {
                                     "key": "field_6163b226c9c40",
                                     "label": "Logo",
@@ -957,6 +942,32 @@
                             "maxlength": ""
                         },
                         {
+                            "key": "field_617b4bb3468dc",
+                            "label": "Lottie",
+                            "name": "lottie",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "expression": "Expression",
+                                "growth": "Growth",
+                                "purpose": "Purpose"
+                            },
+                            "default_value": false,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
                             "key": "field_6163b2f1c9c4e",
                             "label": "Media",
                             "name": "media",
@@ -965,7 +976,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -1586,5 +1597,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1635209011
+    "modified": 1635471398
 }

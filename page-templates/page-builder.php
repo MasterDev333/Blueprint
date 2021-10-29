@@ -37,18 +37,18 @@ if( have_rows('modules') ):
                     <?php endif; ?>
                 </div>
                 <?php if( $content = get_sub_field( 'content' ) ): ?>
-                <div class="home-banner__content a-up">
-                    <?php echo $content; ?>
+                <div class="home-banner__content a-up sp-headline slide h-1">
+                    <span><?php echo $content; ?></span>
                     <?php if( have_rows( 'dynamic_text' ) ): ?>
-                    <div class="dynamic-texts">
+                    <span class="sp-words-wrapper">
                         <?php while( have_rows( 'dynamic_text' ) ): the_row( );
                             if( $text = get_sub_field( 'text' ) ): ?>
-                            <div class="dynamic-text h-1">
+                            <b class="<?php echo get_row_index() == 1 ? 'is-visible' : 'is-hidden'; ?>">
                                 <?php echo $text; ?>
-                            </div>
+                            </b>
                         <?php endif;
                         endwhile; ?>
-                    </div>
+                    </span>
                     <?php endif; ?>
                 </div>
                 <?php endif; ?>
@@ -69,14 +69,13 @@ if( have_rows('modules') ):
                 <?php if( have_rows( 'logos' )) : ?>
                     <div class="logos-module__slider slick-carousel a-up a-delay-1">
                         <?php while( have_rows( 'logos' ) ) : the_row(); 
-                        $link = get_sub_field( 'link' );
                         $logo = get_sub_field( 'logo' );
                         $logo_2x = get_sub_field( 'logo_2x' ); ?>
-                        <a href="<?php echo $link; ?>" class="logos-module__link" target="__blank">
+                        <div class="logos-module__link">
                             <img src="<?php echo $logo; ?>" 
                                 <?php echo $logo_2x ? 'srcset="' . $logo_2x . ' 2x"' : ''; ?>
                                 alt="">
-                        </a>
+                        </div>
                         <?php endwhile; ?>
                     </div>
                 <?php endif; ?>
@@ -168,11 +167,15 @@ if( have_rows('modules') ):
             <section class="section media-content media-content--<?php echo get_sub_field('direction') ?: 'left'; ?>"  
                     style="background-color: <?php the_sub_field( 'media_background' ); ?>" 
                     data-color="white">
-                <?php if( $image = get_sub_field( 'media' ) ): ?>
                 <div class="col media-content__image">
-                    <img class="a-up" src="<?php echo $image; ?>" alt="">
+                    <?php if( $lottie = get_sub_field( 'lottie' ) ): ?>
+                        <lottie-player src="<?php echo get_template_directory_uri(  ) . '/assets/lottie/' . $lottie . '.json'; ?>" background="transparent"  speed="1" loop autoplay></lottie-player>
+                    <?php else: ?>
+                        <?php if( $image = get_sub_field( 'media' ) ): ?>
+                            <img class="a-up" src="<?php echo $image; ?>" alt="">
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
-                <?php endif; ?>
                 <div class="col media-content__content <?php echo 'media-content__content--' . get_sub_field( 'content_color' ); ?>" style="background-color: <?php the_sub_field( 'content_background' ); ?>">
                     <div class="media-content__content--inner">
                         <?php if( $number = get_sub_field( 'number' ) ): ?>
@@ -282,13 +285,13 @@ if( have_rows('modules') ):
                                 endif; ?>
                             </div>
                         </div>
+                        <style>
+                            #accordion-<?php echo get_row_index( ); ?>.active,
+                            #accordion-<?php echo get_row_index( ); ?>.hover {
+                                background: <?php the_sub_field( 'background_gradient' ); ?>
+                            }
+                        </style>
                     </div>
-                    <style>
-                        #accordion-<?php echo get_row_index( ); ?>.active,
-                        #accordion-<?php echo get_row_index( ); ?>.hover {
-                            background: <?php the_sub_field( 'background_gradient' ); ?>
-                        }
-                    </style>
                 <?php endwhile;
                 endif; ?>
             </section>

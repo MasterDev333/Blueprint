@@ -24,7 +24,8 @@
     @include when-inside('.media-content--right') {
       order: 1;
     }
-    img {
+    img,
+    lottie-player {
       margin: 0 auto;
       height: 400px;
       @include mq(tablet) {

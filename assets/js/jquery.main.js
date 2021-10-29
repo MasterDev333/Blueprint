@@ -38,7 +38,195 @@ jQuery(document).ready(function() {
     return false;
   });
 
+  var animationDelay = 2500,
+    barAnimationDelay = 3800,
+    barWaiting = barAnimationDelay - 3000,
+    lettersDelay = 50,
+    typeLettersDelay = 150,
+    selectionDuration = 500,
+    typeAnimationDelay = selectionDuration + 800,
+    revealDuration = 600,
+    revealAnimationDelay = 1500;
 
+  initHeadline();
+
+  function initHeadline() {
+    singleLetters($('.sp-headline.letters').find('b'));
+    animateHeadline($('.sp-headline'));
+  }
+
+  function singleLetters($words) {
+    $words.each(function() {
+      var word = $(this),
+        letters = word.text().split(''),
+        selected = word.hasClass('is-visible');
+      for (i in letters) {
+        if (word.parents('.rotate-2').length > 0) letters[i] = '<em>' + letters[i] + '</em>';
+        letters[i] = (selected) ? '<i class=“in”>' + letters[i] + '</i>' : '<i>' + letters[i] + '</i>';
+      }
+      var newLetters = letters.join('');
+      word.html(newLetters).css('opacity', 1);
+    });
+  }
+
+  function animateHeadline($headlines) {
+    var duration = animationDelay;
+    $headlines.each(function() {
+      var headline = $(this);
+      if (headline.hasClass('loading-bar')) {
+        duration = barAnimationDelay;
+        setTimeout(function() {
+          headline.find('.sp-words-wrapper').addClass('is-loading')
+        }, barWaiting);
+      } else if (headline.hasClass('clip')) {
+        var spanWrapper = headline.find('.sp-words-wrapper'),
+          newWidth = spanWrapper.width() + 10
+        spanWrapper.css('width', newWidth);
+      } else if (!headline.hasClass('type')) {
+        var words = headline.find('.sp-words-wrapper b'),
+          width = 0;
+        words.each(function() {
+          var wordWidth = $(this).width();
+          if (wordWidth > width) width = wordWidth;
+        });
+        headline.find('.sp-words-wrapper').css('width', width);
+      };
+
+      setTimeout(function() {
+        hideWord(headline.find('.is-visible').eq(0))
+      }, duration);
+    });
+  }
+
+  function hideWord($word) {
+    var nextWord = takeNext($word);
+
+    if ($word.parents('.sp-headline').hasClass('type')) {
+      var parentSpan = $word.parent('.sp-words-wrapper');
+      parentSpan.addClass('selected').removeClass('waiting');
+      setTimeout(function() {
+        parentSpan.removeClass('selected');
+        $word.removeClass('is-visible').addClass('is-hidden').children('i').removeClass('in').addClass('out');
+      }, selectionDuration);
+      setTimeout(function() {
+        showWord(nextWord, typeLettersDelay)
+      }, typeAnimationDelay);
+
+    } else if ($word.parents('.sp-headline').hasClass('letters')) {
+      var bool = ($word.children('i').length >= nextWord.children('i').length) ? true : false;
+      hideLetter($word.find('i').eq(0), $word, bool, lettersDelay);
+      showLetter(nextWord.find('i').eq(0), nextWord, bool, lettersDelay);
+
+    } else if ($word.parents('.sp-headline').hasClass('clip')) {
+      $word.parents('.sp-words-wrapper').animate({
+        width: '2px'
+      }, revealDuration, function() {
+        switchWord($word, nextWord);
+        showWord(nextWord);
+      });
+
+    } else if ($word.parents('.sp-headline').hasClass('loading-bar')) {
+      $word.parents('.sp-words-wrapper').removeClass('is-loading');
+      switchWord($word, nextWord);
+      setTimeout(function() {
+        hideWord(nextWord)
+      }, barAnimationDelay);
+      setTimeout(function() {
+        $word.parents('.sp-words-wrapper').addClass('is-loading')
+      }, barWaiting);
+
+    } else {
+      switchWord($word, nextWord);
+      setTimeout(function() {
+        hideWord(nextWord)
+      }, animationDelay);
+    }
+  }
+
+  function hideLetter($letter, $word, $bool, $duration) {
+    $letter.removeClass('in').addClass('out');
+
+    if (!$letter.is(':last-child')) {
+      setTimeout(function() {
+        hideLetter($letter.next(), $word, $bool, $duration);
+      }, $duration);
+    } else if ($bool) {
+      setTimeout(function() {
+        hideWord(takeNext($word))
+      }, animationDelay);
+    }
+
+    if ($letter.is(':last-child') && $('html').hasClass('no-csstransitions')) {
+      var nextWord = takeNext($word);
+      switchWord($word, nextWord);
+    }
+  }
+
+  function showLetter($letter, $word, $bool, $duration) {
+    $letter.addClass('in').removeClass('out');
+
+    if (!$letter.is(':last-child')) {
+      setTimeout(function() {
+        showLetter($letter.next(), $word, $bool, $duration);
+      }, $duration);
+    } else {
+      if ($word.parents('.sp-headline').hasClass('type')) {
+        setTimeout(function() {
+          $word.parents('.sp-words-wrapper').addClass('waiting');
+        }, 200);
+      }
+      if (!$bool) {
+        setTimeout(function() {
+          hideWord($word)
+        }, animationDelay)
+      }
+    }
+  }
+
+  function takeNext($word) {
+    return (!$word.is(':last-child')) ? $word.next() : $word.parent().children().eq(0);
+  }
+
+  function takePrev($word) {
+    return (!$word.is(':first-child')) ? $word.prev() : $word.parent().children().last();
+  }
+
+  function switchWord($oldWord, $newWord) {
+    $oldWord.removeClass('is-visible').addClass('is-hidden');
+    $newWord.removeClass('is-hidden').addClass('is-visible');
+  }
+
+  document.addEventListener('pageChange', function() {
+    animationDelay = 2500;
+    barAnimationDelay = 3800;
+    barWaiting = barAnimationDelay - 3000;
+    lettersDelay = 50;
+    typeLettersDelay = 150;
+    selectionDuration = 500;
+    typeAnimationDelay = selectionDuration + 800;
+    revealDuration = 600;
+    revealAnimationDelay = 1500;
+    initHeadline();
+  });
+
+  window.onload = watch;
+
+  function watch() {
+    MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+    var a = new MutationObserver(function(a) {
+      for (var b = 0; b < a.length; b++) {
+        var c = a[b];
+        if ("attributes" === c.type) {
+          var d = new Event("pageChange");
+          document.dispatchEvent(d)
+        }
+      }
+    });
+    a.observe(document.body, {
+      attributes: !0,
+      attributeFilter: ["id"]
+    })
+  }
 });
 
 //-------- -------- -------- --------
@@ -138,23 +326,23 @@ function initCursor() {
   // CURSOR
   var cursor = $(".cursor");
   var mouseX = 0,
-      mouseY = 0;
+    mouseY = 0;
 
   TweenMax.to({}, 0.016, {
     repeat: -1,
     onRepeat: function() {
       TweenMax.set(cursor, {
-          css: {
+        css: {
           left: mouseX,
           top: mouseY
-          }
+        }
       });
     }
   });
 
   $(document).on("mousemove", function(e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
 
   // Show cursor on logos slider
@@ -204,6 +392,8 @@ function initAnchor() {
   });
 }
 
+
+
 // initialize custom form elements (checkbox, radio, select) https://github.com/w3co/jcf
 // initialize jquery datepicker
 function initCustomForms() {
@@ -243,7 +433,7 @@ function initHomeBanner() {
       pauseOnHover: false
     });
   }
-  if ( $('.dynamic-texts').length ) {
+  if ($('.dynamic-texts').length) {
     $('.dynamic-texts').slick({
       dots: false,
       arrows: false,
@@ -295,12 +485,13 @@ function initAccordions() {
     let $accordion = $(this).closest('.accordion');
     $accordion.addClass('hover');
     let $prev = $accordion.prev();
-    if ($prev.length) $prev.css('border-bottom-color', 'transparent');
+    console.log($prev);
+    if ($prev.length) $('.accordion-header', $prev).css('border-bottom-color', 'transparent');
   }).on('mouseleave', function() {
     let $accordion = $(this).closest('.accordion');
     $accordion.removeClass('hover');
     let $prev = $accordion.prev();
-    if ($prev.length) $prev.removeAttr('style');
+    if ($prev.length) $('.accordion-header', $prev).removeAttr('style');
   });
 }
 
@@ -309,10 +500,11 @@ function initLogosSlider() {
   $('.logos-module__slider').slick({
     arrows: false,
     dots: false,
-    speed: 500,
+    speed: 1000,
     // autoplay: true,
     // autoplaySpeed: 2000,
     variableWidth: true,
+    slidesToScroll: 5,
   });
 }
 
