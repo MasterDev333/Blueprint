@@ -8,9 +8,6 @@
   .col {
     @include mq(tablet) {
       flex: 0 0 50%;
-      height: vw(746.47px, $viewport-lg);
-    }
-    @include mq(desktop-wide) {
       height: 100vh;
     }
   }

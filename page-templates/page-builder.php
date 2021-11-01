@@ -86,7 +86,7 @@ if( have_rows('modules') ):
         elseif( get_row_layout() == 'content' ): 
             $heading = get_sub_field( 'heading' ); 
             $content = get_sub_field( 'content' );?>
-            <section class="section content-module" data-color="black">
+            <section class="section content-module full-height" data-color="black"  data-id="<?php echo get_row_index(); ?>">
                 <div class="container">
                     <?php if( $heading ): ?>
                         <h2 class="section-title a-up"><?php echo $heading; ?></h2>
@@ -164,7 +164,8 @@ if( have_rows('modules') ):
         <?php
         // Case: Media
         elseif( get_row_layout() == 'media_content' ): ?>
-            <section class="section media-content media-content--<?php echo get_sub_field('direction') ?: 'left'; ?>"  
+            <section class="section media-content media-content--<?php echo get_sub_field('direction') ?: 'left'; ?> full-height" 
+                    data-id="<?php echo get_row_index(); ?>"  
                     style="background-color: <?php the_sub_field( 'media_background' ); ?>" 
                     data-color="white">
                 <div class="col media-content__image">

@@ -218,6 +218,7 @@ function am_add_javascript( ) {
             'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js',
             'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js',
             'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollToPlugin.min.js',
             'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js'); 
         foreach($am_links as $am_link){
             wp_enqueue_script('am_'.sanitize_title($am_link), $am_link,array('jquery'), '');

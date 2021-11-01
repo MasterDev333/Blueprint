@@ -1,3 +1,8 @@
+
+// register ScrollTrigger Plugin for gsap
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(scrollTo);
+
 var $ = jQuery.noConflict();
 jQuery(document).ready(function() {
   // single function
@@ -18,6 +23,7 @@ jQuery(document).ready(function() {
   isElementExist(".logos-module__slider", initLogosSlider);
   isElementExist(".slider", initSlider);
   isElementExist(".accordions", initAccordions);
+  // isElementExist(".full-height", initFullHeight);
 
   // viewportCheckerAnimate function
   viewportCheckerAnimate(".a-bg-up", "_animate");
@@ -233,8 +239,6 @@ jQuery(document).ready(function() {
 //-------- js custom start
 //-------- -------- -------- --------
 
-// register ScrollTrigger Plugin for gsap
-gsap.registerPlugin(ScrollTrigger);
 // for debug gsap + ScrollTrigger
 // ScrollTrigger.defaults({markers: true});
 
@@ -392,7 +396,35 @@ function initAnchor() {
   });
 }
 
+function initFullHeight() {
+  function goToSection(offset, anim) {
+    gsap.to(window, {
+      scrollTo: {
+        y: offset, 
+        autoKill: false
+      },
+      duration: 1
+    });
+    
+    if(anim) {
+      anim.restart();
+    }
+  }
+  gsap.utils.toArray(".full-height").forEach((panel) => {
+    let offset = parseInt($(panel).offset().top + $(panel).outerHeight());
+    let offsetBack = parseInt($(panel).offset().top - $(panel).outerHeight());
 
+    ScrollTrigger.create({
+      trigger: panel,
+      start: 'top top',
+      end: 'bottom bottom',
+      onEnter: () => goToSection(offset),
+      // onEnterBack: () => goToSection(offsetBack),
+    });
+    
+  });
+
+}
 
 // initialize custom form elements (checkbox, radio, select) https://github.com/w3co/jcf
 // initialize jquery datepicker
@@ -485,7 +517,6 @@ function initAccordions() {
     let $accordion = $(this).closest('.accordion');
     $accordion.addClass('hover');
     let $prev = $accordion.prev();
-    console.log($prev);
     if ($prev.length) $('.accordion-header', $prev).css('border-bottom-color', 'transparent');
   }).on('mouseleave', function() {
     let $accordion = $(this).closest('.accordion');

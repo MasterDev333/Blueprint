@@ -98,7 +98,7 @@
     padding: 37px 15px;
     background: linear-gradient(325.2deg, #B997E7 1%, #FFCDD3 42.14%, #FED78B 79.84%);
     @include mq(tablet) {
-      padding: vw(67.5px, $viewport-lg) vw(43.5px, $viewport-lg) vw(21.75px, $viewport-lg) vw(42.75px, $viewport-lg);
+      padding: vw(67.5px, $viewport-lg) vw(43.5px, $viewport-lg) vw(84.3px, $viewport-lg) vw(42.75px, $viewport-lg);
     }
     @include when-inside('.footer--blue') {
       background: linear-gradient(314.01deg, #0028B1 -24.43%, #8EC8FE 25.6%, #FFECB7 75.16%);
