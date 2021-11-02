@@ -943,9 +943,9 @@
                         },
                         {
                             "key": "field_617b4bb3468dc",
-                            "label": "Lottie",
+                            "label": "Lottie Url",
                             "name": "lottie",
-                            "type": "select",
+                            "type": "text",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -954,18 +954,11 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "choices": {
-                                "expression": "Expression",
-                                "growth": "Growth",
-                                "purpose": "Purpose"
-                            },
-                            "default_value": false,
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
-                            "return_format": "value",
-                            "ajax": 0,
-                            "placeholder": ""
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
                         },
                         {
                             "key": "field_6163b2f1c9c4e",
@@ -1597,5 +1590,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1635471398
+    "modified": 1635857573
 }

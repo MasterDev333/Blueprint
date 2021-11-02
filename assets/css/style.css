@@ -370,7 +370,7 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
   100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
 .home-banner { display: -webkit-box; display: -ms-flexbox; display: flex; }
 @media only screen and (max-width: 768px) { .home-banner { padding: 93px 0 0 !important; -webkit-box-orient: vertical; -webkit-box-direction: reverse; -ms-flex-direction: column-reverse; flex-direction: column-reverse; } }
-@media only screen and (min-width: 769px) { .home-banner { padding: 0 3.125vw !important; max-height: 55.5555555556vw; overflow: hidden; -webkit-box-align: center; -ms-flex-align: center; align-items: center; } }
+@media only screen and (min-width: 769px) { .home-banner { padding: 0 3.125vw !important; overflow: hidden; -webkit-box-align: center; -ms-flex-align: center; align-items: center; } }
 @media only screen and (min-width: 1441px) { .home-banner { max-height: 100vh; } }
 .home-banner__slider { display: -webkit-box; display: -ms-flexbox; display: flex; }
 .home-banner__slider img { display: block; width: 100%; }
@@ -558,8 +558,10 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 .media-content__image { padding: 80px 0; text-align: center; }
 @media only screen and (min-width: 769px) { .media-content__image { padding: 8.8541666667vw 0; } }
 .media-content--right .media-content__image { -webkit-box-ordinal-group: 2; -ms-flex-order: 1; order: 1; }
-.media-content__image img, .media-content__image lottie-player { margin: 0 auto; height: 400px; }
-@media only screen and (min-width: 769px) { .media-content__image img, .media-content__image lottie-player { height: 100%; } }
+.media-content__image img { margin: 0 auto; height: 400px; }
+@media only screen and (min-width: 769px) { .media-content__image img { height: 100%; } }
+.media-content__image dotlottie-player, .media-content__image lottie-player { margin: 0 auto; height: 400px; }
+@media only screen and (min-width: 769px) { .media-content__image dotlottie-player, .media-content__image lottie-player { height: 80vh; } }
 .media-content__content { padding: 40px 10px; margin: 0 15px; }
 @media only screen and (min-width: 769px) { .media-content__content { display: -webkit-box; display: -ms-flexbox; display: flex; margin: 0; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; } }
 .media-content__content--inner { text-align: center; }

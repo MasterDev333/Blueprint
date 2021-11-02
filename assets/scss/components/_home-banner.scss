@@ -8,7 +8,6 @@
 
   @include mq(tablet) {
     padding: 0 vw(60px) !important;
-    max-height: vw(800px, $viewport-lg);
     overflow: hidden;
     align-items: center;
   }

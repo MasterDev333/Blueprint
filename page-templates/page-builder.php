@@ -170,7 +170,7 @@ if( have_rows('modules') ):
                     data-color="white">
                 <div class="col media-content__image">
                     <?php if( $lottie = get_sub_field( 'lottie' ) ): ?>
-                        <lottie-player src="<?php echo get_template_directory_uri(  ) . '/assets/lottie/' . $lottie . '.json'; ?>" background="transparent"  speed="1" loop autoplay></lottie-player>
+                        <dotlottie-player src="<?php echo $lottie; ?>"  background="transparent"  speed="1" loop autoplay></dotlottie-player>
                     <?php else: ?>
                         <?php if( $image = get_sub_field( 'media' ) ): ?>
                             <img class="a-up" src="<?php echo $image; ?>" alt="">
