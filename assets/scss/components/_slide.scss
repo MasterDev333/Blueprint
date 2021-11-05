@@ -32,9 +32,20 @@
       margin-right: 90px;
     }
   }
+  .slick-current {
+    .slide-img img {
+      transform: scale(1);
+    }
+  }
+  .slides {
+    padding-left: 20px;
+    @include mq(tablet) {
+      padding-left: vw(215px);
+    }
+  }
   .slide {
     width: svw(300px);
-    @include mq(tablet) {
+    @include mq(desktop-small) {
       display: flex;
       width: auto;
       align-items: center;
@@ -42,11 +53,20 @@
     &-img {
       width: 100%;
       line-height: 0;
-      @include mq(tablet) {
-        width: vw(714px);
+      overflow: hidden;
+      @include mq(desktop-small) {
+        flex-shrink: 0;
+      }
+      @include mq(desktop-small) {
+        width: 520px;
+      }
+      @include mq(desktop-wide) {
+        width: 714px;
       }
       img {
         @include coverImage();
+        transform: scale(1.5);
+        transition: all 0.5s ease-in-out;
       }
       .img-a-img::before {
         padding-top: 100%;
@@ -59,16 +79,25 @@
       background-color: $background_color;
       width: 100%;
       z-index: 1;
-      @include mq(tablet) {
-        margin-left: vw(-40px);
-        padding: vw(100px) vw(40px);
-        width: vw(600px);
+      // @include mq(desktop-small) {
+      //   margin-left: vw(-40px);
+      //   padding: vw(100px) vw(40px);
+      //   width: vw(600px);
+      // }
+      @include mq(desktop-small) {
+        margin-left: -10px;
+        padding: 70px 32px;
+        width: 438px;
+      }
+      @include mq(desktop-wide) {
+        padding: 100px 48px 60px 40px;
+        width: 600px;
       }
       &__name {
         @include typography(20px, 21.89px, 24.38px, 26.68px, 700, $f-secondary);
         text-transform: uppercase;
         letter-spacing: 0.04em;
-        @include mq(tablet) {
+        @include mq(desktop-small) {
           margin-bottom: vw(20px);
         }
         @include mq(desktop-wide) {
@@ -84,7 +113,7 @@
       }
       &__bio {
         display: none;
-        @include mq(tablet) {
+        @include mq(desktop-small) {
           display: block;
           margin-bottom: vw(36px);
         }
@@ -93,7 +122,7 @@
         margin: 20px 0;
         width: 34px;
         border-color: #CEAF87;
-        @include mq(tablet) {
+        @include mq(desktop-small) {
           margin: vw(12px) 0 vw(19px);
           width: vw(60px);
         }

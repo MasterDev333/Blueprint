@@ -133,7 +133,7 @@
     justify-content: space-between;
     @include mq(tablet) {
       justify-content: flex-end;
-      padding: vw(22.25px, $viewport-lg) vw(45px, $viewport-lg) vw(22px, $viewport-lg);
+      padding: vw(22.25px, $viewport-lg) 60px vw(22px, $viewport-lg);
     }
   }
   &-link,

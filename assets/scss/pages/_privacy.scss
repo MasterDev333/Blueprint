@@ -1,0 +1,36 @@
+.privacy {
+  @include mq(tablet) {
+    padding: 175px 0;
+  }
+  .container {
+    @include mq(tablet) {
+      max-width: 670px;
+      padding: 0;
+    }
+    h1 {
+      margin-bottom: 20px;
+      @include typography(40px, 55.02px, 48px, 65.07px, 400, $f-heading, $primary);
+    }
+    h4 {
+      margin-bottom: 0;
+      font: 700 18px/27px $f-secondary;
+      text-transform: uppercase;
+    }
+    p {
+      margin-bottom: 1em;
+      font: 400 16px/27px $f-text;
+    }
+    ul {
+      margin-bottom: 1em;
+      padding-left: 20px;
+      list-style: disc;
+      li {
+        font: 400 16px/27px $f-text;
+      }
+    }
+    a {
+      color: $primary;
+      @include button-underline(1px, $primary);
+    }
+  }
+}

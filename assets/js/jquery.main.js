@@ -23,6 +23,7 @@ jQuery(document).ready(function() {
   isElementExist(".logos-module__slider", initLogosSlider);
   isElementExist(".slider", initSlider);
   isElementExist(".accordions", initAccordions);
+  isElementExist(".popup", initPopup);
   // isElementExist(".full-height", initFullHeight);
 
   // viewportCheckerAnimate function
@@ -490,13 +491,14 @@ function initSlider() {
     dots: false,
     // nextArrow: '<button class="slick-arrow slick-next"><svg width="69" height="53" viewBox="0 0 69 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.0156 26.4266L1.34375 26.4266M67.0156 26.4266L42.3887 51.2359M67.0156 26.4266L42.3887 1.61719" stroke="#141820" stroke-width="2.18906" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
     // prevArrow: '<button class="slick-arrow slick-prev"><svg width="69" height="53" viewBox="0 0 69 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.0156 26.4266L1.34375 26.4266M67.0156 26.4266L42.3887 51.2359M67.0156 26.4266L42.3887 1.61719" stroke="#141820" stroke-width="2.18906" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
+    variableWidth: true,
     autoplay: true,
     autoplaySpeed: 5000,
+    speed: 1000,
     responsive: [{
       breakpoint: 769,
       settings: {
         arrows: false,
-        variableWidth: true
       }
     }]
   }).on("beforeChange", function(event, slick, currentSlide, nextSlide) {
@@ -523,6 +525,16 @@ function initAccordions() {
     $accordion.removeClass('hover');
     let $prev = $accordion.prev();
     if ($prev.length) $('.accordion-header', $prev).removeAttr('style');
+  });
+}
+
+// Init Popup
+function initPopup() {
+  $('.btn-connect').on('click', function() {
+    $('.popup').fadeIn(500);
+  });
+  $('.popup-close').on('click', function() {
+    $('.popup').fadeOut(500);
   });
 }
 

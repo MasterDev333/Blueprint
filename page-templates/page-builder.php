@@ -69,11 +69,10 @@ if( have_rows('modules') ):
                 <?php if( have_rows( 'logos' )) : ?>
                     <div class="logos-module__slider slick-carousel a-up a-delay-1">
                         <?php while( have_rows( 'logos' ) ) : the_row(); 
-                        $logo = get_sub_field( 'logo' );
-                        $logo_2x = get_sub_field( 'logo_2x' ); ?>
+                        $logo = get_sub_field( 'logo' );?>
                         <div class="logos-module__link">
                             <img src="<?php echo $logo; ?>" 
-                                <?php echo $logo_2x ? 'srcset="' . $logo_2x . ' 2x"' : ''; ?>
+                                srcset="<?php echo $logo; ?> 2x"
                                 alt="">
                         </div>
                         <?php endwhile; ?>
@@ -203,7 +202,8 @@ if( have_rows('modules') ):
                         <?php if( $heading ): ?>
                             <h2 class="section-title a-up"><?php echo $heading; ?></h2>
                         <?php endif; ?>
-                        <div class="slides slick-carousel">
+                    </div>
+                    <div class="slides slick-carousel">
                         <?php while( have_rows( 'slides' ) ): the_row( );
                             $image = get_sub_field( 'image' );
                             $img_url = $image['sizes']['slide'];
@@ -240,7 +240,6 @@ if( have_rows('modules') ):
                             </div>
                         <?php endwhile; ?>
                         </div>
-                    </div>
                 </section>
             <?php endif; ?>
 
