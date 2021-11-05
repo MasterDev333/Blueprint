@@ -71,8 +71,8 @@ if( have_rows('modules') ):
                         <?php while( have_rows( 'logos' ) ) : the_row(); 
                         $logo = get_sub_field( 'logo' );?>
                         <div class="logos-module__link">
-                            <img src="<?php echo $logo; ?>" 
-                                srcset="<?php echo $logo; ?> 2x"
+                            <img src="<?php echo $logo['sizes']['logo-slider']; ?>" 
+                                srcset="<?php echo $logo['sizes']['logo-slider-2x']; ?> 2x"
                                 alt="">
                         </div>
                         <?php endwhile; ?>

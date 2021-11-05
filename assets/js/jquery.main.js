@@ -532,9 +532,11 @@ function initAccordions() {
 function initPopup() {
   $('.btn-connect').on('click', function() {
     $('.popup').fadeIn(500);
+    $('html, body').css('overflow', 'hidden');
   });
   $('.popup-close').on('click', function() {
     $('.popup').fadeOut(500);
+    $('html, body').removeAttr('style');
   });
 }
 

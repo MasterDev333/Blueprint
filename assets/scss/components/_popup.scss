@@ -13,12 +13,13 @@
   }
 
   @include mq(tablet) {
-    padding: 55px 40px;
-    top: 90px;
+    padding: 25px 20px;
+    top: 110px;
     right: 60px;
     width: 500px;
   }
   @include mq(desktop-wide) {
+    padding: 55px 40px;
     top: 120px;
   }
   &-close {

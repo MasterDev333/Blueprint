@@ -161,6 +161,11 @@
       }
     }
   }
+  &.sticky:not(.header--white) {
+    .header-logo--light {
+      display: none;
+    }
+  }
 
 
   &-nav {
@@ -180,11 +185,7 @@
     display: block;
 
     @include mq(tablet) {
-      height: vw(50px, $viewport-lg);
-    }
-
-    @include mq(desktop-wide) {
-      height: vw(60px);
+      height: 40px;
     }
 
     @include when-inside('.sticky') {
@@ -193,7 +194,7 @@
 
     &--mobile {
       display: none;
-
+      height: 40px;
       @include when-inside('.sticky') {
         display: block;
       }

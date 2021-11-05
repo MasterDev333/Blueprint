@@ -83,7 +83,8 @@ add_image_size( 'home-slider', 375, 0, true);
 add_image_size( 'home-slider-2x', 750, 0, true);
 add_image_size( 'slide', 714, 714, true);
 add_image_size( 'slide-2x', 1428, 1428, true);
-
+add_image_size( 'logo-slider', 0, 300, false );
+add_image_size( 'logo-slider-2x', 0, 600, false );
 
 //show_admin_bar(false);
 //define( 'WPCF7_AUTOP', false );
