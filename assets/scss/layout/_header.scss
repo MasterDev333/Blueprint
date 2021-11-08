@@ -54,7 +54,6 @@
             font-weight: 600;
             border-radius: 18px;
             background-color: $primary;
-            border: 1px solid $primary;
             color: $c-white;
             transition: all .3s ease-in-out;
 
@@ -155,7 +154,6 @@
       }
       &.header--white .menu-item:last-child {
         .nav-link {
-          border: 1px solid $primary;
           color: $primary;
         }
       }

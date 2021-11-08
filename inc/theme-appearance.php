@@ -57,4 +57,3 @@ function am_get_retina_img($url_normal, $class='', $w = '', $h = '', $alt = ''){
     }
     return '<img src="'.$url_normal.'"'.$srcset.$width.$height.' alt="'.$alt.'" class="'.$class.'">';
 }
-?>

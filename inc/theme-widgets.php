@@ -50,5 +50,3 @@ class am_WP_Widget_Text extends WP_Widget {
 }
 
 register_widget('am_WP_Widget_Text');
-
-?>

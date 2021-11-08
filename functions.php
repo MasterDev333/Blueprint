@@ -36,6 +36,3 @@ function register_navwalker(){
 	require_once get_parent_theme_file_path( '/inc/class-wp-bootstrap-navwalker.php' );
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
-
-
-?>

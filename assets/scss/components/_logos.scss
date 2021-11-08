@@ -1,7 +1,19 @@
 .logos-module {
+  position: relative;
+  height: 300px;
   padding-bottom: 0;
   background: linear-gradient(96.63deg, #FFE6B1 0.57%, #F9F9F9 63.86%, #D3FBEA 100%);
   cursor: none !important;
+  @include mq(tablet, max) {
+    padding-top: 50px;
+  }
+  @include mq(tablet) {
+    height: vw(375px, $viewport-lg);
+  }
+  @include mq(desktop-wide) {
+    height: vw(500px);
+    max-height: 500px;
+  }
   &.logos-module--media {
     background: linear-gradient(96.1deg, #DFF5ED 7.09%, #F9F9F9 54.21%, #D8CBF2 99.41%);
   }
@@ -19,8 +31,12 @@
       // margin-bottom: vw(110px);
     }
   }
-  &__slider {
-
+  &__carousel {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
   }
   .slick-track {
     display: flex;

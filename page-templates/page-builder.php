@@ -67,15 +67,17 @@ if( have_rows('modules') ):
                     <?php endif; ?>
                 </div>
                 <?php if( have_rows( 'logos' )) : ?>
-                    <div class="logos-module__slider slick-carousel a-up a-delay-1">
-                        <?php while( have_rows( 'logos' ) ) : the_row(); 
-                        $logo = get_sub_field( 'logo' );?>
-                        <div class="logos-module__link">
-                            <img src="<?php echo $logo['sizes']['logo-slider']; ?>" 
-                                srcset="<?php echo $logo['sizes']['logo-slider-2x']; ?> 2x"
-                                alt="">
+                    <div class="logos-module__carousel">
+                        <div class="logos-module__slider slick-carousel a-up a-delay-1">
+                            <?php while( have_rows( 'logos' ) ) : the_row(); 
+                            $logo = get_sub_field( 'logo' );?>
+                            <div class="logos-module__link">
+                                <img src="<?php echo $logo['sizes']['logo-slider']; ?>" 
+                                    srcset="<?php echo $logo['sizes']['logo-slider-2x']; ?> 2x"
+                                    alt="">
+                            </div>
+                            <?php endwhile; ?>
                         </div>
-                        <?php endwhile; ?>
                     </div>
                 <?php endif; ?>
             </section>         
