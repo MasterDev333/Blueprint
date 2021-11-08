@@ -66,4 +66,10 @@
   &.left {
     transform: scaleX(-1);
   }
+  @include mq(tablet, max) {
+    display: none;
+  }
+  @include when-inside('mobile') {
+    display: none;
+  }
 }

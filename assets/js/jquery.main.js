@@ -24,6 +24,7 @@ jQuery(document).ready(function() {
   isElementExist(".slider", initSlider);
   isElementExist(".accordions", initAccordions);
   isElementExist(".popup", initPopup);
+  isElementExist(".media-content", initLottie);
   // isElementExist(".full-height", initFullHeight);
 
   // viewportCheckerAnimate function
@@ -316,7 +317,7 @@ function initHeader() {
         $('.header').removeClass('header--black');
       }
     }
-  })
+  });
 
   // toggle desktop menu
   $('.btn-menu-toggler').on('click', function(e) {
@@ -538,6 +539,20 @@ function initPopup() {
     $('.popup').fadeOut(500);
     $('html, body').removeAttr('style');
   });
+}
+
+function initLottie() {
+  // gsap.utils.toArray(".media-content").forEach((panel) => {
+  //   ScrollTrigger.create({
+  //     trigger: panel,
+  //     start: 'bottom bottom',
+  //     onEnter: () => {
+  //       let $lottie = $('dotlottie-player', panel);
+  //       $lottie.attr('autoplay', 'true');
+  //     },
+  //     // onEnterBack: () => goToSection(offsetBack),
+  //   });
+  // });
 }
 
 // initialize logos slider
