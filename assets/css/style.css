@@ -205,7 +205,7 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 @media screen and (max-width: 600px) { .admin-bar .header.sticky { top: 0; } }
 @media only screen and (min-width: 769px) { .header.sticky .menu-item { opacity: 0; visibility: hidden; pointer-events: none; }
   .header.sticky .menu-item.btn-menu-toggler, .header.sticky .menu-item:last-child { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; opacity: 1; visibility: visible; pointer-events: all; }
-  .header.sticky .menu-item:last-child .nav-link { padding: 5px 10px; font-weight: 600; border-radius: 18px; background-color: #141820; color: #fff; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out; }
+  .header.sticky .menu-item:last-child .nav-link { padding: 7px 10px; font-weight: 600; border-radius: 18px; background-color: #141820; font-size: 11px; color: #fff; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out; }
   .header.sticky .menu-item:last-child .nav-link::after { display: none; } }
 .header.sticky.header--white .header-logo--dark { display: none; }
 .header.sticky.header--white .menu-item.btn-menu-toggler line { stroke: #fff; }
@@ -226,7 +226,8 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 .header.sticky:not(.header--white) .header-logo--light { display: none; }
 .header-nav { padding: 0 15px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; }
 @media only screen and (min-width: 769px) { .header-nav { padding: 0 60px; -webkit-box-align: end; -ms-flex-align: end; align-items: flex-end; } }
-.header-logo { display: block; height: 40px; }
+.header-logo { display: block; height: 34px; }
+@media only screen and (min-width: 769px) { .header-logo { height: 40px; } }
 .sticky .header-logo { display: none; }
 .header-logo--mobile { display: none; height: 40px; }
 .sticky .header-logo--mobile { display: block; }
@@ -276,7 +277,7 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 @media only screen and (min-width: 769px) { .footer-top { padding: 0.8333333333vw 0; } }
 .footer--blue .footer-top { background-color: #041281; }
 .footer-top .container { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
-@media only screen and (min-width: 769px) { .footer-top .container { padding: 0 0.9895833333vw; -webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end; } }
+@media only screen and (min-width: 769px) { .footer-top .container { -webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end; } }
 .footer-top__title { font: 700 14px/16.8px "meno-text", sans-serif; color: #fff; color: #fff; font-size: calc( 14px + 2 * ((100vw - 375px) / 1065) ); font-family: "meno-text", sans-serif; font-weight: 700; line-height: calc( 16.8px + 2.4 * ((100vw - 375px) / 1065) ); letter-spacing: 0.1em; font-style: italic; }
 @media only screen and (min-width: 1441px) { .footer-top__title { font-size: 16px; line-height: 19.2px; } }
 @media only screen and (max-width: 768px) { .footer-top__title { margin-right: auto; } }
@@ -646,13 +647,14 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 @media only screen and (min-width: 769px) { .section-contact__heading { margin-bottom: 2.34375vw; } }
 
 .popup { position: fixed; display: none; background-color: #141820; z-index: 1000; }
-@media only screen and (max-width: 768px) { .popup { top: 0; left: 0; width: 100%; height: 100%; padding: 15px 30px; } }
-@media only screen and (min-width: 769px) { .popup { padding: 25px 20px; top: 110px; right: 60px; width: 500px; } }
-@media only screen and (min-width: 1441px) { .popup { padding: 55px 40px; top: 120px; } }
-.popup-close { position: absolute; top: 20px; right: 20px; -webkit-transform-origin: center; transform-origin: center; -webkit-transition: -webkit-transform .3s ease-in-out; transition: -webkit-transform .3s ease-in-out; transition: transform .3s ease-in-out; transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
+@media only screen and (max-width: 768px) { .popup { top: 0; left: 0; width: 100%; height: 100%; padding: 100px 40px 20px; } }
+@media only screen and (min-width: 769px) { .popup { padding: 25px 20px; top: 50px; right: 60px; width: 500px; } }
+@media only screen and (min-width: 1441px) { .popup { padding: 55px 40px; top: 60px; } }
+.popup-close { position: absolute; top: 13px; right: 22px; -webkit-transform-origin: center; transform-origin: center; -webkit-transition: -webkit-transform .3s ease-in-out; transition: -webkit-transform .3s ease-in-out; transition: transform .3s ease-in-out; transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
+@media only screen and (min-width: 769px) { .popup-close { top: 20px; right: 20px; } }
 .popup-close:hover { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
-.popup-header { margin-bottom: 14px; color: #141820; font-size: calc( 36px + 19.02 * ((100vw - 375px) / 1065) ); font-family: "meno-banner", sans-serif; font-weight: 400; line-height: calc( 42px + 15.1 * ((100vw - 375px) / 1065) ); background: linear-gradient(325.2deg, #B997E7 1%, #FFCDD3 42.14%, #FED78B 79.84%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-@media only screen and (min-width: 1441px) { .popup-header { font-size: 55.02px; line-height: 57.1px; } }
+.popup-header { margin-bottom: 14px; color: #141820; font-size: calc( 31.43px + -1.83 * ((100vw - 375px) / 1065) ); font-family: "meno-banner", sans-serif; font-weight: 400; line-height: calc( 40px + 4.1 * ((100vw - 375px) / 1065) ); background: linear-gradient(325.2deg, #B997E7 1%, #FFCDD3 42.14%, #FED78B 79.84%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+@media only screen and (min-width: 1441px) { .popup-header { font-size: 29.6px; line-height: 44.1px; } }
 
 @media only screen and (min-width: 769px) { .privacy { padding: 175px 0; } }
 @media only screen and (min-width: 769px) { .privacy .container { max-width: 670px; padding: 0; } }
@@ -676,7 +678,7 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 
 .v-hidden { visibility: hidden; opacity: 0; }
 
-.container { margin: auto; padding: 0 15px; }
+.container { margin: auto; padding: 0 15px; width: 100%; }
 @media only screen and (min-width: 769px) { .container { padding: 0 11.1979166667vw; } }
 
 .container-fluid { margin: auto; padding: 0 20px; width: 100%; }

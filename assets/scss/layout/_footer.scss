@@ -17,7 +17,7 @@
       display: flex;
       align-items: center;
       @include mq(tablet) {
-        padding: 0 vw(19px);
+        // padding: 0 vw(19px);
         justify-content: flex-end;
       }
     }

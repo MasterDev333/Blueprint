@@ -85,9 +85,10 @@ if( have_rows('modules') ):
         <?php
         // Case: Content
         elseif( get_row_layout() == 'content' ): 
+            $id = get_sub_field( 'id' );
             $heading = get_sub_field( 'heading' ); 
             $content = get_sub_field( 'content' );?>
-            <section class="section content-module full-height" data-color="black"  data-id="<?php echo get_row_index(); ?>">
+            <section class="section content-module full-height" id="<?php echo $id; ?>" data-color="black"  data-id="<?php echo get_row_index(); ?>">
                 <div class="container">
                     <?php if( $heading ): ?>
                         <h2 class="section-title a-up"><?php echo $heading; ?></h2>
@@ -250,7 +251,7 @@ if( have_rows('modules') ):
         elseif( get_row_layout() == 'accordions' ): 
             $theme = get_sub_field( 'theme' ) ?: 'dark'; 
             $color = $theme == 'dark' ? 'white' : 'black'; ?>
-            <section class="section accordions accordions--<?php echo $theme; ?>" data-color="<?php echo $color; ?>">
+            <section class="section accordions accordions--<?php echo $theme; ?>" data-color="<?php echo $color; ?>" id="<?php the_sub_field( 'id' ); ?>">
                 <div class="container">
                     <?php if( $heading = get_sub_field( 'heading' ) ): ?>
                         <h2 class="section-title a-up"><?php echo $heading; ?></h2>

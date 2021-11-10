@@ -50,10 +50,11 @@
 
         &:last-child {
           .nav-link {
-            padding: 5px 10px;
+            padding: 7px 10px;
             font-weight: 600;
             border-radius: 18px;
             background-color: $primary;
+            font-size: 11px;
             color: $c-white;
             transition: all .3s ease-in-out;
 
@@ -181,7 +182,10 @@
 
   &-logo {
     display: block;
-    height: 40px;
+    height: 34px;
+    @include mq(tablet) {
+      height: 40px;
+    }
 
     @include when-inside('.sticky') {
       display: none;

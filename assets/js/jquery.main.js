@@ -16,7 +16,7 @@ jQuery(document).ready(function() {
   isElementExist(".img-a-left", anImgLeftOnScrollVewportChecker);
   isElementExist(".img-a-up", anImgUpOnScrollVewportChecker);
   isElementExist(".img-a-video", anImgRightOnScrollVewportCheckerAndVideo);
-  isElementExist(".scroll-link", myScrollLink);
+  isElementExist(".nav-link", myScrollLink);
   isElementExist(".a-bg-up", blockHeight, [".a-bg-up"]);
   isElementExist(".a-bg-down", blockHeight, [".a-bg-down"]);
   isElementExist(".home-banner", initHomeBanner);
@@ -493,13 +493,14 @@ function initSlider() {
     // nextArrow: '<button class="slick-arrow slick-next"><svg width="69" height="53" viewBox="0 0 69 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.0156 26.4266L1.34375 26.4266M67.0156 26.4266L42.3887 51.2359M67.0156 26.4266L42.3887 1.61719" stroke="#141820" stroke-width="2.18906" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
     // prevArrow: '<button class="slick-arrow slick-prev"><svg width="69" height="53" viewBox="0 0 69 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.0156 26.4266L1.34375 26.4266M67.0156 26.4266L42.3887 51.2359M67.0156 26.4266L42.3887 1.61719" stroke="#141820" stroke-width="2.18906" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
     variableWidth: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    speed: 1000,
+    // autoplay: true,
+    // autoplaySpeed: 5000,
+    speed: 1500,
     responsive: [{
       breakpoint: 769,
       settings: {
         arrows: false,
+        // autoplay: false,
       }
     }]
   }).on("beforeChange", function(event, slick, currentSlide, nextSlide) {
@@ -604,30 +605,34 @@ function windowResize(functName) {
 
 // helper Smooth Scroll Link
 function myScrollLink() {
-  var navLink = jQuery(".scroll-link");
+  var navLink = jQuery(".nav-link");
   navLink.on("click", function(e) {
     var elementClick = jQuery(this).attr("href");
-    var destination = jQuery(elementClick).offset().top;
-    var scrollTime =
-      jQuery(this).attr("data-scrollTime") != undefined ?
-      +jQuery(this).attr("data-scrollTime") :
-      1000;
-    var scrollTopVar =
-      jQuery(this).attr("data-scrollTop") != undefined ?
-      +jQuery(this).attr("data-scrollTop") :
-      jQuery(".header").outerHeight();
-    var scrollBottomVar =
-      jQuery(this).attr("data-scrollBottom") != undefined ?
-      +jQuery(this).attr("data-scrollBottom") :
-      0;
-    var destinationFull = destination - scrollTopVar + scrollBottomVar;
-    console.log(destinationFull, destination);
-    jQuery("html,body").stop().animate({
-        scrollTop: destinationFull,
-      },
-      scrollTime
-    );
-    return false;
+    if( elementClick.startsWith('#') ) {
+      var destination = jQuery(elementClick).offset().top;
+      var scrollTime =
+        jQuery(this).attr("data-scrollTime") != undefined ?
+        +jQuery(this).attr("data-scrollTime") :
+        1000;
+      var scrollTopVar =
+        jQuery(this).attr("data-scrollTop") != undefined ?
+        +jQuery(this).attr("data-scrollTop") :
+        jQuery(".header").outerHeight();
+      var scrollBottomVar =
+        jQuery(this).attr("data-scrollBottom") != undefined ?
+        +jQuery(this).attr("data-scrollBottom") :
+        0;
+      // var destinationFull = destination - scrollTopVar + scrollBottomVar;
+      jQuery("html,body").stop().animate({
+          scrollTop: destination,
+        },
+        scrollTime
+      );
+      if( window.matchMedia('(max-width: "767px")').matches ) {
+        $('.header.header--open').removeClass('header--open');
+      }
+      return false;
+    }
   });
 }
 

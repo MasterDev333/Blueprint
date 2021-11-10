@@ -8,33 +8,37 @@
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 15px 30px;
+    padding: 100px 40px 20px;
     // @include adminbar-offset();
   }
 
   @include mq(tablet) {
     padding: 25px 20px;
-    top: 110px;
+    top: 50px;
     right: 60px;
     width: 500px;
   }
   @include mq(desktop-wide) {
     padding: 55px 40px;
-    top: 120px;
+    top: 60px;
   }
   &-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 13px;
+    right: 22px;
     transform-origin: center;
     transition: transform .3s ease-in-out;
+    @include mq(tablet) {
+      top: 20px;
+      right: 20px;
+    }
     &:hover {
       transform: rotate(180deg);
     }
   }
   &-header {
     margin-bottom: 14px;
-    @include typography(36px, 55.02px, 42px, 57.1px);
+    @include typography(31.43px, 29.6px, 40px, 44.1px);
     background: linear-gradient(325.2deg, #B997E7 1%, #FFCDD3 42.14%, #FED78B 79.84%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

@@ -307,7 +307,7 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) :
 			if( get_field( 'menu_class', $item->ID ) != 'btn-menu-toggler' ): 
 				$item_output .= isset( $args->link_before ) ? $args->link_before . $icon_html . $title . $args->link_after : '';
 			else:
-				$item_output .= '<span class="open"><svg width="30" height="17" viewBox="0 0 30 17" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="29" y1="1" x2="15.1176" y2="1" stroke="#141820" stroke-width="2" stroke-linecap="round"/><line x1="29" y1="8.41064" x2="1" y2="8.41065" stroke="#141820" stroke-width="2" stroke-linecap="round"/><line x1="29" y1="15.8218" x2="9.82353" y2="15.8218" stroke="#141820" stroke-width="2" stroke-linecap="round"/></svg></span><span class="close"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 1L1 15M1.00001 1L15 15" stroke="#141820" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+				$item_output .= '<span class="open"><svg width="26" height="13" viewBox="0 0 26 13" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="24.4614" y1="0.741258" x2="12.6012" y2="0.741258" stroke="#141820" stroke-width="1.48252" stroke-linecap="round"/><line x1="24.4616" y1="6.19536" x2="0.741364" y2="6.19536" stroke="#141820" stroke-width="1.48252" stroke-linecap="round"/><line x1="24.4616" y1="11.649" x2="8.15395" y2="11.649" stroke="#141820" stroke-width="1.48252" stroke-linecap="round"/></svg></span>';
 			endif;
 
 			/*
