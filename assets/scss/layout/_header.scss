@@ -81,9 +81,11 @@
   
         &:last-child {
           .nav-link {
-            background-color: $c-white;
-            color: $primary;
-            border-color: $c-white;
+            @include mq(tablet) {
+              background-color: $c-white;
+              color: $primary;
+              border-color: $c-white;
+            }
           }
         }
   

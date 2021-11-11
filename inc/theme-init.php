@@ -77,8 +77,8 @@ add_filter('widget_text', 'do_shortcode');
 
 // Image Sizes
 add_image_size( 'slide-image', 1209, 665, true );
-add_image_size( 'home-banner', 650, 1045, true );
-add_image_size( 'home-banner-2x', 1300, 2090, true );
+add_image_size( 'home-banner', 0, 1045, true );
+add_image_size( 'home-banner-2x', 0, 2090, true );
 add_image_size( 'home-slider', 375, 0, true);
 add_image_size( 'home-slider-2x', 750, 0, true);
 add_image_size( 'slide', 714, 714, true);

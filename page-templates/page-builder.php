@@ -16,8 +16,8 @@ if( have_rows('modules') ):
                     <?php if( $down_images = get_sub_field( 'down_images') ): ?>
                     <div class="home-main__slider">
                         <?php foreach( $down_images as $image ): 
-                        $img_url = $image['sizes']['home-slider'];
-                        $img_url_2x = $image['sizes']['home-slider-2x']; ?> 
+                        $img_url = $image['sizes']['home-banner'];
+                        $img_url_2x = $image['sizes']['home-banner-2x']; ?> 
                             <div class="home-main__slide">
                                 <img src="<?php echo $img_url; ?>" srcset="<?php echo $img_url_2x; ?> 2x" alt="">
                             </div>

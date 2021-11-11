@@ -239,7 +239,7 @@ function am_add_css( ) {
     global $am_option;
     // external CSS
     $am_links = array(
-        'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap',     // Montserrat Google Font
+        'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap',     // Montserrat Google Font
         'https://use.typekit.net/jdy6ykj.css',  // Meno Adobe Text
         'https://use.typekit.net/lvy7xby.css',  // Meno Banner   
         'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css',

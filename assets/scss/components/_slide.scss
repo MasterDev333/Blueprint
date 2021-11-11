@@ -17,16 +17,13 @@
   }
   .container {
     position: relative;
-    @include mq(tablet, max) {
-      margin-right: -20px;
-    }
   }
   .slick-slide {
     margin-right: 15px;
     height: inherit !important;
-    @include mq(tablet, max) {
+    @include mq(tablet) {
       margin-right: vw(90px);
-      background-color: $c-white;
+      // background-color: $c-white;
     }
     @include mq(desktop-wide) {
       margin-right: 90px;
@@ -38,7 +35,7 @@
     }
   }
   .slides {
-    padding-left: 20px;
+    padding-left: 15px;
     @include mq(tablet) {
       padding-left: vw(215px);
     }
@@ -66,7 +63,7 @@
       img {
         @include coverImage();
         transform: scale(1.5);
-        transition: all 0.5s ease-in-out;
+        transition: all 1s ease-in-out;
       }
       .img-a-img::before {
         padding-top: 100%;
@@ -74,7 +71,7 @@
     }
     &-content {
       display: flex;
-      padding: 28px 20px;
+      padding: 28px 20px 78px;
       flex-direction: column;
       background-color: $background_color;
       width: 100%;
@@ -94,6 +91,7 @@
         width: 600px;
       }
       &__name {
+        margin-bottom: 8px;
         @include typography(20px, 21.89px, 24.38px, 26.68px, 700, $f-secondary);
         text-transform: uppercase;
         letter-spacing: 0.04em;
@@ -119,7 +117,7 @@
         }
       }
       hr {
-        margin: 20px 0;
+        margin: 24px 0;
         width: 34px;
         border-color: #CEAF87;
         @include mq(desktop-small) {
