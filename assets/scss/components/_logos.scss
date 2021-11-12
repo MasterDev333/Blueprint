@@ -60,8 +60,20 @@
       margin: 0 auto;
       max-width: 100%;
       width: auto;
-      transition: transform .3s ease-in-out;
-      will-change: transform;
+      @include mq(tablet, max) {
+        height: 200px;
+      }
+    }
+  }
+  &__next {
+    &--wrapper {
+      position: absolute;
+      left: 50%;
+      bottom: 40px;
+      transform: translateX(-50%);
+      @include mq(tablet) {
+        display: none
+      }
     }
   }
 }

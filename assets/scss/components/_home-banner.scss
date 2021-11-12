@@ -152,15 +152,15 @@
 .sp-headline.slide b.is-visible {
   top: 0;
   opacity: 1;
-  -webkit-animation: slide-in .6s;
-  -moz-animation: slide-in .6s;
-  animation: slide-in .6s
+  -webkit-animation: slide-in 1s;
+  -moz-animation: slide-in 1s;
+  animation: slide-in 1s
 }
 
 .sp-headline.slide b.is-hidden {
-  -webkit-animation: slide-out .6s;
-  -moz-animation: slide-out .6s;
-  animation: slide-out .6s
+  -webkit-animation: slide-out 1s;
+  -moz-animation: slide-out 1s;
+  animation: slide-out 1s
 }
 
 .sp-words-wrapper {

@@ -71,7 +71,7 @@ if( have_rows('modules') ):
                         <div class="logos-module__slider slick-carousel a-up a-delay-1">
                             <?php while( have_rows( 'logos' ) ) : the_row(); 
                             $logo = get_sub_field( 'logo' );?>
-                            <div class="logos-module__link">
+                            <div class="logos-module__link carousel-cell">
                                 <img src="<?php echo $logo['sizes']['logo-slider']; ?>" 
                                     srcset="<?php echo $logo['sizes']['logo-slider-2x']; ?> 2x"
                                     alt="">
@@ -80,6 +80,13 @@ if( have_rows('modules') ):
                         </div>
                     </div>
                 <?php endif; ?>
+                <div class="logos-module__next--wrapper">
+                    <button class="logos-module__next a-up a-delay-1">
+                        <svg width="34" height="26" viewBox="0 0 34 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M33 13.0889L1 13.0889M33 13.0889L21 25.1778M33 13.0889L21 1" stroke="#141820" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
             </section>         
             
         <?php
@@ -150,18 +157,9 @@ if( have_rows('modules') ):
                         </div>
                     </div>
                 </div>
-                <?php if( $marquee_text ): ?>
-                    <!-- <div class="marquee">
-                        <ul id="marquee">
-                            <li>
-                                <p class="marquee-text"><?php echo $marquee_text; ?></p>
-                            </li>
-                        </ul>
-                    </div> -->
-                    <!-- <marquee direction="up" scrollamount="15" loop="true" class="marquee">
-                        <span class="marquee-text"><?php echo $marquee_text; ?></span>
-                    </marquee> -->
-                <?php endif; ?>
+                <div class="marquee">
+                    <p class="marquee-text"><?php echo $marquee_text; ?></p>
+                </div> 
             </section>
         <?php
         // Case: Media
