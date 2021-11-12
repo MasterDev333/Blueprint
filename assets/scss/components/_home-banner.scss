@@ -7,7 +7,7 @@
   }
 
   @include mq(tablet) {
-    padding: 0 60px !important;
+    padding: 40px 60px 0 !important;
     overflow: hidden;
     align-items: center;
   }
@@ -63,63 +63,71 @@
 
 .home-main__slider,
 .home-sub__slider {
-  height: svw(535px);
+  height: svw(386px);
+  overflow: hidden;
 
   @include mq(tablet) {
-    height: vw(807px, $viewport-lg);
+    height: vw(760px, $viewport-lg);
   }
   @include mq(desktop-wide) {
-    height: 100vh;
+    height: calc(100vh - 40px);
   }
 }
 
 .home-main__slider {
-  width: svw(240px);
+  width: svw(233px);
 
   @include mq(tablet) {
-    width: vw(470.54px, $viewport-lg);
+    width: vw(460px, $viewport-lg);
   }
   @include mq(desktop-wide) {
     width: vw(650px);
   }
 
-  // .slick-list {
-  //   height: 100% !important;
-  // }
+  .slick-list {
+    margin-top: -1px;
+    height: 100% !important;
+  }
   .home-main__slide {
-    height: svw(535px);
+    height: svw(386px);
 
     @include mq(tablet) {
-      padding-top: 40px;
-      height: vw(827px, $viewport-lg);
+      height: vw(760px, $viewport-lg);
     }
     @include mq(desktop-wide) {
-      height: 100vh;
+      height: calc(100vh - 40px);
     }
 
     img {
-      display: block;
       @include coverImage();
     }
   }
 }
 
 .home-sub__slider {
-  width: svw(135px);
+  width: svw(144px);
   @include mq(tablet) {
-    width: vw(270px, $viewport-lg);
+    width: vw(280px, $viewport-lg);
   }
   @include mq(desktop-wide) {
     width: vw(375px);
   }
 
   .slick-list {
+    margin-top: -1px;
     height: 100% !important;
   }
 
   .home-sub__slide {
+    height: svw(193px);
     @include mq(tablet) {
-      padding-top: vw(60px);
+      height: vw(380px, $viewport-lg);
+    }
+    @include mq(desktop-wide) {
+      height: calc(50vh - 20px);
+    }
+    img {
+      @include coverImage();
     }
   }
 }

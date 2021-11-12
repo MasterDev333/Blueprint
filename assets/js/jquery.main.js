@@ -205,7 +205,7 @@ jQuery(document).ready(function() {
   }
 
   document.addEventListener('pageChange', function() {
-    animationDelay = 2000,
+    animationDelay = 3000,
     barAnimationDelay = 3800,
     barWaiting = barAnimationDelay - 3000,
     lettersDelay = 50,
