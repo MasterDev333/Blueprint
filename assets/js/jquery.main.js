@@ -6,6 +6,7 @@ gsap.registerPlugin(scrollTo);
 var $ = jQuery.noConflict();
 jQuery(document).ready(function() {
   // single function
+  initPageLoader();
   initHeader();
   // initCustomForms();
   initAnchor();
@@ -25,6 +26,7 @@ jQuery(document).ready(function() {
   isElementExist(".accordions", initAccordions);
   isElementExist(".popup", initPopup);
   isElementExist(".media-content", initLottie);
+
   // isElementExist(".full-height", initFullHeight);
 
   // viewportCheckerAnimate function
@@ -258,6 +260,15 @@ function isElementExist(_el, _cb, _argCb) {
       console.log(e);
     }
   }
+}
+
+function initPageLoader() {
+  $('html, body').css('overflow', 'hidden');
+  setCookie('page-land', true);
+  setTimeout(() => {
+    $('.page-loader').fadeOut();
+    $('html, body').removeAttr('style');
+  }, 3000);
 }
 
 function initHeader() {
@@ -3377,3 +3388,25 @@ copies or substantial portions of the Software.
 //-------- -------- -------- --------
 //-------- included js libs end
 //-------- -------- -------- --------
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
