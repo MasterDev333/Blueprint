@@ -535,8 +535,9 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 @media only screen and (min-width: 1025px) { .slider .slide-content__bio { display: block; margin-bottom: 1.875vw; } }
 .slider .slide-content hr { margin: 24px 0; width: 34px; border-color: #CEAF87; }
 @media only screen and (min-width: 1025px) { .slider .slide-content hr { margin: 0.625vw 0 0.9895833333vw; width: 3.125vw; } }
-.slider .slide-content__testimonial { margin-top: auto; color: #141820; font-size: calc( 18px + -1.95 * ((100vw - 375px) / 1065) ); font-family: "meno-text", sans-serif; font-weight: 600; line-height: calc( 25px + 0.75 * ((100vw - 375px) / 1065) ); letter-spacing: 0.01em; }
+.slider .slide-content__testimonial { margin-top: auto; color: #141820; font-size: calc( 18px + -1.95 * ((100vw - 375px) / 1065) ); font-family: "meno-text", sans-serif; font-weight: 600; line-height: calc( 25px + 0.75 * ((100vw - 375px) / 1065) ); letter-spacing: 0.01em; text-indent: -8px; }
 @media only screen and (min-width: 1441px) { .slider .slide-content__testimonial { font-size: 16.05px; line-height: 25.75px; } }
+@media only screen and (min-width: 1025px) { .slider .slide-content__testimonial { text-indent: -11px; } }
 @media only screen and (min-width: 1441px) { .slider .slide-content__testimonial { color: #141820; font-size: calc( 18px + 4 * ((100vw - 375px) / 1065) ); font-family: "meno-text", sans-serif; font-weight: 600; line-height: calc( 25px + 10.29 * ((100vw - 375px) / 1065) ); } }
 @media only screen and (min-width: 1441px) and (min-width: 1441px) { .slider .slide-content__testimonial { font-size: 22px; line-height: 35.29px; } }
 
@@ -623,7 +624,7 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 .marquee { display: none; position: absolute; width: 20px; height: 100%; }
 @media only screen and (min-width: 769px) { .marquee { top: 2.6041666667vw; display: block; left: 25px; } }
 
-.marquee-text { background: -webkit-linear-gradient(#FFA012, #AD73FD, #59E8AC, #1CB2F2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 800% 800%; -webkit-animation: verticalGradient 18s ease infinite; animation: verticalGradient 18s ease infinite; -webkit-writing-mode: vertical-rl; -ms-writing-mode: tb-rl; writing-mode: vertical-rl; text-orientation: mixed; z-index: 2; white-space: nowrap; }
+.marquee-text { background: -webkit-linear-gradient(#FFA012, #AD73FD, #59E8AC, #1CB2F2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 800% 800%; -webkit-animation: verticalGradient 10s ease infinite; animation: verticalGradient 10s ease infinite; -webkit-writing-mode: vertical-rl; -ms-writing-mode: tb-rl; writing-mode: vertical-rl; text-orientation: mixed; z-index: 2; white-space: nowrap; }
 @media only screen and (min-width: 769px) { .marquee-text { font: 700 14.66px/17.59px "meno-text", sans-serif; font-style: italic; } }
 @media only screen and (min-width: 1441px) { .marquee-text { font-size: 20.09px; line-height: 24.11px; } }
 .marquee-text span { margin-bottom: 20px; }
@@ -667,8 +668,26 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 .popup-close { position: absolute; top: 13px; right: 22px; -webkit-transform-origin: center; transform-origin: center; -webkit-transition: -webkit-transform .3s ease-in-out; transition: -webkit-transform .3s ease-in-out; transition: transform .3s ease-in-out; transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
 @media only screen and (min-width: 769px) { .popup-close { top: 20px; right: 20px; } }
 .popup-close:hover { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
-.popup-header { margin-bottom: 14px; color: #141820; font-size: calc( 31.43px + 8.57 * ((100vw - 375px) / 1065) ); font-family: "meno-banner", sans-serif; font-weight: 400; line-height: calc( 29.6px + 14.5 * ((100vw - 375px) / 1065) ); background: linear-gradient(325.2deg, #B997E7 1%, #FFCDD3 42.14%, #FED78B 79.84%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.popup-header { margin-bottom: 26px; color: #141820; font-size: calc( 31.43px + 8.57 * ((100vw - 375px) / 1065) ); font-family: "meno-banner", sans-serif; font-weight: 400; line-height: calc( 29.6px + 14.5 * ((100vw - 375px) / 1065) ); background: linear-gradient(325.2deg, #B997E7 1%, #FFCDD3 42.14%, #FED78B 79.84%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 @media only screen and (min-width: 1441px) { .popup-header { font-size: 40px; line-height: 44.1px; } }
+@media only screen and (min-width: 769px) { .popup-header { margin-bottom: 1em; } }
+.popup .hbspt-form { font: 400 12px/27px "Montserrat", sans-serif; color: #fff; }
+@media only screen and (min-width: 769px) { .popup .hbspt-form { font-size: 14px; line-height: 27px; } }
+.popup .hbspt-form .hs-form-field { margin-bottom: 20px; }
+.popup .hbspt-form .hs-form-field label { display: none; }
+.popup .hbspt-form .hs-form-field input, .popup .hbspt-form .hs-form-field textarea { padding: 0; width: 100%; font: 400 12px/27px "Montserrat", sans-serif; }
+@media only screen and (min-width: 769px) { .popup .hbspt-form .hs-form-field input, .popup .hbspt-form .hs-form-field textarea { font-size: 14px; line-height: 27px; } }
+.popup .hbspt-form .hs-form-field input { border: none; background-color: transparent; border-bottom: 1px solid #fff; color: #fff; }
+.popup .hbspt-form .hs-form-field input::-webkit-input-placeholder { color: #fff; }
+.popup .hbspt-form .hs-form-field input:-ms-input-placeholder { color: #fff; }
+.popup .hbspt-form .hs-form-field input::-ms-input-placeholder { color: #fff; }
+.popup .hbspt-form .hs-form-field input::placeholder { color: #fff; }
+.popup .hbspt-form .hs-form-field textarea { padding: 5px; color: #141820; border: none; background-color: #fff; min-height: 100px; }
+.popup .hbspt-form .hs-message label { display: block; margin-bottom: 5px; font: 400 12px/27px "Montserrat", sans-serif; color: #fff; }
+@media only screen and (min-width: 769px) { .popup .hbspt-form .hs-message label { font-size: 14px; line-height: 27px; } }
+.popup .hbspt-form .hs-button { font: 600 14px/17px 'Montserrat'; border: none; border-radius: 20px; padding: 10px; width: 72px; }
+@media only screen and (min-width: 769px) { .popup .hbspt-form .hs-button { width: 104px; } }
+.popup .hbspt-form .hs_submit { text-align: right; }
 
 @media only screen and (min-width: 769px) { .privacy { padding: 175px 0; } }
 @media only screen and (min-width: 769px) { .privacy .container { max-width: 670px; padding: 0; } }

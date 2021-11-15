@@ -129,6 +129,10 @@
         margin-top: auto;
         @include typography(18px, 16.05px, 25px, 25.75px, 600, $f-text);
         letter-spacing: 0.01em;
+        text-indent: -8px;
+        @include mq(desktop-small) {
+          text-indent: -11px;
+        }
         @include mq(desktop-wide) {
           @include typography(18px, 22px, 25px, 35.29px, 600, $f-text);
         }
