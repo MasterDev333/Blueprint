@@ -509,16 +509,16 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 .slider .slick-current .slide-img img { -webkit-transform: scale(1); transform: scale(1); }
 .slider .slides { padding-left: 15px; }
 @media only screen and (min-width: 769px) { .slider .slides { padding-left: 11.1979166667vw; } }
-.slider .slide { width: 80vw; }
-@media only screen and (min-width: 1025px) { .slider .slide { display: -webkit-box; display: -ms-flexbox; display: flex; width: auto; -webkit-box-align: center; -ms-flex-align: center; align-items: center; } }
+.slider .slide { width: 80vw; height: 100%; }
+@media only screen and (min-width: 1025px) { .slider .slide { display: -webkit-box; display: -ms-flexbox; display: flex; width: auto; height: auto; -webkit-box-align: center; -ms-flex-align: center; align-items: center; } }
 .slider .slide-img { width: 100%; line-height: 0; overflow: hidden; }
 @media only screen and (min-width: 1025px) { .slider .slide-img { -ms-flex-negative: 0; flex-shrink: 0; } }
 @media only screen and (min-width: 1025px) { .slider .slide-img { width: 520px; } }
 @media only screen and (min-width: 1441px) { .slider .slide-img { width: 714px; } }
 .slider .slide-img img { display: block; width: 100%; height: 100%; -o-object-fit: cover; object-fit: cover; -webkit-transform: scale(1.5); transform: scale(1.5); -webkit-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
 .slider .slide-img .img-a-img::before { padding-top: 100%; }
-.slider .slide-content { display: -webkit-box; display: -ms-flexbox; display: flex; padding: 28px 20px 78px; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; background-color: #fff; width: 100%; z-index: 1; }
-@media only screen and (min-width: 1025px) { .slider .slide-content { margin-left: -10px; padding: 70px 32px; width: 438px; } }
+.slider .slide-content { display: -webkit-box; display: -ms-flexbox; display: flex; padding: 28px 20px 78px; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; background-color: #fff; width: 100%; height: 100%; z-index: 1; }
+@media only screen and (min-width: 1025px) { .slider .slide-content { margin-left: -10px; padding: 70px 32px; width: 438px; height: auto; } }
 @media only screen and (min-width: 1441px) { .slider .slide-content { padding: 100px 48px 60px 40px; width: 600px; } }
 .slider .slide-content__name { margin-bottom: 8px; color: #141820; font-size: calc( 20px + 1.89 * ((100vw - 375px) / 1065) ); font-family: "Montserrat", sans-serif; font-weight: 700; line-height: calc( 24.38px + 2.3 * ((100vw - 375px) / 1065) ); text-transform: uppercase; letter-spacing: 0.04em; }
 @media only screen and (min-width: 1441px) { .slider .slide-content__name { font-size: 21.89px; line-height: 26.68px; } }
@@ -535,7 +535,7 @@ p { margin: 0; color: #141820; font-size: calc( 12px + 2 * ((100vw - 375px) / 10
 @media only screen and (min-width: 1025px) { .slider .slide-content__bio { display: block; margin-bottom: 1.875vw; } }
 .slider .slide-content hr { margin: 24px 0; width: 34px; border-color: #CEAF87; }
 @media only screen and (min-width: 1025px) { .slider .slide-content hr { margin: 0.625vw 0 0.9895833333vw; width: 3.125vw; } }
-.slider .slide-content__testimonial { margin-top: auto; color: #141820; font-size: calc( 18px + -1.95 * ((100vw - 375px) / 1065) ); font-family: "meno-text", sans-serif; font-weight: 600; line-height: calc( 25px + 0.75 * ((100vw - 375px) / 1065) ); letter-spacing: 0.01em; text-indent: -8px; }
+.slider .slide-content__testimonial { color: #141820; font-size: calc( 18px + -1.95 * ((100vw - 375px) / 1065) ); font-family: "meno-text", sans-serif; font-weight: 600; line-height: calc( 25px + 0.75 * ((100vw - 375px) / 1065) ); letter-spacing: 0.01em; text-indent: -8px; }
 @media only screen and (min-width: 1441px) { .slider .slide-content__testimonial { font-size: 16.05px; line-height: 25.75px; } }
 @media only screen and (min-width: 1025px) { .slider .slide-content__testimonial { text-indent: -11px; } }
 @media only screen and (min-width: 1441px) { .slider .slide-content__testimonial { color: #141820; font-size: calc( 18px + 4 * ((100vw - 375px) / 1065) ); font-family: "meno-text", sans-serif; font-weight: 600; line-height: calc( 25px + 10.29 * ((100vw - 375px) / 1065) ); } }

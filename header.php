@@ -15,7 +15,7 @@
 	<?php if( $_COOKIE['page-land'] != 'true' ): ?>
 	<div class="page-loader">
 		<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-		<lottie-player src="https://assets5.lottiefiles.com/packages/lf20_spbxjcx4.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  autoplay></lottie-player>
+		<lottie-player src="https://assets5.lottiefiles.com/packages/lf20_spbxjcx4.json"  background="transparent"  speed="1"  style="width: 100px; height: 100px;"  autoplay></lottie-player>
 	</div>
 	<?php endif; ?>
 	<!-- Begin Cursor -->
