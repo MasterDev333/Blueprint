@@ -58,20 +58,14 @@ $footer_style = get_field( 'footer_style' ) ?: 'normal';
         </svg>
     </button>
     <div class="popup-inner">
-        <h2 class="popup-header">We would love to deepen the conversation.</h2>
+        <?php if( $connect_heading = get_field( 'connect_heading', 'options' ) ): ?>
+        <h2 class="popup-header"><?php echo $connect_heading; ?></h2>
+        <?php endif; ?>
+        <?php if( $form_code = get_field( 'form_code', 'options' ) ): ?>
         <div class="popup-form">
-            <!--[if lte IE 8]>
-            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
-            <![endif]-->
-            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
-            <script>
-            hbspt.forms.create({
-                region: "na1",
-                portalId: "5863353",
-                formId: "8ea94872-7260-4602-9199-b54e78bfd0bf"
-            });
-            </script>
+            <?php echo $form_code; ?>
         </div>
+        <?php endif; ?>
     </div>
 </div>
 

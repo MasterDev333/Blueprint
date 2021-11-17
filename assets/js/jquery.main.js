@@ -6,13 +6,13 @@ gsap.registerPlugin(scrollTo);
 var $ = jQuery.noConflict();
 jQuery(document).ready(function() {
   // single function
-  initPageLoader();
   initHeader();
   // initCustomForms();
   initAnchor();
   initCursor();
 
   // isElementExist helper
+  isElementExist(".page-loader", initPageLoader);
   isElementExist(".img-a", anImgRightOnScrollVewportChecker);
   isElementExist(".img-a-left", anImgLeftOnScrollVewportChecker);
   isElementExist(".img-a-up", anImgUpOnScrollVewportChecker);
@@ -521,7 +521,7 @@ function initSlider() {
     }]
   }).on("beforeChange", function(event, slick, currentSlide, nextSlide) {
     let $parent = $(this).closest('.slider');
-    let bg = $('.slide', slick.$slides[nextSlide]).attr('data-bg')
+    let bg = $('.slide', slick.$slides[nextSlide]).attr('data-bg');
     $parent.css("background-color", bg);
   });
 }
@@ -632,7 +632,7 @@ function myScrollLink() {
   var navLink = jQuery(".nav-link");
   navLink.on("click", function(e) {
     var elementClick = jQuery(this).attr("href");
-    if( elementClick.startsWith('#') ) {
+    if( elementClick.startsWith('#') && jQuery(elementClick).length ) {
       var destination = jQuery(elementClick).offset().top;
       var scrollTime =
         jQuery(this).attr("data-scrollTime") != undefined ?
@@ -654,7 +654,10 @@ function myScrollLink() {
       );
       if( window.matchMedia('(max-width: 767px)').matches ) {
         $('.header.header--open').removeClass('header--open');
+      } else {
+        if( $('.header').hasClass('header-nav--open') ) $('.header').removeClass('header-nav--open');
       }
+
       return false;
     }
   });
